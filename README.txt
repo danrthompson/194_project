@@ -17,3 +17,37 @@ create role senior_project_app with createdb login;
 
 rake db:create # creates the databases used by the app
 rake db:migrate # migrates the database to the latest schema
+
+
+python oauth2.py --generate_oauth2_token --client_id=446049003901-t1pco3ufp89tuu9egptlpli88aescbae.apps.googleusercontent.com --client_secret=RDTaHv0XAtC3hIYemcsrDCxg
+
+https://accounts.google.com/o/oauth2/auth?client_id=446049003901.apps.googleusercontent.com&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=https%3A%2F%2Fmail.google.com%2F
+
+
+===
+Useful info
+
+email:
+danielrthompsonjr@gmail.com
+
+username:
+danielrthompsonjr
+
+password:
+>TZQs9iuZ{Mx6B3X
+
+app:
+auth uri:
+https://accounts.google.com/o/oauth2/auth
+client_secret:
+1YkujFdHxBrE184DyF86LM-I
+token_uri:
+https://accounts.google.com/o/oauth2/token
+client_email:
+446049003901@developer.gserviceaccount.com
+client_x509_cert_url:
+https://www.googleapis.com/robot/v1/metadata/x509/446049003901@developer.gserviceaccount.com
+client_id:
+446049003901.apps.googleusercontent.com
+auth_provider_x509_cert_url:
+https://www.googleapis.com/oauth2/v1/certs
