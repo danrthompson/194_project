@@ -5,6 +5,18 @@ We are running a Rails 3.2.16 app, using Ruby version 2.1.0 (using RVM to manage
 
 
 ===
+useful sites:
+https://github.com/nfo/gmail_xoauth
+https://github.com/google/google-api-ruby-client
+http://blog.baugues.com/google-calendar-api-oauth2-and-ruby-on-rails
+https://github.com/nu7hatch/gmail
+https://cloud.google.com/console
+
+http://guides.rubyonrails.org/action_mailer_basics.html
+http://carlosgabaldon.com/articles/building-a-rails-gmail-client-outside-in/
+http://adayinthepit.com/2012/07/13/google-apis-sinatra-oauth2/
+
+===
 Potentially useful commands:
 rvm get stable # upgrade RVM
 rvm --default use 2.1.0 # set ruby version 2.1.0 as the default
