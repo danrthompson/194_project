@@ -39,6 +39,12 @@ GEM
     coffee-script-source (1.6.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    gmail (0.4.0)
+      gmail_xoauth (>= 0.3.0)
+      mail (>= 2.2.1)
+      mime (>= 0.1)
+    gmail_xoauth (0.4.1)
+      oauth (>= 0.3.6)
     hike (1.2.3)
     i18n (0.6.9)
     journey (1.0.4)
@@ -49,8 +55,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mime (0.2.0)
     mime-types (1.25.1)
     multi_json (1.8.4)
+    oauth (0.4.7)
     pg (0.17.1)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -103,6 +111,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  gmail
   jquery-rails
   pg
   rails (= 3.2.16)
