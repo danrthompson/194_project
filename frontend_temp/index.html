@@ -1,0 +1,38 @@
+<html ng-app="notTrello">
+	<head>
+		<title>CheckMail</title>
+
+		<link rel="stylesheet" href="css/master.css">
+	</head>
+	<body ng-controller="mainController">
+		<header>
+			<h1>CheckMail</h1>
+			<div class="account-details">
+				Logged in as Austin Whittier
+			</div>
+		</header>
+		<section class="boards-container">
+			<div ui-sortable="boardSortOptions" ng-model="boards" class="boards" style="width: {{width}}px;">
+				<ol ui-sortable="emailSortOptions" ng-model="boards" class="board" ng-repeat="board in boards | orderBy:'title'">
+					<h2>{{ board.title }}</h2>
+					<li class="email" ng-repeat="email in board.emails">
+						<div class="metadata">
+							<span class="author">{{ email.sender }}</span>
+							<span class="timestamp">{{ email.timestamp }}</span>
+						</div>
+						<span class="preview">{{ email.subject }}</span>
+					</li>
+				</ol>
+			</div>
+		</section>
+		<footer>
+			
+		</footer>
+
+	  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.js"></script>
+		<script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
