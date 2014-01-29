@@ -1,0 +1,27 @@
+
+// checkmail.less
+//------------------------------
+// This file imports all of the modules to form the MegaStylesheet™. The basic
+// order of business is to import the things that other things will
+// probably need to refer to first.
+
+// Dat bootstrap
+@import "bootstrap/bootstrap";
+
+// Pretty icons
+@import "ionicons";
+
+// Customize everything
+@import "variables";               // Redefining Bootstrap variables
+@import "ionicons-customizations"; // Just a few changes to make the icons play a little nicer with Bootstrap
+@import "mixins";                  // Mixins to augment Bootstrap mixins
+@import "extensions";              // Reusable xtensions to Bootstrap elements
+
+// Main components
+// (these should probably eventually be refactored into smaller files)
+@import "workspace"; // The main "Trello" board
+@import "sidebar";   // The sidebar for email viewing
+
+// Lonesome variables
+@sidebar-width: 25%;
+@email-column-width: 230px;

@@ -1,0 +1,163 @@
+// checkmail.less
+//------------------------------
+// Styling for the workspace. I'd say a lot of this CSS could be reworked in
+// some way. Especially the class names.
+
+.workspace {
+	position: absolute;
+	top: @navbar-height;
+	bottom: 0;
+	left: 0;
+	right: @sidebar-width;
+
+	overflow-x: auto;
+}
+
+.email-columns {
+	.make-row();
+	margin: 0;
+
+	padding: 0 @grid-gutter-width;
+}
+
+.email-column {
+	width: @email-column-width;
+	margin: @grid-gutter-width/2;
+	float: left;
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.email-label {
+	display: inline-block;
+	font-weight: 300;
+	// text-transform: uppercase;
+	// letter-spacing: 4px;
+}
+
+.email-heading {
+	padding: @panel-heading-padding;
+	cursor: -webkit-grab;
+}
+
+.email-column-decorations {
+	list-style-type: none;
+	margin: 9px 0;
+	padding: 0;
+	display: inline;
+	float: right;
+
+	li {
+		display: inline-block;
+
+		a {
+			color: #fff;
+			font-size: @font-size-large;
+			padding: 4px 4px 1px 4px;
+			border-radius: @border-radius-small;
+
+			&:hover {
+				background: #fff;
+				color: @gray-dark;
+			}
+		}
+	}
+}
+
+.email-item {
+	padding: 0;
+	border: none;
+	background: transparent;
+
+	.email-item-content {
+		padding: @panel-body-padding;
+		cursor: pointer;
+
+		border: 1px solid @gray-lighter;
+
+		background: #fff;
+
+		h5 {
+			margin: 2px 0;
+		}
+
+		&:hover {
+			background: #EFF7F3;
+		}
+
+	}
+	// This implementation is not perfect yet. I propose splitting the
+	// background and the indicator into two separate DOM elements. Not very
+	// elegant, but it would be more functional.
+	.todo-indicator {
+		position: absolute;
+		right: 10px;
+		top: 3px;
+		z-index: 0;
+
+		color: #fff;
+		.text-sm;
+		
+		&:before {
+			content: " ";
+			display: block;
+			position: absolute;
+			left: -45px;
+			top: -3px;
+			border-bottom: 30px solid transparent;
+			border-right: 60px solid @brand-success;
+			z-index: -1;
+		}
+	}
+}
+
+.email-todo-list {
+	margin-bottom: 0;
+	margin-left: 20px;
+
+	width: @email-column-width - 20px;
+}
+
+.email-todo-item {
+	border: 1px solid @gray-lighter !important;
+	margin-top: -1px;
+
+	i {
+		display: inline-block;
+		margin-right: 5px;
+	}
+
+	&:before {
+		.ion;
+		content: "\f170";
+	}
+
+	&.completed {
+		background: #eee;
+
+		&:before {
+			content: "\f16d";
+		}
+	}
+}
+
+.email-datetime {
+	.text-sm;
+	color: @brand-success;
+	// float: right;
+	margin-top: 2px;
+}
+
+.email-sender {
+	.text-strong;
+}
+
+.email-subject {
+	.text-muted;
+}

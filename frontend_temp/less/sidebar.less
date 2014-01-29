@@ -1,0 +1,21 @@
+// sidebar.less
+//------------------------------
+// Styling for the sidebar. Not much more to it.
+
+.sidebar {
+	position: absolute;
+	top: @navbar-height;
+	bottom: 0;
+	right: 0;
+	width: @sidebar-width;
+
+	// FIXME: This means the sidebar will overlap the workspace
+	min-width: 350px;
+
+	padding: @padding-base-vertical @padding-base-horizontal;
+}
+
+.email-viewer {
+	background: #fff;
+	border-left: 1px solid @gray-light;
+}

@@ -1,7 +1,7 @@
-var myapp = angular.module('notTrello', ['ui.sortable']);
+var myapp = angular.module('checkmail', ['ui.sortable']);
 
 
-myapp.controller('mainController', function ($scope) {
+myapp.controller('WorkspaceCtrl', function ($scope) {
   $scope.boards = [
     {
       title: "Inbox",
@@ -31,12 +31,24 @@ myapp.controller('mainController', function ($scope) {
       title: "Spam",
       emails: []
     },
+    {
+      title: "Lord of the Rings",
+      emails: []
+    },
+    {
+      title: "How long can my labels be?",
+      emails: []
+    },
+    {
+      title: "Spam",
+      emails: []
+    },
   ];
 
   for (var i = 0; i < $scope.boards.length; i++) {
     for (var j = 0; j < randomInt(2,5); j++) {
       $scope.boards[i].emails.push(randomEmail())
-    };
+    };    
   };
 
   // var firebase = new angularFire('http://...')
@@ -53,7 +65,7 @@ myapp.controller('mainController', function ($scope) {
   };
 
   $scope.$watch('boards', function(boards) {
-    $scope.width = boards.length*320;
+    $scope.width = boards.length*241;
     // $scope.$apply();
   })
 
@@ -131,9 +143,43 @@ function randomEmail() {
     "Frink"
   ]
 
+  function someTodos() {
+    var todos = [
+      {
+        action: "Print this out and pee on it",
+        completed: false,
+      },
+      {
+        action: "Do something about this",
+        completed: false
+      },
+      {
+        action: "Get crunk",
+        completed: false
+      },
+      {
+        action: "Turn up",
+        completed: false
+      },
+      {
+        action: "Ask Lil Jon about this one.",
+        completed: false
+      }
+    ]
+
+    var response = [];
+
+    for (var i = 0; i < randomInt(0,4); i++) {
+      response.push(todos[i]);
+    };
+
+    return response;
+  }
+
   return {
     sender: senders[randomInt(0,senders.length - 1)],
     subject: subjects[randomInt(0,subjects.length - 1)],
+    todos: someTodos(),
     timestamp: "3:00pm"
   }
 }
