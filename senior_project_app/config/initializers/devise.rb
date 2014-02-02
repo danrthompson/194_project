@@ -225,7 +225,11 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+  config.omniauth :google_oauth2, '446049003901-t1pco3ufp89tuu9egptlpli88aescbae.apps.googleusercontent.com', 'RDTaHv0XAtC3hIYemcsrDCxg', {
+    access_type: 'offline',
+    scope: 'userinfo.email userinfo.profile calendar https://mail.google.com/',
+    redirect_uri:'http://localhost:3000/users/auth/google_oauth2/callback'
+  }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -33,12 +33,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Token authenticatable
       # t.string :authentication_token
 
-      t.string :google_uid
-      t.string :google_token
-      t.datetime :google_token_expiration
+      t.string :provider
+      t.string :uid
+      t.string :auth_token
+      t.datetime :auth_token_expiration
+      t.string :refresh_token
 
       t.string :first_name
       t.string :last_name
+      t.string :gender
 
 
       t.timestamps
