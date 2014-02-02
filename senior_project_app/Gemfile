@@ -17,6 +17,8 @@ gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-googl
 gem 'gmail', git: 'git://github.com/drowningcat/gmail'
 gem 'oauth2'
 
+gem 'rest_client'
+
 gem 'devise'
 
 gem 'haml'

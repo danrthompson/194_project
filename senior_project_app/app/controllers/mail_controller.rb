@@ -10,6 +10,7 @@ class MailController < ApplicationController
 		#   :parameters => {},
 		#   :headers => {'Content-Type' => 'application/json'})
 		# render text: current_user.refresh_token and return
+		current_user.refresh_token_if_necessary
 		gmail = Gmail.connect(:xoauth, current_user.email, token: current_user.auth_token)
 		@count = gmail.inbox.count
 		render text: @count and return
