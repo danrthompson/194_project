@@ -60,6 +60,7 @@ SeniorProjectApp::Application.routes.draw do
 
   # match '/auth/:provider/callback' => "google#authenticate"
   # get 'test' => 'google#test'
-  root to: 'google#test'
+  root to: 'homepage#homepage'
+  get 'index' => 'mail#index'
 
 end
