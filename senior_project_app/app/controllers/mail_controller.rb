@@ -9,7 +9,7 @@ class MailController < ApplicationController
 		#   :api_method => service.calendar_list.list,
 		#   :parameters => {},
 		#   :headers => {'Content-Type' => 'application/json'})
-		render text: current_user.refresh_token and return
+		# render text: current_user.refresh_token and return
 		gmail = Gmail.connect(:xoauth, current_user.email, token: current_user.auth_token)
 		@count = gmail.inbox.count
 		render text: @count and return
