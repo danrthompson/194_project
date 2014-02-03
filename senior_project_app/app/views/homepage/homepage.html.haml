@@ -1,0 +1,7 @@
+%p test
+- if current_user
+	%p= "User ID: #{current_user.uid}"
+	%p= link_to "Go to app", '/index'
+	%p= link_to "Log Out", destroy_user_session_path, method: :delete
+- else
+	%p= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)

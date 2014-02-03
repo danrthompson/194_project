@@ -1,4 +1,6 @@
 SeniorProjectApp::Application.routes.draw do
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -56,6 +58,9 @@ SeniorProjectApp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  match '/auth/:provider/callback' => "google#authenticate"
+  # match '/auth/:provider/callback' => "google#authenticate"
+  # get 'test' => 'google#test'
+  root to: 'homepage#homepage'
+  get 'index' => 'mail#index'
 
 end

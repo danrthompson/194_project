@@ -2,19 +2,34 @@ source 'https://rubygems.org'
 
 ruby '2.1.0'
 
-gem 'google-api-client', :require => 'google/api_client'
-gem 'omniauth'
-gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
-
-gem 'gmail'
-gem 'oauth2'
-
 gem 'rails', '3.2.16'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+
+
+gem 'google-api-client', :require => 'google/api_client'
+gem 'omniauth'
+gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
+
+# gem 'gmail', git: 'git://github.com/drowningcat/gmail'
+gem 'gmail', path: '../../gmail'
+gem 'oauth2'
+gem 'gmail_xoauth'
+# gem 'mail'
+
+gem 'rest_client'
+
+gem 'devise'
+
+gem 'haml'
+gem 'haml-rails'
+
+# temporary
+gem 'awesome_print'
+# end temporary
 
 
 # Gems used only for assets and not required
