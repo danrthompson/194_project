@@ -22,7 +22,7 @@
 
 .email-column {
 	width: @email-column-width;
-	margin: @grid-gutter-width/2;
+	margin: @margin-top-workspace @grid-gutter-width/2;
 	float: left;
 
 	&:first-child {
@@ -101,19 +101,30 @@
 		top: 3px;
 		z-index: 0;
 
+		&:hover {
+			.todo-indicator-skin {
+				border-right-color: darken(@brand-success, 10%);
+			}
+		}
+	}
+
+	.todo-indicator-tally {
 		color: #fff;
 		.text-sm;
-		
-		&:before {
-			content: " ";
-			display: block;
-			position: absolute;
-			left: -45px;
-			top: -3px;
-			border-bottom: 30px solid transparent;
-			border-right: 60px solid @brand-success;
-			z-index: -1;
-		}
+		position: absolute;
+		top: 2px;
+		right: -2px;
+	}
+
+	.todo-indicator-skin {
+		content: " ";
+		display: block;
+		position: absolute;
+		left: -29px;
+		top: -2px;
+		border-bottom: 38px solid transparent;
+		border-right: 38px solid @brand-success;
+		z-index: -1;
 	}
 }
 
@@ -125,6 +136,8 @@
 }
 
 .email-todo-item {
+
+
 	border: 1px solid @gray-lighter !important;
 	margin-top: -1px;
 
@@ -160,4 +173,6 @@
 
 .email-subject {
 	.text-muted;
+	.text-sm;
 }
+
