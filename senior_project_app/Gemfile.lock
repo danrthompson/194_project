@@ -1,19 +1,18 @@
 GIT
-  remote: git://github.com/drowningcat/gmail
-  revision: f1cd4587ab37cc17ab475ce3fea5492fd8df9721
-  specs:
-    gmail (0.4.0)
-      gmail_xoauth (>= 0.3.0)
-      mail (>= 2.2.1)
-      mime (>= 0.1)
-
-GIT
   remote: https://github.com/zquestz/omniauth-google-oauth2.git
   revision: b62461a8bc239d29c6994ea9bf1648f617860d88
   specs:
     omniauth-google-oauth2 (0.2.2)
       omniauth (~> 1.0)
       omniauth-oauth2
+
+PATH
+  remote: ../../gmail
+  specs:
+    gmail (0.4.0)
+      gmail_xoauth (>= 0.3.0)
+      mail (>= 2.2.1)
+      mime (>= 0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -194,6 +193,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   gmail!
+  gmail_xoauth
   google-api-client
   haml
   haml-rails

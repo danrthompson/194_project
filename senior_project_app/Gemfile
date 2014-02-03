@@ -14,8 +14,11 @@ gem 'google-api-client', :require => 'google/api_client'
 gem 'omniauth'
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 
-gem 'gmail', git: 'git://github.com/drowningcat/gmail'
+# gem 'gmail', git: 'git://github.com/drowningcat/gmail'
+gem 'gmail', path: '../../gmail'
 gem 'oauth2'
+gem 'gmail_xoauth'
+# gem 'mail'
 
 gem 'rest_client'
 
