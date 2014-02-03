@@ -28,5 +28,21 @@
 @import "navbar"; // Custom navigation styling
 
 // Lonesome variables
-@sidebar-width: 25%;
+@sidebar-width: 30%;
 @email-column-width: 230px;
+@padding-top-sidebar: @padding-base-horizontal;
+@margin-top-workspace: @padding-base-horizontal;
+
+// This CSS is doing the lord's work
+// (stopping Safari from bouncing everywhere when you scroll)
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}

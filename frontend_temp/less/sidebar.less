@@ -9,16 +9,16 @@
 	right: 0;
 	width: @sidebar-width;
 
-	// FIXME: This means the sidebar will overlap the workspace
-	min-width: 400px;
+	overflow-y: auto;
 
-	padding: @padding-base-vertical @padding-base-horizontal;
+	// FIXME: This means the sidebar will overlap the workspace
+	// min-width: 400px;
+
+	padding: @padding-top-sidebar @padding-base-horizontal;
 }
 
 .email-viewer {
-	padding-top: 15px;
-	background-color: @gray;
-	// background: #fff;
+	background-color: @gray-light;
 	border-left: 1px solid @gray-light;
 }
 
@@ -88,20 +88,26 @@
 }
 
 .quick-reply{
-	padding:10px;
-	padding-bottom: 0px;
+	padding: @padding-base-horizontal;
 
-	input[type=text]{
-		border-radius: 5px;
-		width: 78%;
-		float: left;
-		margin-right: 2%;
-	}
+	// input[type=text]{
+	// 	border-radius: 5px;
+	// 	width: 78%;
+	// 	float: left;
+	// 	margin-right: 2%;
+	// }
+}
 
-	button{
-		background-color: @brand-success;
-		color: white;
-		border:none;
-	}
+.quick-reply-form {
+	.make-row();
+	margin: 0;
+}
+
+.quick-reply-input {
+	.make-xs-column(9);
+}
+
+.quick-reply-submit {
+	.make-xs-column(3);
 }
 
