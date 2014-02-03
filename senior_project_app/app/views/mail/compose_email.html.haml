@@ -1,0 +1,13 @@
+%p test compose email
+= form_for Email.new, url: '/compose_email' do |f|
+	%p
+		= f.label :to, 'To (enter emails separated by commas):'
+		= f.text_field :to
+	%p
+		= f.label :subject, 'Subject:'
+		= f.text_field :subject
+	%p
+		= f.label :body, 'Body:'
+		= f.text_area :body
+	%p 
+		= f.submit 'Send'

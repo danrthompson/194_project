@@ -52,8 +52,4 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def update_folders
-		
-	end
-
 end

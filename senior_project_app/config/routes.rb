@@ -62,5 +62,7 @@ SeniorProjectApp::Application.routes.draw do
   # get 'test' => 'google#test'
   root to: 'homepage#homepage'
   get 'index' => 'mail#index'
+  get 'compose_email' => 'mail#compose_email'
+  post 'compose_email' => 'mail#compose_email_post'
 
 end

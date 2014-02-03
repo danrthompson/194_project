@@ -1,9 +1,10 @@
 %p test
 %p= "User ID: #{current_user.uid}"
 %p= link_to "Log Out", destroy_user_session_path, method: :delete
+%p= link_to "Write email", '/compose_email'
 -# %p= "Inbox count: #{@count}"
 - @emails.each do |email|
 	%h3= "Subject: #{email.subject}"
 	-# %p= "Body: #{email.body}".html_safe
 	%br/ 
-	%p= "Body: #{email.html_part.decoded}".html_safe
+	%p= "Body: #{email.message.html_part.decoded}".html_safe
