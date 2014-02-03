@@ -10,12 +10,98 @@
 	width: @sidebar-width;
 
 	// FIXME: This means the sidebar will overlap the workspace
-	min-width: 350px;
+	min-width: 400px;
 
 	padding: @padding-base-vertical @padding-base-horizontal;
 }
 
 .email-viewer {
-	background: #fff;
+	padding-top: 15px;
+	background-color: @gray;
+	// background: #fff;
 	border-left: 1px solid @gray-light;
 }
+
+
+
+// Thread Window Styling
+
+.panel-heading.thread-message-heading{
+	.thread-message-heading
+}
+
+.thread-message-heading{
+	background-color: #fff;
+	color: @gray-dark;
+	padding-bottom: 0;
+	border-bottom: none;
+	// background-color: @gray-dark;
+
+	.thread-message-title{
+		width: 100%;
+		.thread-message-date{
+			color: green;
+			font-weight: light;
+			.text-sm;
+			opacity: 0.5;
+			float: right;
+			
+		}
+	}
+	h4{
+		margin-bottom: @padding-base-vertical;
+	}
+	
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li{
+		color: @gray;
+		  width: 95%;
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  opacity: 0.5;
+	}
+
+	hr{
+		margin-bottom: 0px;
+		margin-top: 10px;
+		// margin-top: @padding-base-vertical;
+		// padding:  0;
+	}
+
+	
+}
+
+.thread-message{
+	p{
+		margin:10px;
+		margin-top: 5px;
+			color: @gray;
+			opacity: 0.9;
+			line-height: 1.6;
+	}
+}
+
+.quick-reply{
+	padding:10px;
+	padding-bottom: 0px;
+
+	input[type=text]{
+		border-radius: 5px;
+		width: 78%;
+		float: left;
+		margin-right: 2%;
+	}
+
+	button{
+		background-color: @brand-success;
+		color: white;
+		border:none;
+	}
+}
+

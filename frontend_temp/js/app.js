@@ -1,3 +1,4 @@
+
 var myapp = angular.module('checkmail', ['ui.sortable']);
 
 
@@ -111,13 +112,13 @@ function randomEmail() {
   ];
 
   var senders = [
-    "Lisa",
-    "Bart",
-    "Maggie",
-    "Homer",
-    "Marge",
-    "Millhouse",
-    "Martin",
+    "Katie Ann Wang",
+    "Meetup",
+    "Clint Todd",
+    "CS142 on Piazza",
+    "Lizzy Scott Carmichael",
+    "zholland@angelenoartistry.com",
+    "Yaron Engelstein",
     "Ralph",
     "Burns",
     "Smithers",
