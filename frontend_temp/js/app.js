@@ -59,9 +59,9 @@ myapp.controller('WorkspaceCtrl', function ($scope) {
     forcePlaceholderSize: true,
   };
 
-    $scope.emailSortOptions = {
-    placeholder: "email_placeholder",
-    connectWith: ".board",
+  $scope.emailGroupSortableOptions = {
+    // placeholder: "email_placeholder",
+    connectWith: ".email-group",
     forcePlaceholderSize: true,
   };
 
