@@ -2,7 +2,7 @@
 var myapp = angular.module('checkmail', ['ui.sortable']);
 
 
-myapp.controller('WorkspaceCtrl', function ($scope) {
+myapp.controller('AppCtrl', function ($scope) {
   $scope.boards = [
     {
       title: "Inbox",
@@ -60,7 +60,7 @@ myapp.controller('WorkspaceCtrl', function ($scope) {
   };
 
   $scope.emailGroupSortableOptions = {
-    // placeholder: "email_placeholder",
+    placeholder: "email-placeholder",
     connectWith: ".email-group",
     forcePlaceholderSize: true,
   };

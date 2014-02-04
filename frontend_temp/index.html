@@ -4,16 +4,11 @@
 
 		<link rel="stylesheet" href="css/checkmail.css">
 	</head>
-	<body>
+	<body ng-controller="AppCtrl">
 		<header>
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Inbox</a></li>
-					<li><a href="#">School</a></li>
-					<li><a href="#">CS194</a></li>
-					<li><a href="#">Sent</a></li>
-					<li><a href="#">Trash</a></li>
-					<li><a href="#">+ New List</a></li>
+					<li ng-repeat="board in boards"><a href="#">{{ board.title }}</a></li>
 			    </ul>
 			    <div class="navbar-right">
 				    <ul class="nav navbar-nav">
@@ -26,10 +21,10 @@
 		</header>
 
 		<!-- Workspace -->
-		<section class="workspace" ng-controller="WorkspaceCtrl">
+		<section class="workspace">
 
 			<!-- Email column container -->
-			<div class="email-columns" style="width: {{width}}px;">
+			<div ui-sortable class="email-columns" style="width: {{width}}px;">
 
 				<!-- Individual email column -->
 				<div class="email-column" ng-repeat="board in boards">
