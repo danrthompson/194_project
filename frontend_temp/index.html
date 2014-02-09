@@ -4,16 +4,11 @@
 
 		<link rel="stylesheet" href="css/checkmail.css">
 	</head>
-	<body>
+	<body ng-controller="AppCtrl">
 		<header>
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Inbox</a></li>
-					<li><a href="#">School</a></li>
-					<li><a href="#">CS194</a></li>
-					<li><a href="#">Sent</a></li>
-					<li><a href="#">Trash</a></li>
-					<li><a href="#">+ New List</a></li>
+					<li ng-repeat="board in boards"><a href="#">{{ board.title }}</a></li>
 			    </ul>
 			    <div class="navbar-right">
 				    <ul class="nav navbar-nav">
@@ -26,10 +21,10 @@
 		</header>
 
 		<!-- Workspace -->
-		<section class="workspace" ng-controller="WorkspaceCtrl">
+		<section class="workspace">
 
 			<!-- Email column container -->
-			<div class="email-columns" style="width: {{width}}px;">
+			<div ui-sortable class="email-columns" style="width: {{width}}px;">
 
 				<!-- Individual email column -->
 				<div class="email-column" ng-repeat="board in boards">
@@ -42,12 +37,12 @@
 							<h4 class="email-label">{{ board.title }}</h4>
 							<ul class="email-column-decorations">
 								<li><a href="#"><i class="shared-icon ion-ios7-people"></i></a></li>
-								<li><a href="#"><i class="shared-icon ion-ios7-plus"></i></a></li>
+								<li><a href="#"><i class="shared-icon ion-ios7-arrow-down"></i></a></li>
 							</ul>
 						</div>
 					
 						<!-- Email group -->
-					  	<ul class="list-group email-group">
+					  	<ul ui-sortable="emailGroupSortableOptions" ng-model="board" class="list-group email-group">
 				
 					  		<!-- Email-item -->
 						    <li class="list-group-item email-item" ng-repeat="email in board.emails">
@@ -63,11 +58,12 @@
 						    	</div>
 								
 								<!-- Tasks associated with email -->
-								<div class="list-group email-todo-list" ng-repeat="todo in email.todos">
+								<div ui-sortable ng-model="email.todos" class="list-group email-todo-list">
 									<a href="#" 
 									   class="list-group-item email-todo-item" 
 									   ng-class="{true: 'completed', false: 'incomplete'}[todo.completed]"
-									   ng-click="todo.completed = !todo.completed">
+									   ng-click="todo.completed = !todo.completed"
+									   ng-repeat="todo in email.todos">
 									   {{ todo.action }}
 								   </a>
 								</div>
