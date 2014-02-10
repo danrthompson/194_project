@@ -8186,6 +8186,7 @@ fieldset[disabled] .btn-inverted-info.active {
   bottom: 0;
   left: 0;
   right: 30%;
+  margin-left: -15px;
   overflow-x: auto;
 }
 .email-placeholder {
@@ -8251,7 +8252,7 @@ fieldset[disabled] .btn-inverted-info.active {
 .email-column-fixed-left {
   margin: 0;
   position: fixed;
-  left: 15px;
+  left: 0px;
   z-index: 100;
   background-color: #fff;
   height: 100%;
@@ -8260,9 +8261,6 @@ fieldset[disabled] .btn-inverted-info.active {
   background-color: #428058;
   text-transform: uppercase;
   font-weight: bolder;
-}
-.email-column-fixed-left .column-background-hack {
-  display: block;
 }
 .email-item {
   padding: 0 0 0px 0;
