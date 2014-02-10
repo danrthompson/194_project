@@ -7991,6 +7991,9 @@ td.visible-print {
 .panel-email > .panel-footer + .panel-collapse .panel-body {
   border-bottom-color: #dadee1;
 }
+.panel-email .panel-heading {
+  border: none;
+}
 .panel-thread {
   border-color: #dadee1;
   box-shadow: none;
@@ -8235,7 +8238,7 @@ fieldset[disabled] .btn-inverted-info.active {
   color: #34393d;
 }
 .email-item {
-  padding: 0;
+  padding: 0 0 3px 0;
   border: none;
   background: transparent;
 }
@@ -8249,7 +8252,7 @@ fieldset[disabled] .btn-inverted-info.active {
   margin: 2px 0;
 }
 .email-item .email-item-content:hover {
-  background: #EFF7F3;
+  background: #eff7f3;
 }
 .email-item .todo-indicator {
   position: absolute;
@@ -8277,18 +8280,97 @@ fieldset[disabled] .btn-inverted-info.active {
   border-right: 38px solid #8bc7a1;
   z-index: -1;
 }
+.email-item:not(.todos-open) .email-todo-list {
+  display: none;
+}
+.email-item.selected .email-item-content {
+  background: #8bc7a1;
+  border-color: #69b685;
+}
+.email-item.selected .email-item-content:hover {
+  background: #69b685;
+  border-color: #4d9f6b;
+}
+.email-item.selected .email-sender {
+  color: #ffffff;
+}
+.email-item.selected .email-subject {
+  color: rgba(255, 255, 255, 0.8);
+}
+.email-item.selected .email-datetime {
+  color: rgba(255, 255, 255, 0.5);
+}
+.email-item.selected .todo-indicator-tally {
+  color: #ffffff;
+}
+.email-item.selected .todo-indicator-skin {
+  border-right-color: #53a26f;
+}
+.email-item.selected .todo-indicator-skin:hover {
+  border-right-color: #428058;
+}
+.email-item.highlighted .email-item-content {
+  background: #eff7f3;
+  border-color: #cde6d9;
+}
+.email-item.highlighted .email-item-content:hover {
+  background: #deefe6;
+  border-color: #bcdecd;
+}
+.email-item.highlighted .email-sender {
+  color: inherit;
+}
+.email-item.highlighted .email-subject {
+  color: inherit;
+}
+.email-item.highlighted .email-datetime {
+  color: inherit;
+}
+.email-item.highlighted .todo-indicator-tally {
+  color: #ffffff;
+}
+.email-item.highlighted .todo-indicator-skin {
+  border-right-color: #8bc7a1;
+}
+.email-item.highlighted .todo-indicator-skin:hover {
+  border-right-color: #bde0ca;
+}
+.email-item.unread .email-item-metadata {
+  display: block;
+  position: relative;
+}
+.email-item.unread .email-item-metadata:before {
+  display: block;
+  content: ".";
+  color: transparent;
+  font-size: 0;
+  border-left: 3px solid #8bc7a1;
+  height: 100%;
+  position: absolute;
+  left: -9px;
+  top: -2px;
+}
 .email-todo-list {
   margin-bottom: 0;
+  padding-top: 2px;
   margin-left: 20px;
   width: 210px;
 }
-.email-todo-item {
+.email-todo-item,
+.add-email-todo-item {
   border: 1px solid #dadee1 !important;
-  margin-top: -1px;
+  margin-top: 0;
+}
+.add-email-todo-item {
+  outline: 0;
+  width: 100%;
 }
 .email-todo-item i {
   display: inline-block;
   margin-right: 5px;
+}
+.email-todo-item:first-child {
+  border-top: none;
 }
 .email-todo-item:before {
   display: inline-block;

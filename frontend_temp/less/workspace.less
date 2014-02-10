@@ -76,7 +76,7 @@
 }
 
 .email-item {
-	padding: 0;
+	padding: 0 0 3px 0;
 	border: none;
 	background: transparent;
 
@@ -93,7 +93,7 @@
 		}
 
 		&:hover {
-			background: #EFF7F3;
+			background: @email-hover-bg;
 		}
 
 	}
@@ -128,27 +128,103 @@
 		left: -29px;
 		top: -2px;
 		border-bottom: 38px solid transparent;
-		border-right: 38px solid @brand-success;
+		border-right: 38px solid @email-indicator-bg;
 		z-index: -1;
+	}
+
+	// STATES
+
+	// Not selected
+	// Note: the best way to implement collapsing todos would be to 
+	&:not(.todos-open) {
+		.email-todo-list {
+			display: none;
+		}
+	}
+
+	// Selected (visible in sidebar)
+	&.selected {
+		.email-state-variant(@email-selected-bg,
+					 @email-selected-hover-bg,
+                     @email-selected-border-color,
+                     @email-selected-hover-border-color,
+                     @email-selected-sender-color,
+                     @email-selected-subject-color,
+                     @email-selected-datetime-color,
+                     @email-selected-indicator-color,
+                     @email-selected-indicator-bg,
+                     @email-selected-indicator-hover-bg);
+	}
+
+	// Highlighted (selected for... moving? I'm not totally sure yet)
+	&.highlighted {
+		.email-state-variant(@email-highlighted-bg,
+					 @email-highlighted-hover-bg,
+                     @email-highlighted-border-color,
+                     @email-highlighted-hover-border-color,
+                     @email-highlighted-sender-color,
+                     @email-highlighted-subject-color,
+                     @email-highlighted-datetime-color,
+                     @email-highlighted-indicator-color,
+                     @email-highlighted-indicator-bg,
+                     @email-highlighted-indicator-hover-bg);
+	}
+
+	// Unread
+	&.unread {
+		.email-item-metadata {
+			display: block;
+			position: relative;
+
+			&:before {
+				display: block;
+			    content: ".";
+			    color: transparent;
+			    font-size: 0;
+
+			    border-left: 3px solid @email-unread-indicator-color;
+			    height: 100%;
+			    position: absolute;
+			    left: -9px;
+			    top: -2px;
+			}
+		}
+	}
+
+	// 
+	&.completed {
+		
 	}
 }
 
 .email-todo-list {
 	margin-bottom: 0;
+	padding-top: 2px;
 	margin-left: 20px;
 
 	width: @email-column-width - 20px;
 }
 
-.email-todo-item {
-
+.email-todo-item, .add-email-todo-item {
 
 	border: 1px solid @gray-lighter !important;
-	margin-top: -1px;
+	margin-top: 0;
 
+}
+
+.add-email-todo-item {
+	outline: 0;
+	width: 100%;
+}
+
+.email-todo-item {
 	i {
 		display: inline-block;
 		margin-right: 5px;
+	}
+
+	&:first-child {
+		border-top: none;
 	}
 
 	&:before {

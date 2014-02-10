@@ -50,3 +50,39 @@
     margin: @value;
     padding: @value;
 }
+
+.email-state-variant(@bg,
+                     @hover-bg,
+                     @border-color,
+                     @hover-border-color,
+                     @sender-color,
+                     @subject-color,
+                     @datetime-color,
+                     @indicator-color,
+                     @indicator-bg,
+                     @indicator-hover-bg) {
+
+    .email-item-content {
+        background:   @bg;
+        border-color: @border-color;
+
+        &:hover {
+            background: @hover-bg;
+            border-color: @hover-border-color;
+        }
+    }
+
+    .email-sender   { color: @sender-color; }
+    .email-subject  { color: @subject-color; }
+    .email-datetime { color: @datetime-color; }
+
+    .todo-indicator-tally { color: @indicator-color; }
+
+    .todo-indicator-skin  { 
+        border-right-color: @indicator-bg;
+
+        &:hover {
+            border-right-color: @indicator-hover-bg;             
+        }
+    }
+}

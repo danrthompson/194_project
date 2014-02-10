@@ -7,14 +7,20 @@
 	<body ng-controller="AppCtrl">
 		<header>
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+				<!-- Navbar label navigation -->
 				<ul class="nav navbar-nav">
 					<li ng-repeat="board in boards"><a href="#">{{ board.title }}</a></li>
 			    </ul>
+
+			    <!-- Navbar logo and extras -->
 			    <div class="navbar-right">
+			    	<!-- Help and  -->
 				    <ul class="nav navbar-nav">
 					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
 				    	<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
 				    </ul>
+
+				    <!-- Logo -->
 					<a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a>
 				</div>
 			</nav>
@@ -27,7 +33,12 @@
 			<div ui-sortable class="email-columns" style="width: {{width}}px;">
 
 				<!-- Individual email column -->
-				<div class="email-column" ng-repeat="board in boards">
+				<!-- DH: The column has the class "email-column-fixed-left" if
+				its label is "Inbox" right now. This should be enough to get
+				you started.-->
+				<div class="email-column" 
+				     ng-repeat="board in boards"
+				     ng-class="{true: 'email-column-fixed-left'}[board.title == 'Inbox']">
 				
 					<!-- Email panel -->
 					<div class="panel panel-email">
@@ -45,16 +56,30 @@
 					  	<ul ui-sortable="emailGroupSortableOptions" ng-model="board" class="list-group email-group">
 				
 					  		<!-- Email-item -->
-						    <li class="list-group-item email-item" ng-repeat="email in board.emails">
+					  		<!-- TODO: This ng-class expression should be refactored into a method within the controller -->
+						    <li class="list-group-item email-item" 
+						    	ng-class="{true: 'selected'}[email==selected_email] + ' ' +
+						    			  {true: 'completed'}[email.is_complete] + ' ' +
+						    			  {true: 'highlighted'}[email.is_highlighted] + ' ' +
+						    			  {true: 'todos-open'}[email.todos_open] + ' ' +
+						    			  {false: 'unread'}[email.is_read]"
+						    	ng-repeat="email in board.emails">
 
 						    	<!-- Email metadata -->
-						    	<div class="email-item-content">
+						    	<div class="email-item-content"
+						    		 ng-click="toggleHighlight(email); toggleTodos(email)">
+
 						    		<a href="#" class="todo-indicator">
+						    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
 						    			<div class="todo-indicator-skin"></div>
 						    			<div class="todo-indicator-tally">{{ email.todos.length }}</div>
 						    		</a>
-									<h5 class="email-sender">{{ email.sender }} <small class="email-datetime">{{ email.timestamp }}</small></h5>
-									<span class="email-subject">{{ email.subject }}</span>
+
+						    		<!-- Sender, timestamp, and subject -->
+									<div class="email-item-metadata">
+										<h5 class="email-sender">{{ email.sender }} <small class="email-datetime">{{ email.timestamp }}</small></h5>
+										<span class="email-subject">{{ email.subject }}</span>
+									</div>
 						    	</div>
 								
 								<!-- Tasks associated with email -->
@@ -65,7 +90,13 @@
 									   ng-click="todo.completed = !todo.completed"
 									   ng-repeat="todo in email.todos">
 									   {{ todo.action }}
-								   </a>
+								   	</a>
+									
+									<input type="text" 
+										   class="list-group-item add-email-todo-item" 
+										   placeholder="Add a todo item..."
+										   ng-model="email.todo_temp"
+										   enter-submit="addTodo(email)">
 								</div>
 						    </li>
 					  	</ul>
@@ -116,19 +147,16 @@
 
 
 		</section>
-		<footer>
-			
-		</footer>
 
 		<!-- JAVASCRIPT -->
 
 		<!-- jQuery -->
-	  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	  	<script src="js/third-party/jquery.min.js"></script>
+		<script src="js/third-party/jquery-ui.js"></script>
 
 		<!-- Angular -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.7/angular.js"></script>
-		<script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
+		<script src="js/third-party/angular.js"></script>
+		<script src="js/third-party/ui-sortable.js"></script>
 
 		<!-- App -->
 		<script src="js/app.js"></script>

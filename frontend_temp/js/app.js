@@ -1,8 +1,74 @@
 
-var myapp = angular.module('checkmail', ['ui.sortable']);
+var checkmail = angular.module('checkmail', ['ui.sortable']);
+
+// From: http://stackoverflow.com/questions/14925728/how-to-observe-custom-events-in-angularjs
+checkmail.directive('enterSubmit', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var submit;
+
+      $(element).on({
+        keydown: function (e) {
+          submit = false;
+
+          if (e.which === 13 && !e.shiftKey) {
+            submit = true;
+            e.preventDefault();
+          }
+        },
+
+        keyup: function () {
+          if (submit) {
+            scope.$eval( attrs.enterSubmit );
+
+            // flush model changes manually
+            scope.$digest();
+          }
+        }
+      });
+    }
+  };
+});
+
+// TODO: it would be good to decompose this directive into a more flexible system
+checkmail.directive('shiftClick', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var shift;
+
+      $(document).on({
+        keydown: function (e) {
+          shift = false;
+
+          if (e.shiftKey) {
+            shift = true;
+          }
+        },
+
+        keyup: function () {
+          if (shift) {
+            shift = false;
+          }
+        },
+      })
+
+      $(element).on({
+        click: function(e) {
+          if (shift) {
+            e.preventDefault();
+            scope.$eval( attrs.shiftClick );
+            scope.$digest();
+          };
+        }
+      });
+    }
+  };
+});
 
 
-myapp.controller('AppCtrl', function ($scope) {
+checkmail.controller('AppCtrl', function ($scope) {
   $scope.boards = [
     {
       title: "Inbox",
@@ -52,7 +118,29 @@ myapp.controller('AppCtrl', function ($scope) {
     };    
   };
 
-  // var firebase = new angularFire('http://...')
+  $scope.selected_email = null;
+
+  $scope.selectEmail = function(email) {
+    $scope.selected_email = email;
+  }
+
+  $scope.toggleHighlight = function(email) {
+    email.is_highlighted = !email.is_highlighted;
+  }
+
+  $scope.toggleTodos = function(email) {
+    email.todos_open = !email.todos_open;
+  }
+
+  $scope.addTodo = function(email) {
+    if (email.todo_temp) { 
+      email.todos.push({
+        action: email.todo_temp,
+        completed: false
+      });
+      email.todo_temp = "";
+    }
+  }
   
   $scope.boardSortOptions = {
     placeholder: "board_placeholder",
@@ -67,24 +155,7 @@ myapp.controller('AppCtrl', function ($scope) {
 
   $scope.$watch('boards', function(boards) {
     $scope.width = boards.length*241;
-    // $scope.$apply();
   })
-
-  // scope.sortableOptions = {
-  //   placeholder: "app",
-  //   connectWith: ".apps-container"
-  // };
-  
-  // $scope.logModels = function () {
-  //   $scope.sortingLog = [];
-  //   for (var i = 0; i < $scope.rawScreens.length; i++) {
-  //     var logEntry = $scope.rawScreens[i].map(function (x) {
-  //       return x.title;
-  //     }).join(', ');
-  //     logEntry = 'container ' + (i+1) + ': ' + logEntry;
-  //     $scope.sortingLog.push(logEntry);
-  //   }
-  // };
 });
 
 // This function will generate a random email.
@@ -181,7 +252,10 @@ function randomEmail() {
     sender: senders[randomInt(0,senders.length - 1)],
     subject: subjects[randomInt(0,subjects.length - 1)],
     todos: someTodos(),
-    timestamp: "3:00pm"
+    timestamp: randomInt(1,12) + ":" + randomInt(10, 60) + "pm",
+    is_read: randomInt(0,1) == 0,
+    is_complete: randomInt(0,1) == 0,
+    is_highlighted: false
   }
 }
 
