@@ -8509,9 +8509,7 @@ fieldset[disabled] .btn-inverted-info.active {
 }
 .quick-reply-wrapper .quick-reply .quick-reply-form {
   width: 100%;
-}
-.quick-reply-wrapper .quick-reply .quick-reply-form textarea {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 .quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-submit {
   position: relative;
@@ -8540,13 +8538,13 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-left: 5px;
   padding-right: 5px;
   height: 200px;
+  margin-bottom: 10px;
 }
 .quick-reply-wrapper.qr-expanded .quick-reply-submit {
   padding: 0px;
 }
 .quick-reply-wrapper .qr-class-toggle {
   position: relative;
-  bottom: 10px;
 }
 .quick-reply-wrapper .qr-expand {
   font-size: 12px;
