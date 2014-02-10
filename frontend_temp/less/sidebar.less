@@ -19,9 +19,40 @@
 	padding: @padding-top-sidebar @padding-base-horizontal;
 }
 
+// This is going to need to be fixed when we sort out sidebar scaling
+.trashcan{
+	
+	position: fixed;
+	bottom: 10px;
+	left: 65%;
+	width: 100%;
+	
+
+	a{
+		padding: 10px;
+		padding-left:20px;
+		border-radius: 100px;
+		.ion;
+		font-size: 40px;
+		background-color: gray;
+		color: @gray-lighter;
+		font-weight: bold;
+		width: 100%;
+
+		&:hover{
+			background-color: @gray-dark;
+			text-decoration: none;
+		}
+	}
+	.trashcan-icon:before{
+		content: "\f1eb";
+
+	}
+}
+
 .email-viewer {
-	background-color: @gray-light;
-	border-left: 1px solid @gray-light;
+	background-color: @gray;
+	border-left: 1px solid @gray-lighter;
 }
 
 
@@ -38,17 +69,58 @@
 	padding-bottom: 0;
 	border-bottom: none;
 	// background-color: @gray-dark;
+	
+	
+	.panel-heading.thread-message-heading:hover .message-reply-icons{
+		background-color: pink;
+	}
+	
+	.message-reply-icons{
 
+		font-size: 1.65em;
+		position: absolute;
+		right: 30px;
+		top: 30px;
+		
+
+		a {
+			color: gray;
+			text-decoration: none;
+			margin: 10px 6px;
+			opacity: 0.45;
+			&:hover{
+				color: green;
+				opacity: 1;
+			}
+
+		}
+		.ionicon{
+			.ion;
+		}
+		.reply-icon:before{
+			content: "\f21e";
+		}
+		.replyall-icon:before{
+			content: "\f21d";
+		}
+		.fwd-icon:before{
+			content: "\f13a"
+		}
+		
+	}
+
+
+	.thread-message-date{
+				color: green;
+				font-weight: light;
+				.text-sm;
+				opacity: 0.8;
+				// float: right;
+				
+			}
 	.thread-message-title{
 		width: 100%;
-		.thread-message-date{
-			color: green;
-			font-weight: light;
-			.text-sm;
-			opacity: 0.5;
-			float: right;
-			
-		}
+		
 	}
 	h4{
 		margin-bottom: @padding-base-vertical;
@@ -89,27 +161,91 @@
 	}
 }
 
-.quick-reply{
-	padding: @padding-base-horizontal;
+.quick-reply-wrapper{
 
-	// input[type=text]{
-	// 	border-radius: 5px;
-	// 	width: 78%;
-	// 	float: left;
-	// 	margin-right: 2%;
-	// }
+
+	.quick-reply{
+		padding: @padding-base-horizontal;
+	}
+
+	.quick-reply-form {
+		.make-row();
+		margin: 0;
+	}
+
+
+	.quick-reply{
+		.quick-reply-form{
+			width: 100%;	
+			margin-bottom: 0;
+			textarea{
+			}
+		
+		
+			.quick-reply-submit {
+				.make-xs-column(3);
+				float: right;
+			}
+			.quick-reply-cancel{
+				.make-xs-column(3);
+				float: left;
+				color: pink;
+				.btn-default{
+					color: #aaa;
+				}
+			}
+
+		}
+	}
+
+
+	&.qr-compressed {		
+		// Text area when compressed
+		textarea {
+			.make-xs-column(9);
+			height:2.5em;
+			margin-bottom: 0px;
+		}
+
+		.quick-reply-cancel{
+			display: none;
+		}
+	}
+
+	&.qr-expanded{
+		textarea{
+			.make-xs-column(12);
+			height: 200px;
+			margin-bottom: 10px;
+		}
+
+		.quick-reply-submit{
+			padding: 0px;
+		}
+
+	}
+
+
+	.qr-class-toggle{
+		position: relative;
+	}
+
+	.qr-expand{
+		.text-sm;
+		position: relative;
+		top: -1.25em;
+		color: white;
+		opacity: 0.75;
+		text-decoration: none;
+		letter-spacing: 1.1;
+		font-weight: light;
+
+
+		&:hover{
+			opacity: 1;
+		}
+	}
+
+
+	
 }
-
-.quick-reply-form {
-	.make-row();
-	margin: 0;
-}
-
-.quick-reply-input {
-	.make-xs-column(9);
-}
-
-.quick-reply-submit {
-	.make-xs-column(3);
-}
-

@@ -169,6 +169,7 @@ checkmail.controller('AppCtrl', function ($scope) {
   };
 
   $scope.selected_email = null;
+  $scope.qr_state = true;
 
   $scope.selectEmail = function(email) {
     $scope.selected_email = email;

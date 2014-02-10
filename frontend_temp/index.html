@@ -30,8 +30,8 @@
 		<!-- Workspace -->
 		<section class="workspace">
 
-			<!-- Email column container -->
-			<div ui-sortable class="email-columns" style="width: {{workspace_width}}px;">
+			<!-- Email column container: All Email Lists -->
+			<div ui-sortable class="email-columns" style="width: {{width}}px;">
 
 				<div class="scroll-wrapper">
 					<!-- Individual email column -->
@@ -107,18 +107,29 @@
 					</div>
 				</div>
 			</div>
+			
+			<!-- Drag To Trash -->
+			<div class="trashcan">
+				<a href="" class="trashcan-icon"></a>
+			</div>
+
 		</section>
 
 		<!-- Sidebar -->
 		<section class="sidebar email-viewer">
 
-			<!-- Just a placeholder -->
+			<!-- Just a placeholder For A Thread -->
 			<div class="panel panel-thread thread-message">
 				<div class="panel-heading thread-message-heading">
-					<h4 class="thread-message-title">Re: Notification Settings <span class="thread-message-date">10/24</span></h3>
+					<div class="message-reply-icons ionicons">
+						<a href="" class="reply-icon"></a>
+						<a href="" class="replyall-icon"></a>
+						<a href="" class="fwd-icon"></a>
+					</div>
+					<h4 class="thread-message-title">Re: Notification Settings</h3>
 					<ul class="thread-title-subtext">
 						<li>To: <span class="thread-message-to thread-title-subtext">dant@stanford.edu, sara@squarespace.com</span></li>
-						<li>From: <span class="thread-message-from thread-title-subtext">Daniel Haarburger</span></li>
+						<li>From: <span class="thread-message-from thread-title-subtext">Daniel Haarburger</span><span class="thread-message-date"> on 10/24/2013</span></li>
 					</ul>
 
 
@@ -136,61 +147,30 @@
   				</div>
 			</div>
 
-			<!-- Second Email Placeholder -->
-			<div class="panel panel-thread thread-message">
-				<div class="panel-heading thread-message-heading">
-					<h4 class="thread-message-title">Re: Notification Settings <span class="thread-message-date">10/24</span></h4>
-					<ul class="thread-title-subtext">
-						<li>To: <span class="thread-message-to thread-title-subtext">sara@squarespace.com, Don Juan</span></li>
-						<li>From: <span class="thread-message-from thread-title-subtext">Samwise The Brave</span></li>
-					</ul>
 
+			<div class="quick-reply-wrapper" ng-class="{true: 'qr-compressed', false:'qr-expanded'}[qr_state]">
+				<div class="panel panel-thread quick-reply" >
 
-					<!-- <p>To: <span class="thread-message-to thread-title-subtext">dant@stanford.edu, sara@squarespace.com</span></p>
-					<p>From: <span class="thread-message-from thread-title-subtext">Daniel Haarburger</span></p> -->
-					<hr>
+					<!-- Quick Replay toggles between qr-compressed and qr-expanded -->
+					<form class="quick-reply-form" action="">
+						<div class="quick-reply-input">
+							<textarea class="form-control" rows="3"></textarea>
+						</div>
+						<div class="quick-reply-submit">
+							<button type="submit" class="btn btn-success btn-block">Submit</button>
+						</div>
+						<div class="quick-reply-cancel">
+							<button type="reset" class="btn btn-default btn-sm btn-block">Clear</button>
+						</div>
+					</form>
 				</div>
-  				<div class="panel-body">
-  					<p>
-    				Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit.
-    			</p>
-  				</div>
+
+			
+				<!-- When this button is pressed it should toggle the class of the wrapper  -->
+				<a href="" class="qr-expand" ng-click="qr_state = !qr_state"><span ng-bind="{true: 'Expand', false:'Compress'}[qr_state]"></span> Quick Reply</a>
 			</div>
-			<!--  End of second email placeholder -->
+			
 
-			<!-- Third Email Placeholder -->
-			<div class="panel panel-thread thread-message">
-				<div class="panel-heading thread-message-heading">
-					<h4 class="thread-message-title">Re: Notification Settings <span class="thread-message-date">10/24</span></h4>
-					<ul class="thread-title-subtext">
-						<li>To: <span class="thread-message-to thread-title-subtext">sara@squarespace.com, Don Juan</span></li>
-						<li>From: <span class="thread-message-from thread-title-subtext">Samwise The Brave</span></li>
-					</ul>
-
-
-					<!-- <p>To: <span class="thread-message-to thread-title-subtext">dant@stanford.edu, sara@squarespace.com</span></p>
-					<p>From: <span class="thread-message-from thread-title-subtext">Daniel Haarburger</span></p> -->
-					<hr>
-				</div>
-  				<div class="panel-body">
-  					<p>
-    				Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit.
-    			</p>
-  				</div>
-			</div>
-			<!--  End of third email placeholder -->
-
-			<div class="panel panel-thread quick-reply">
-				<form class="quick-reply-form" action="">
-					<div class="quick-reply-input">
-						<input type="text" class="form-control" placeholder="Write a quick reply...">
-					</div>
-					<div class="quick-reply-submit">
-						<button type="submit" class="btn btn-success btn-block">Submit</button>
-					</div>
-				</form>
-
-			</div>
 		</section>
 
 		<!-- JAVASCRIPT -->

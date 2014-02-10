@@ -5565,8 +5565,8 @@ button.close {
 .modal-footer:after,
 .email-columns:before,
 .email-columns:after,
-.quick-reply-form:before,
-.quick-reply-form:after {
+.quick-reply-wrapper .quick-reply-form:before,
+.quick-reply-wrapper .quick-reply-form:after {
   content: " ";
   display: table;
 }
@@ -5585,7 +5585,7 @@ button.close {
 .panel-body:after,
 .modal-footer:after,
 .email-columns:after,
-.quick-reply-form:after {
+.quick-reply-wrapper .quick-reply-form:after {
   clear: both;
 }
 .center-block {
@@ -8372,6 +8372,9 @@ fieldset[disabled] .btn-inverted-info.active {
   outline: 0;
   width: 100%;
 }
+.email-todo-item {
+  font-size: 12px;
+}
 .email-todo-item i {
   display: inline-block;
   margin-right: 5px;
@@ -8426,9 +8429,43 @@ fieldset[disabled] .btn-inverted-info.active {
 .sidebar::-webkit-scrollbar-thumb {
   background: #707070;
 }
+.trashcan {
+  position: fixed;
+  bottom: 10px;
+  left: 65%;
+  width: 100%;
+}
+.trashcan a {
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 100px;
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 40px;
+  background-color: gray;
+  color: #dadee1;
+  font-weight: bold;
+  width: 100%;
+}
+.trashcan a:hover {
+  background-color: #34393d;
+  text-decoration: none;
+}
+.trashcan .trashcan-icon:before {
+  content: "\f1eb";
+}
 .email-viewer {
-  background-color: #bfc5c9;
-  border-left: 1px solid #bfc5c9;
+  background-color: #707070;
+  border-left: 1px solid #dadee1;
 }
 .panel-heading.thread-message-heading {
   background-color: #fff;
@@ -8436,15 +8473,55 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-bottom: 0;
   border-bottom: none;
 }
-.panel-heading.thread-message-heading .thread-message-title {
-  width: 100%;
+.panel-heading.thread-message-heading .panel-heading.thread-message-heading:hover .message-reply-icons {
+  background-color: pink;
 }
-.panel-heading.thread-message-heading .thread-message-title .thread-message-date {
+.panel-heading.thread-message-heading .message-reply-icons {
+  font-size: 1.65em;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+.panel-heading.thread-message-heading .message-reply-icons a {
+  color: gray;
+  text-decoration: none;
+  margin: 10px 6px;
+  opacity: 0.45;
+}
+.panel-heading.thread-message-heading .message-reply-icons a:hover {
+  color: green;
+  opacity: 1;
+}
+.panel-heading.thread-message-heading .message-reply-icons .ionicon {
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.panel-heading.thread-message-heading .message-reply-icons .reply-icon:before {
+  content: "\f21e";
+}
+.panel-heading.thread-message-heading .message-reply-icons .replyall-icon:before {
+  content: "\f21d";
+}
+.panel-heading.thread-message-heading .message-reply-icons .fwd-icon:before {
+  content: "\f13a";
+}
+.panel-heading.thread-message-heading .thread-message-date {
   color: green;
   font-weight: light;
   font-size: 12px;
-  opacity: 0.5;
-  float: right;
+  opacity: 0.8;
+}
+.panel-heading.thread-message-heading .thread-message-title {
+  width: 100%;
 }
 .panel-heading.thread-message-heading h4 {
   margin-bottom: 6px;
@@ -8472,15 +8549,55 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-bottom: 0;
   border-bottom: none;
 }
-.thread-message-heading .thread-message-title {
-  width: 100%;
+.thread-message-heading .panel-heading.thread-message-heading:hover .message-reply-icons {
+  background-color: pink;
 }
-.thread-message-heading .thread-message-title .thread-message-date {
+.thread-message-heading .message-reply-icons {
+  font-size: 1.65em;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+.thread-message-heading .message-reply-icons a {
+  color: gray;
+  text-decoration: none;
+  margin: 10px 6px;
+  opacity: 0.45;
+}
+.thread-message-heading .message-reply-icons a:hover {
+  color: green;
+  opacity: 1;
+}
+.thread-message-heading .message-reply-icons .ionicon {
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.thread-message-heading .message-reply-icons .reply-icon:before {
+  content: "\f21e";
+}
+.thread-message-heading .message-reply-icons .replyall-icon:before {
+  content: "\f21d";
+}
+.thread-message-heading .message-reply-icons .fwd-icon:before {
+  content: "\f13a";
+}
+.thread-message-heading .thread-message-date {
   color: green;
   font-weight: light;
   font-size: 12px;
-  opacity: 0.5;
-  float: right;
+  opacity: 0.8;
+}
+.thread-message-heading .thread-message-title {
+  width: 100%;
 }
 .thread-message-heading h4 {
   margin-bottom: 6px;
@@ -8509,29 +8626,80 @@ fieldset[disabled] .btn-inverted-info.active {
   opacity: 0.9;
   line-height: 1.6;
 }
-.quick-reply {
+.quick-reply-wrapper .quick-reply {
   padding: 12px;
 }
-.quick-reply-form {
+.quick-reply-wrapper .quick-reply-form {
   margin-left: -5px;
   margin-right: -5px;
   margin: 0;
 }
-.quick-reply-input {
-  position: relative;
-  float: left;
-  width: 75%;
-  min-height: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
+.quick-reply-wrapper .quick-reply .quick-reply-form {
+  width: 100%;
+  margin-bottom: 0;
 }
-.quick-reply-submit {
+.quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-submit {
   position: relative;
   float: left;
   width: 25%;
   min-height: 1px;
   padding-left: 5px;
   padding-right: 5px;
+  float: right;
+}
+.quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-cancel {
+  position: relative;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: left;
+  color: pink;
+}
+.quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-cancel .btn-default {
+  color: #aaa;
+}
+.quick-reply-wrapper.qr-compressed textarea {
+  position: relative;
+  float: left;
+  width: 75%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 2.5em;
+  margin-bottom: 0px;
+}
+.quick-reply-wrapper.qr-compressed .quick-reply-cancel {
+  display: none;
+}
+.quick-reply-wrapper.qr-expanded textarea {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+.quick-reply-wrapper.qr-expanded .quick-reply-submit {
+  padding: 0px;
+}
+.quick-reply-wrapper .qr-class-toggle {
+  position: relative;
+}
+.quick-reply-wrapper .qr-expand {
+  font-size: 12px;
+  position: relative;
+  top: -1.25em;
+  color: white;
+  opacity: 0.75;
+  text-decoration: none;
+  letter-spacing: 1.1;
+  font-weight: light;
+}
+.quick-reply-wrapper .qr-expand:hover {
+  opacity: 1;
 }
 .navbar-left-side {
   width: 70%;
