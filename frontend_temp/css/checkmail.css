@@ -8679,9 +8679,11 @@ fieldset[disabled] .btn-inverted-info.active {
   font-size: 12px;
   position: relative;
   top: -1.25em;
-  color: #707070;
+  color: white;
   opacity: 0.75;
   text-decoration: none;
+  letter-spacing: 1.1;
+  font-weight: light;
 }
 .quick-reply-wrapper .qr-expand:hover {
   opacity: 1;
