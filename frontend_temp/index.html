@@ -63,14 +63,15 @@
 						    			  {true: 'completed'}[email.is_complete] + ' ' +
 						    			  {true: 'highlighted'}[email.is_highlighted] + ' ' +
 						    			  {true: 'todos-open'}[email.todos_open] + ' ' +
-						    			  {false: 'unread'}[email.is_read]"
+						    			  {false: 'unread'}[email.is_read] + ' ' +
+						    			  {true: 'no-todos'}[email.todos == 0]"
 						    	ng-repeat="email in board.emails">
 
 						    	<!-- Email metadata -->
 						    	<div class="email-item-content"
 						    		 ng-click="toggleHighlight(email); toggleTodos(email)">
 
-						    		<a href="#" class="todo-indicator">
+						    		<a href="#" class="todo-indicator" >
 						    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
 						    			<div class="todo-indicator-skin"></div>
 						    			<div class="todo-indicator-tally">{{ email.todos.length }}</div>

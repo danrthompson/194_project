@@ -8238,6 +8238,9 @@ fieldset[disabled] .btn-inverted-info.active {
   background: #fff;
   color: #34393d;
 }
+.no-todos .email-item-content .todo-indicator {
+  display: none;
+}
 .column-background-hack {
   width: 10%;
   height: 100%;
@@ -8256,6 +8259,7 @@ fieldset[disabled] .btn-inverted-info.active {
   z-index: 100;
   background-color: #fff;
   height: 100%;
+  outline: 1px solid #bfc5c9;
 }
 .email-column-fixed-left .email-heading {
   background-color: #428058;
