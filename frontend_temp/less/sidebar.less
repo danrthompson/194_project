@@ -37,6 +37,46 @@
 	border-bottom: none;
 	// background-color: @gray-dark;
 	
+	
+	.panel-heading.thread-message-heading:hover .message-reply-icons{
+		background-color: pink;
+	}
+	
+	.message-reply-icons{
+
+		font-size: 1.65em;
+		position: absolute;
+		right: 30px;
+		top: 30px;
+		
+
+		a {
+			color: gray;
+			text-decoration: none;
+			margin: 10px 6px;
+			opacity: 0.45;
+			&:hover{
+				color: green;
+				opacity: 1;
+			}
+
+		}
+		.ionicon{
+			.ion;
+		}
+		.reply-icon:before{
+			content: "\f21e";
+		}
+		.replyall-icon:before{
+			content: "\f21d";
+		}
+		.fwd-icon:before{
+			content: "\f13a"
+		}
+		
+	}
+
+
 	.thread-message-date{
 				color: green;
 				font-weight: light;

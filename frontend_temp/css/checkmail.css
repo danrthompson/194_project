@@ -8426,6 +8426,47 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-bottom: 0;
   border-bottom: none;
 }
+.panel-heading.thread-message-heading .panel-heading.thread-message-heading:hover .message-reply-icons {
+  background-color: pink;
+}
+.panel-heading.thread-message-heading .message-reply-icons {
+  font-size: 1.65em;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+.panel-heading.thread-message-heading .message-reply-icons a {
+  color: gray;
+  text-decoration: none;
+  margin: 10px 6px;
+  opacity: 0.45;
+}
+.panel-heading.thread-message-heading .message-reply-icons a:hover {
+  color: green;
+  opacity: 1;
+}
+.panel-heading.thread-message-heading .message-reply-icons .ionicon {
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.panel-heading.thread-message-heading .message-reply-icons .reply-icon:before {
+  content: "\f21e";
+}
+.panel-heading.thread-message-heading .message-reply-icons .replyall-icon:before {
+  content: "\f21d";
+}
+.panel-heading.thread-message-heading .message-reply-icons .fwd-icon:before {
+  content: "\f13a";
+}
 .panel-heading.thread-message-heading .thread-message-date {
   color: green;
   font-weight: light;
@@ -8460,6 +8501,47 @@ fieldset[disabled] .btn-inverted-info.active {
   color: #34393d;
   padding-bottom: 0;
   border-bottom: none;
+}
+.thread-message-heading .panel-heading.thread-message-heading:hover .message-reply-icons {
+  background-color: pink;
+}
+.thread-message-heading .message-reply-icons {
+  font-size: 1.65em;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+.thread-message-heading .message-reply-icons a {
+  color: gray;
+  text-decoration: none;
+  margin: 10px 6px;
+  opacity: 0.45;
+}
+.thread-message-heading .message-reply-icons a:hover {
+  color: green;
+  opacity: 1;
+}
+.thread-message-heading .message-reply-icons .ionicon {
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.thread-message-heading .message-reply-icons .reply-icon:before {
+  content: "\f21e";
+}
+.thread-message-heading .message-reply-icons .replyall-icon:before {
+  content: "\f21d";
+}
+.thread-message-heading .message-reply-icons .fwd-icon:before {
+  content: "\f13a";
 }
 .thread-message-heading .thread-message-date {
   color: green;
