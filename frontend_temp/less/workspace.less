@@ -3,12 +3,14 @@
 // Styling for the workspace. I'd say a lot of this CSS could be reworked in
 // some way. Especially the class names.
 
+
 .workspace {
 	position: absolute;
 	top: @navbar-height;
 	bottom: 0;
 	left: 0;
 	right: @sidebar-width;
+	margin-left:-15px;
 
 	overflow-x: auto;
 	.pretty-horizontal-scrollbar(4px);
@@ -76,8 +78,44 @@
 	}
 }
 
+.column-background-hack{
+		width:10%;
+		height: 100%;
+		margin-left: -10%;
+		background-color: @gray-darker;
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0; 
+		display: none;
+}
+
+.email-column-fixed-left{
+	margin:0;
+	position: fixed;
+	left: 0px;
+	z-index: 100;
+	background-color: #fff;
+	// outline: 10px solid @gray-lightest;
+	height: 100%;
+
+	.email-heading{
+		background-color: @green-dark;
+		text-transform: uppercase;
+		font-weight: bolder;
+	}
+
+	// .column-background-hack{
+	// 	display:block;
+	// }
+	
+}
+
+
+
+
 .email-item {
-	padding: 0 0 3px 0;
+	padding: 0 0 0px 0;
 	border: none;
 	background: transparent;
 
@@ -200,7 +238,7 @@
 
 .email-todo-list {
 	margin-bottom: 0;
-	padding-top: 2px;
+	padding-top: 0px;
 	margin-left: 20px;
 
 	width: @email-column-width - 20px;
