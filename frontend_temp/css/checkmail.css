@@ -205,7 +205,7 @@ table {
   img {
     max-width: 100% !important;
   }
-  @page  {
+  @page {
     margin: 2cm .5cm;
   }
   p,
@@ -1637,7 +1637,6 @@ input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   /* IE8-9 */
-
   line-height: normal;
 }
 input[type="file"] {
@@ -8423,21 +8422,38 @@ fieldset[disabled] .btn-inverted-info.active {
   margin-right: -5px;
   margin: 0;
 }
-.quick-reply-input {
+.quick-reply-form {
+  width: 100%;
+}
+.quick-reply-form textarea {
+  margin-bottom: 10px;
+}
+.quick-reply-form.qr-compressed textarea {
   position: relative;
   float: left;
   width: 75%;
   min-height: 1px;
   padding-left: 5px;
   padding-right: 5px;
+  height: 2.5em;
 }
-.quick-reply-submit {
+.quick-reply-form.qr-expanded textarea {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 200px;
+}
+.quick-reply-form .quick-reply-submit {
   position: relative;
   float: left;
   width: 25%;
   min-height: 1px;
   padding-left: 5px;
   padding-right: 5px;
+  float: right;
 }
 html {
   height: 100%;
