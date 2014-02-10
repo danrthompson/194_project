@@ -9,23 +9,23 @@ checkmail.directive('enterSubmit', function () {
       var submit;
 
       $(element).on({
-	keydown: function (e) {
-	  submit = false;
+        keydown: function (e) {
+          submit = false;
 
-	  if (e.which === 13 && !e.shiftKey) {
-	    submit = true;
-	    e.preventDefault();
-	  }
-	},
+          if (e.which === 13 && !e.shiftKey) {
+            submit = true;
+            e.preventDefault();
+          }
+        },
 
-	keyup: function () {
-	  if (submit) {
-	    scope.$eval( attrs.enterSubmit );
+        keyup: function () {
+          if (submit) {
+            scope.$eval( attrs.enterSubmit );
 
-	    // flush model changes manually
-	    scope.$digest();
-	  }
-	}
+            // flush model changes manually
+            scope.$digest();
+          }
+        }
       });
     }
   };
@@ -39,36 +39,29 @@ checkmail.directive('shiftClick', function () {
       var shift;
 
       $(document).on({
-	keydown: function (e) {
-	  shift = false;
+        keydown: function (e) {
+          shift = false;
 
-	  if (e.shiftKey) {
-	    shift = true;
-	    // e.preventDefault();
-	  }
-	},
+          if (e.shiftKey) {
+            shift = true;
+          }
+        },
 
-	keyup: function () {
-	  if (shift) {
-	    shift = false;
-	  }
-	},
+        keyup: function () {
+          if (shift) {
+            shift = false;
+          }
+        },
       })
 
       $(element).on({
-	// mousedown: function(e) {
-	//   if (shift) {
-	//     e.preventDefault();
-	//   }
-	// },
-
-	click: function(e) {
-	  if (shift) {
-	    e.preventDefault();
-	    scope.$eval( attrs.shiftClick );
-	    scope.$digest();
-	  };
-	}
+        click: function(e) {
+          if (shift) {
+            e.preventDefault();
+            scope.$eval( attrs.shiftClick );
+            scope.$digest();
+          };
+        }
       });
     }
   };
@@ -124,6 +117,30 @@ checkmail.controller('AppCtrl', function ($scope) {
       $scope.boards[i].emails.push(randomEmail())
     };    
   };
+
+  $scope.selected_email = null;
+
+  $scope.selectEmail = function(email) {
+    $scope.selected_email = email;
+  }
+
+  $scope.toggleHighlight = function(email) {
+    email.is_highlighted = !email.is_highlighted;
+  }
+
+  $scope.toggleTodos = function(email) {
+    email.todos_open = !email.todos_open;
+  }
+
+  $scope.addTodo = function(email) {
+    if (email.todo_temp) { 
+      email.todos.push({
+        action: email.todo_temp,
+        completed: false
+      });
+      email.todo_temp = "";
+    }
+  }
   
   $scope.boardSortOptions = {
     placeholder: "board_placeholder",
@@ -235,7 +252,10 @@ function randomEmail() {
     sender: senders[randomInt(0,senders.length - 1)],
     subject: subjects[randomInt(0,subjects.length - 1)],
     todos: someTodos(),
-    timestamp: "3:00pm"
+    timestamp: randomInt(1,12) + ":" + randomInt(10, 60) + "pm",
+    is_read: randomInt(0,1) == 0,
+    is_complete: randomInt(0,1) == 0,
+    is_highlighted: false
   }
 }
 
