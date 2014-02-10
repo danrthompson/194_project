@@ -67,6 +67,28 @@ checkmail.directive('shiftClick', function () {
   };
 });
 
+checkmail.directive('scrollOnClick', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, $elm, attrs) {
+      var idToScroll = attrs.href;
+      $elm.on('click', function(e) {
+        e.preventDefault();
+
+        var $target;
+        if (idToScroll) {
+          $target = $(idToScroll);
+        } else {
+          $target = $elm;
+        }
+
+        // TODO: Abstract this out a bit
+        $(".workspace").animate({scrollLeft: $target.offset().left - $('.scroll-wrapper').offset().left}, "fast");
+      });
+    }
+  }
+});
+
 
 checkmail.controller('AppCtrl', function ($scope) {
   $scope.boards = [
@@ -107,13 +129,41 @@ checkmail.controller('AppCtrl', function ($scope) {
       emails: []
     },
     {
-      title: "Spam",
+      title: "Soccer",
       emails: []
     },
+    {
+      title: "Basketball",
+      emails: []
+    },
+    {
+      title: "Football",
+      emails: []
+    },
+    {
+      title: "Hockey",
+      emails: []
+    },
+    {
+      title: "Cricket",
+      emails: []
+    },
+    {
+      title: "Baseball",
+      emails: []
+    },
+    {
+      title: "Golf",
+      emails: []
+    },
+    {
+      title: "Nascar",
+      emails: []
+    }
   ];
 
   for (var i = 0; i < $scope.boards.length; i++) {
-    for (var j = 0; j < randomInt(2,5); j++) {
+    for (var j = 0; j < randomInt(2,4); j++) {
       $scope.boards[i].emails.push(randomEmail())
     };    
   };
@@ -154,7 +204,7 @@ checkmail.controller('AppCtrl', function ($scope) {
   };
 
   $scope.$watch('boards', function(boards) {
-    $scope.width = boards.length*241;
+    $scope.workspace_width = boards.length*241;
   })
 });
 

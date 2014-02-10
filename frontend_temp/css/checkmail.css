@@ -2029,7 +2029,7 @@ fieldset[disabled] .btn {
 .open .dropdown-toggle.btn-default {
   color: #333333;
   background-color: #ebebeb;
-  border-color: #ebebeb;
+  border-color: #adadad;
 }
 .btn-default:active,
 .btn-default.active,
@@ -2070,7 +2070,7 @@ fieldset[disabled] .btn-default.active {
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
   background-color: #1b86a2;
-  border-color: #2db8dd;
+  border-color: #14657b;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -2111,7 +2111,7 @@ fieldset[disabled] .btn-primary.active {
 .open .dropdown-toggle.btn-success {
   color: #ffffff;
   background-color: #6fba8b;
-  border-color: #a3d3b5;
+  border-color: #52a972;
 }
 .btn-success:active,
 .btn-success.active,
@@ -2152,7 +2152,7 @@ fieldset[disabled] .btn-success.active {
 .open .dropdown-toggle.btn-info {
   color: #ffffff;
   background-color: #127074;
-  border-color: #1db0b6;
+  border-color: #0c4a4c;
 }
 .btn-info:active,
 .btn-info.active,
@@ -2193,7 +2193,7 @@ fieldset[disabled] .btn-info.active {
 .open .dropdown-toggle.btn-warning {
   color: #ffffff;
   background-color: #ea6416;
-  border-color: #f0935c;
+  border-color: #c05212;
 }
 .btn-warning:active,
 .btn-warning.active,
@@ -2234,7 +2234,7 @@ fieldset[disabled] .btn-warning.active {
 .open .dropdown-toggle.btn-danger {
   color: #ffffff;
   background-color: #cb3d3d;
-  border-color: #db7979;
+  border-color: #ad2e2e;
 }
 .btn-danger:active,
 .btn-danger.active,
@@ -8189,6 +8189,12 @@ fieldset[disabled] .btn-inverted-info.active {
   right: 30%;
   overflow-x: auto;
 }
+.workspace::-webkit-scrollbar {
+  height: 4px;
+}
+.workspace::-webkit-scrollbar-thumb {
+  background: #8bc7a1;
+}
 .email-placeholder {
   background: #aed;
   display: block;
@@ -8414,6 +8420,12 @@ fieldset[disabled] .btn-inverted-info.active {
   overflow-y: auto;
   padding: 12px 12px;
 }
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #707070;
+}
 .email-viewer {
   background-color: #bfc5c9;
   border-left: 1px solid #bfc5c9;
@@ -8520,6 +8532,34 @@ fieldset[disabled] .btn-inverted-info.active {
   min-height: 1px;
   padding-left: 5px;
   padding-right: 5px;
+}
+.navbar-left-side {
+  width: 70%;
+  float: left;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 40px;
+}
+.navbar-left-side .nav {
+  white-space: nowrap;
+  display: inline-block;
+}
+.navbar-left-side .nav li {
+  display: inline-block;
+  float: none;
+}
+.navbar-left-side::-webkit-scrollbar {
+  height: 2px;
+}
+.navbar-left-side::-webkit-scrollbar-thumb {
+  background: #8bc7a1;
+}
+.navbar-right-side {
+  width: 30%;
+  float: left;
+  border-left: 1px solid #bfc5c9;
+  padding-left: 12px;
 }
 html {
   height: 100%;

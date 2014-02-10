@@ -6,100 +6,104 @@
 	</head>
 	<body ng-controller="AppCtrl">
 		<header>
-			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="navbar navbar-default navbar-static-top">
 				<!-- Navbar label navigation -->
-				<ul class="nav navbar-nav">
-					<li ng-repeat="board in boards"><a href="#">{{ board.title }}</a></li>
-			    </ul>
-
-			    <!-- Navbar logo and extras -->
-			    <div class="navbar-right">
-			    	<!-- Help and  -->
-				    <ul class="nav navbar-nav">
-					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
-				    	<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
+				<div class="navbar-left-side">
+					<ul class="nav navbar-nav quick-nav-labels">
+						<li ng-repeat="board in boards"><a href="#board-{{ $index }}" scroll-on-click>{{ board.title }}</a></li>
 				    </ul>
-
-				    <!-- Logo -->
-					<a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a>
 				</div>
-			</nav>
+
+		    	<!-- Navbar logo and extras -->
+		    	<!-- Help and settings -->
+			    <div class="navbar-right-side">
+			    	<button class="btn navbar-btn btn-sm btn-inverted-success">Compose</button>
+			    	<ul class="nav navbar-nav pull-right">
+					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
+			    		<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
+			    		<li><a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a></li>
+			    	</ul>
+			    </div>
+			</div>
 		</header>
 
 		<!-- Workspace -->
 		<section class="workspace">
 
 			<!-- Email column container -->
-			<div ui-sortable class="email-columns" style="width: {{width}}px;">
+			<div ui-sortable class="email-columns" style="width: {{workspace_width}}px;">
 
-				<!-- Individual email column -->
-				<!-- DH: The column has the class "email-column-fixed-left" if
-				its label is "Inbox" right now. This should be enough to get
-				you started.-->
-				<div class="email-column" 
-				     ng-repeat="board in boards"
-				     ng-class="{true: 'email-column-fixed-left'}[board.title == 'Inbox']">
-				
-					<!-- Email panel -->
-					<div class="panel panel-email">
-
-						<!-- Panel heading -->
-						<div class="panel-heading email-heading">
-							<h4 class="email-label">{{ board.title }}</h4>
-							<ul class="email-column-decorations">
-								<li><a href="#"><i class="shared-icon ion-ios7-people"></i></a></li>
-								<li><a href="#"><i class="shared-icon ion-ios7-arrow-down"></i></a></li>
-							</ul>
-						</div>
+				<div class="scroll-wrapper">
+					<!-- Individual email column -->
+					<!-- DH: The column has the class "email-column-fixed-left" if
+					its label is "Inbox" right now. This should be enough to get
+					you started.-->
+					<div id="board-{{ $index }}"
+						 class="email-column" 
+					     ng-repeat="board in boards"
+					     ng-class="{true: 'email-column-fixed-left'}[board.title == 'Inbox']">
 					
-						<!-- Email group -->
-					  	<ul ui-sortable="emailGroupSortableOptions" ng-model="board" class="list-group email-group">
-				
-					  		<!-- Email-item -->
-					  		<!-- TODO: This ng-class expression should be refactored into a method within the controller -->
-						    <li class="list-group-item email-item" 
-						    	ng-class="{true: 'selected'}[email==selected_email] + ' ' +
-						    			  {true: 'completed'}[email.is_complete] + ' ' +
-						    			  {true: 'highlighted'}[email.is_highlighted] + ' ' +
-						    			  {true: 'todos-open'}[email.todos_open] + ' ' +
-						    			  {false: 'unread'}[email.is_read]"
-						    	ng-repeat="email in board.emails">
-
-						    	<!-- Email metadata -->
-						    	<div class="email-item-content"
-						    		 ng-click="toggleHighlight(email); toggleTodos(email)">
-
-						    		<a href="#" class="todo-indicator">
-						    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
-						    			<div class="todo-indicator-skin"></div>
-						    			<div class="todo-indicator-tally">{{ email.todos.length }}</div>
-						    		</a>
-
-						    		<!-- Sender, timestamp, and subject -->
-									<div class="email-item-metadata">
-										<h5 class="email-sender">{{ email.sender }} <small class="email-datetime">{{ email.timestamp }}</small></h5>
-										<span class="email-subject">{{ email.subject }}</span>
-									</div>
-						    	</div>
-								
-								<!-- Tasks associated with email -->
-								<div ui-sortable ng-model="email.todos" class="list-group email-todo-list">
-									<a href="#" 
-									   class="list-group-item email-todo-item" 
-									   ng-class="{true: 'completed', false: 'incomplete'}[todo.completed]"
-									   ng-click="todo.completed = !todo.completed"
-									   ng-repeat="todo in email.todos">
-									   {{ todo.action }}
-								   	</a>
+						<!-- Email panel -->
+						<div class="panel panel-email">
+					
+							<!-- Panel heading -->
+							<div class="panel-heading email-heading">
+								<h4 class="email-label">{{ board.title }}</h4>
+								<ul class="email-column-decorations">
+									<li><a href="#"><i class="shared-icon ion-ios7-people"></i></a></li>
+									<li><a href="#"><i class="shared-icon ion-ios7-arrow-down"></i></a></li>
+								</ul>
+							</div>
+						
+							<!-- Email group -->
+						  	<ul ui-sortable="emailGroupSortableOptions" ng-model="board" class="list-group email-group">
+					
+						  		<!-- Email-item -->
+						  		<!-- TODO: This ng-class expression should be refactored into a method within the controller -->
+							    <li class="list-group-item email-item" 
+							    	ng-class="{true: 'selected'}[email==selected_email] + ' ' +
+							    			  {true: 'completed'}[email.is_complete] + ' ' +
+							    			  {true: 'highlighted'}[email.is_highlighted] + ' ' +
+							    			  {true: 'todos-open'}[email.todos_open] + ' ' +
+							    			  {false: 'unread'}[email.is_read]"
+							    	ng-repeat="email in board.emails">
+					
+							    	<!-- Email metadata -->
+							    	<div class="email-item-content"
+							    		 ng-click="toggleHighlight(email); toggleTodos(email)">
+					
+							    		<a href="#" class="todo-indicator">
+							    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
+							    			<div class="todo-indicator-skin"></div>
+							    			<div class="todo-indicator-tally">{{ email.todos.length }}</div>
+							    		</a>
+					
+							    		<!-- Sender, timestamp, and subject -->
+										<div class="email-item-metadata">
+											<h5 class="email-sender">{{ email.sender }} <small class="email-datetime">{{ email.timestamp }}</small></h5>
+											<span class="email-subject">{{ email.subject }}</span>
+										</div>
+							    	</div>
 									
-									<input type="text" 
-										   class="list-group-item add-email-todo-item" 
-										   placeholder="Add a todo item..."
-										   ng-model="email.todo_temp"
-										   enter-submit="addTodo(email)">
-								</div>
-						    </li>
-					  	</ul>
+									<!-- Tasks associated with email -->
+									<div ui-sortable ng-model="email.todos" class="list-group email-todo-list">
+										<a href="#" 
+										   class="list-group-item email-todo-item" 
+										   ng-class="{true: 'completed', false: 'incomplete'}[todo.completed]"
+										   ng-click="todo.completed = !todo.completed"
+										   ng-repeat="todo in email.todos">
+										   {{ todo.action }}
+									   	</a>
+										
+										<input type="text" 
+											   class="list-group-item add-email-todo-item" 
+											   placeholder="Add a todo item..."
+											   ng-model="email.todo_temp"
+											   enter-submit="addTodo(email)">
+									</div>
+							    </li>
+						  	</ul>
+						</div>
 					</div>
 				</div>
 			</div>

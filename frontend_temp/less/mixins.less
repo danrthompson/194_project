@@ -86,3 +86,23 @@
         }
     }
 }
+
+.pretty-horizontal-scrollbar(@thickness) {
+    &::-webkit-scrollbar {
+        height: @thickness;
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: @green-primary;
+    }
+}
+
+.pretty-vertical-scrollbar(@thickness, @color) {
+    &::-webkit-scrollbar {
+        width: @thickness;
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: @color;
+    }
+}
