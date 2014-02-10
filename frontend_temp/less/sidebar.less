@@ -11,6 +11,8 @@
 
 	overflow-y: auto;
 
+	// .pretty-vertical-scrollbar(4px, @gray);
+
 	// FIXME: This means the sidebar will overlap the workspace
 	// min-width: 400px;
 
@@ -32,13 +34,14 @@
 		border-radius: 100px;
 		.ion;
 		font-size: 40px;
-		background-color: gray;
-		color: @gray-lighter;
+		border: 2px solid @gray-light;
+		color: @gray-light;
 		font-weight: bold;
 		width: 100%;
 
 		&:hover{
-			background-color: @gray-dark;
+			background-color: @gray-light;
+			color: #fff;
 			text-decoration: none;
 		}
 	}
@@ -49,8 +52,8 @@
 }
 
 .email-viewer {
-	background-color: @gray;
-	border-left: 1px solid @gray-lighter;
+	background-color: @gray-light;
+	border-left: 1px solid @gray-light;
 }
 
 
