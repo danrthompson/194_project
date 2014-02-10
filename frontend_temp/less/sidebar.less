@@ -107,10 +107,20 @@
 			textarea{
 			}
 		
+		
 			.quick-reply-submit {
 				.make-xs-column(3);
 				float: right;
 			}
+			.quick-reply-cancel{
+				.make-xs-column(3);
+				float: left;
+				color: pink;
+				.btn-default{
+					color: #aaa;
+				}
+			}
+
 		}
 	}
 
@@ -123,6 +133,9 @@
 			margin-bottom: 0px;
 		}
 
+		.quick-reply-cancel{
+			display: none;
+		}
 	}
 
 	&.qr-expanded{

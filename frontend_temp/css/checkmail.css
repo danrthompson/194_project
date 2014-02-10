@@ -8518,6 +8518,18 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-right: 5px;
   float: right;
 }
+.quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-cancel {
+  position: relative;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: left;
+  color: pink;
+}
+.quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-cancel .btn-default {
+  color: #aaa;
+}
 .quick-reply-wrapper.qr-compressed textarea {
   position: relative;
   float: left;
@@ -8527,6 +8539,9 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-right: 5px;
   height: 2.5em;
   margin-bottom: 0px;
+}
+.quick-reply-wrapper.qr-compressed .quick-reply-cancel {
+  display: none;
 }
 .quick-reply-wrapper.qr-expanded textarea {
   position: relative;
