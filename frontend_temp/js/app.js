@@ -1,8 +1,81 @@
 
-var myapp = angular.module('checkmail', ['ui.sortable']);
+var checkmail = angular.module('checkmail', ['ui.sortable']);
+
+// From: http://stackoverflow.com/questions/14925728/how-to-observe-custom-events-in-angularjs
+checkmail.directive('enterSubmit', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var submit;
+
+      $(element).on({
+	keydown: function (e) {
+	  submit = false;
+
+	  if (e.which === 13 && !e.shiftKey) {
+	    submit = true;
+	    e.preventDefault();
+	  }
+	},
+
+	keyup: function () {
+	  if (submit) {
+	    scope.$eval( attrs.enterSubmit );
+
+	    // flush model changes manually
+	    scope.$digest();
+	  }
+	}
+      });
+    }
+  };
+});
+
+// TODO: it would be good to decompose this directive into a more flexible system
+checkmail.directive('shiftClick', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var shift;
+
+      $(document).on({
+	keydown: function (e) {
+	  shift = false;
+
+	  if (e.shiftKey) {
+	    shift = true;
+	    // e.preventDefault();
+	  }
+	},
+
+	keyup: function () {
+	  if (shift) {
+	    shift = false;
+	  }
+	},
+      })
+
+      $(element).on({
+	// mousedown: function(e) {
+	//   if (shift) {
+	//     e.preventDefault();
+	//   }
+	// },
+
+	click: function(e) {
+	  if (shift) {
+	    e.preventDefault();
+	    scope.$eval( attrs.shiftClick );
+	    scope.$digest();
+	  };
+	}
+      });
+    }
+  };
+});
 
 
-myapp.controller('AppCtrl', function ($scope) {
+checkmail.controller('AppCtrl', function ($scope) {
   $scope.boards = [
     {
       title: "Inbox",
