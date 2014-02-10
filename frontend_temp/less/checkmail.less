@@ -46,6 +46,44 @@
 @padding-top-sidebar:  @padding-base-horizontal;
 @margin-top-workspace: @padding-base-horizontal;
 
+@email-hover-bg: @green-lighter;
+
+@email-indicator-bg: @green-primary;
+@email-unread-indicator-color: @green-primary;
+
+// EMAIL ITEM STATES
+
+// Selected
+@email-selected-bg: @green-primary;
+@email-selected-border-color: darken(@green-primary, 10%);
+
+@email-selected-hover-bg:           darken(@email-selected-bg, 10%);
+@email-selected-hover-border-color: darken(@email-selected-border-color, 10%);
+
+@email-selected-sender-color:   #fff;
+@email-selected-subject-color:  rgba(255,255,255,.8);
+@email-selected-datetime-color: rgba(255,255,255,.5);
+
+@email-selected-indicator-bg:       lighten(@green-dark, 10%);
+@email-selected-indicator-hover-bg: @green-dark;
+@email-selected-indicator-color: #fff;
+
+// Highlighted
+@email-highlighted-bg:           @green-lighter;
+@email-highlighted-border-color: darken(@green-lighter, 10%);
+
+@email-highlighted-hover-bg:           darken(@email-highlighted-bg, 5%);
+@email-highlighted-hover-border-color: darken(@email-highlighted-border-color, 5%);
+
+@email-highlighted-sender-color:   inherit;
+@email-highlighted-subject-color:  inherit;
+@email-highlighted-datetime-color: inherit;
+
+@email-highlighted-indicator-bg:       @email-indicator-bg;
+@email-highlighted-indicator-hover-bg: @green-light;
+@email-highlighted-indicator-color:    #fff;
+
+
 // This CSS is doing the lord's work
 // (stopping Safari from bouncing everywhere when you scroll)
 html {

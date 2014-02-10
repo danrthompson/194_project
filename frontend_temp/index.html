@@ -33,7 +33,12 @@
 			<div ui-sortable class="email-columns" style="width: {{width}}px;">
 
 				<!-- Individual email column -->
-				<div class="email-column" ng-repeat="board in boards">
+				<!-- DH: The column has the class "email-column-fixed-left" if
+				its label is "Inbox" right now. This should be enough to get
+				you started.-->
+				<div class="email-column" 
+				     ng-repeat="board in boards"
+				     ng-class="{true: 'email-column-fixed-left'}[board.title == 'Inbox']">
 				
 					<!-- Email panel -->
 					<div class="panel panel-email">
@@ -51,10 +56,19 @@
 					  	<ul ui-sortable="emailGroupSortableOptions" ng-model="board" class="list-group email-group">
 				
 					  		<!-- Email-item -->
-						    <li class="list-group-item email-item" ng-repeat="email in board.emails">
+					  		<!-- TODO: This ng-class expression should be refactored into a method within the controller -->
+						    <li class="list-group-item email-item" 
+						    	ng-class="{true: 'selected'}[email==selected_email] + ' ' +
+						    			  {true: 'completed'}[email.is_complete] + ' ' +
+						    			  {true: 'highlighted'}[email.is_highlighted] + ' ' +
+						    			  {true: 'todos-open'}[email.todos_open] + ' ' +
+						    			  {false: 'unread'}[email.is_read]"
+						    	ng-repeat="email in board.emails">
 
 						    	<!-- Email metadata -->
-						    	<div class="email-item-content">
+						    	<div class="email-item-content"
+						    		 ng-click="toggleHighlight(email); toggleTodos(email)">
+
 						    		<a href="#" class="todo-indicator">
 						    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
 						    			<div class="todo-indicator-skin"></div>
@@ -62,8 +76,10 @@
 						    		</a>
 
 						    		<!-- Sender, timestamp, and subject -->
-									<h5 class="email-sender">{{ email.sender }} <small class="email-datetime">{{ email.timestamp }}</small></h5>
-									<span class="email-subject">{{ email.subject }}</span>
+									<div class="email-item-metadata">
+										<h5 class="email-sender">{{ email.sender }} <small class="email-datetime">{{ email.timestamp }}</small></h5>
+										<span class="email-subject">{{ email.subject }}</span>
+									</div>
 						    	</div>
 								
 								<!-- Tasks associated with email -->
@@ -74,7 +90,13 @@
 									   ng-click="todo.completed = !todo.completed"
 									   ng-repeat="todo in email.todos">
 									   {{ todo.action }}
-								   </a>
+								   	</a>
+									
+									<input type="text" 
+										   class="list-group-item add-email-todo-item" 
+										   placeholder="Add a todo item..."
+										   ng-model="email.todo_temp"
+										   enter-submit="addTodo(email)">
 								</div>
 						    </li>
 					  	</ul>
