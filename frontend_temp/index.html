@@ -15,7 +15,7 @@
 			    <!-- Navbar logo and extras -->
 			    <div class="navbar-right">
 			    	<!-- Help and  -->
-				    <ul class="nav navbar-nav">
+				    <ul class="nav navbar-nav ionicons">
 					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
 				    	<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
 				    </ul>
@@ -39,7 +39,8 @@
 				<div class="email-column" 
 				     ng-repeat="board in boards"
 				     ng-class="{true: 'email-column-fixed-left'}[board.title == 'Inbox']">
-				
+
+			     	 <div class="column-background-hack">.</div>
 					<!-- Email panel -->
 					<div class="panel panel-email">
 
@@ -102,6 +103,7 @@
 					  	</ul>
 					</div>
 				</div>
+
 			</div>
 			
 			<!-- Drag To Trash -->
@@ -117,6 +119,8 @@
 			<!-- Just a placeholder For A Thread -->
 			<div class="panel panel-thread thread-message">
 				<div class="panel-heading thread-message-heading">
+					
+
 					<div class="message-reply-icons ionicons">
 						<a href="" class="reply-icon"></a>
 						<a href="" class="replyall-icon"></a>
