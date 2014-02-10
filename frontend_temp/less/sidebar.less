@@ -87,37 +87,32 @@
 	}
 }
 
-.quick-reply{
-	padding: @padding-base-horizontal;
+.quick-reply-wrapper{
 
-	// input[type=text]{
-	// 	border-radius: 5px;
-	// 	width: 78%;
-	// 	float: left;
-	// 	margin-right: 2%;
-	// }
-}
-
-.quick-reply-form {
-	.make-row();
-	margin: 0;
-}
-
-
-.quick-reply{
-	.quick-reply-form{
-		width: 100%;	
-
-		textarea{
-			margin-bottom:10px;
-		}
-	
-		.quick-reply-submit {
-			.make-xs-column(3);
-			float: right;
-		}
+	.quick-reply{
+		padding: @padding-base-horizontal;
 	}
 
+	.quick-reply-form {
+		.make-row();
+		margin: 0;
+	}
+
+
+	.quick-reply{
+		.quick-reply-form{
+			width: 100%;	
+
+			textarea{
+				margin-bottom:10px;
+			}
+		
+			.quick-reply-submit {
+				.make-xs-column(3);
+				float: right;
+			}
+		}
+	}
 
 
 	&.qr-compressed {		
@@ -141,9 +136,26 @@
 		}
 
 	}
-}
-.qr-class-toggle{
-	position: relative;
-	bottom: 10px;
-}
 
+
+	.qr-class-toggle{
+		position: relative;
+		bottom: 10px;
+	}
+
+	.qr-expand{
+		.text-sm;
+		position: relative;
+		top: -1.25em;
+		color: @gray;
+		opacity: 0.75;
+		text-decoration: none;
+
+		&:hover{
+			opacity: 1;
+		}
+	}
+
+
+	
+}

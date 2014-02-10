@@ -133,8 +133,8 @@
 			</div>
 
 
-			<div class="quick-reply-wrapper">
-				<div class="panel panel-thread quick-reply qr-expanded" >
+			<div class="quick-reply-wrapper" ng-class="{true: 'qr-compressed', false:'qr-expanded'}[qr_state]">
+				<div class="panel panel-thread quick-reply" >
 
 					<!-- Quick Replay toggles between qr-compressed and qr-expanded -->
 					<form class="quick-reply-form" action="">
@@ -147,8 +147,9 @@
 					</form>
 				</div>
 
+			
 				<!-- When this button is pressed it should toggle the class of the wrapper  -->
-				<a href="">Compress Quick Reply</a>
+				<a href="" class="qr-expand" ng-click="qr_state = !qr_state">Compress Quick Reply</a>
 			</div>
 			
 

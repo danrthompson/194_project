@@ -5564,8 +5564,8 @@ button.close {
 .modal-footer:after,
 .email-columns:before,
 .email-columns:after,
-.quick-reply-form:before,
-.quick-reply-form:after {
+.quick-reply-wrapper .quick-reply-form:before,
+.quick-reply-wrapper .quick-reply-form:after {
   content: " ";
   display: table;
 }
@@ -5584,7 +5584,7 @@ button.close {
 .panel-body:after,
 .modal-footer:after,
 .email-columns:after,
-.quick-reply-form:after {
+.quick-reply-wrapper .quick-reply-form:after {
   clear: both;
 }
 .center-block {
@@ -8499,21 +8499,21 @@ fieldset[disabled] .btn-inverted-info.active {
   opacity: 0.9;
   line-height: 1.6;
 }
-.quick-reply {
+.quick-reply-wrapper .quick-reply {
   padding: 12px;
 }
-.quick-reply-form {
+.quick-reply-wrapper .quick-reply-form {
   margin-left: -5px;
   margin-right: -5px;
   margin: 0;
 }
-.quick-reply .quick-reply-form {
+.quick-reply-wrapper .quick-reply .quick-reply-form {
   width: 100%;
 }
-.quick-reply .quick-reply-form textarea {
+.quick-reply-wrapper .quick-reply .quick-reply-form textarea {
   margin-bottom: 10px;
 }
-.quick-reply .quick-reply-form .quick-reply-submit {
+.quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-submit {
   position: relative;
   float: left;
   width: 25%;
@@ -8522,7 +8522,7 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-right: 5px;
   float: right;
 }
-.quick-reply.qr-compressed textarea {
+.quick-reply-wrapper.qr-compressed textarea {
   position: relative;
   float: left;
   width: 75%;
@@ -8532,7 +8532,7 @@ fieldset[disabled] .btn-inverted-info.active {
   height: 2.5em;
   margin-bottom: 0px;
 }
-.quick-reply.qr-expanded textarea {
+.quick-reply-wrapper.qr-expanded textarea {
   position: relative;
   float: left;
   width: 100%;
@@ -8541,12 +8541,23 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-right: 5px;
   height: 200px;
 }
-.quick-reply.qr-expanded .quick-reply-submit {
+.quick-reply-wrapper.qr-expanded .quick-reply-submit {
   padding: 0px;
 }
-.qr-class-toggle {
+.quick-reply-wrapper .qr-class-toggle {
   position: relative;
   bottom: 10px;
+}
+.quick-reply-wrapper .qr-expand {
+  font-size: 12px;
+  position: relative;
+  top: -1.25em;
+  color: #707070;
+  opacity: 0.75;
+  text-decoration: none;
+}
+.quick-reply-wrapper .qr-expand:hover {
+  opacity: 1;
 }
 html {
   height: 100%;
