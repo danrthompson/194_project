@@ -10,8 +10,8 @@
 	bottom: 0;
 	left: 0;
 	right: @sidebar-width;
-	margin-left:-15px;
-
+	// margin-left:-15px;
+	margin-left: @email-column-width;
 	overflow-x: auto;
 }
 
@@ -255,7 +255,7 @@
 
 	border: 1px solid @gray-lighter !important;
 	margin-top: 0;
-
+	
 }
 
 .add-email-todo-item {
@@ -297,8 +297,24 @@
 	margin-top: 2px;
 }
 
-.email-sender {
-	.text-strong;
+
+
+.sender-and-date{
+	width:100%;
+	height: 20px;	// Might be worth coming with a better long term system here
+	.email-sender {
+		.text-strong;
+			max-width: 70%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			float: left;
+			padding-right: 5px;
+	}
+
+	.email-datetime{
+		float:left;
+	}
 }
 
 .email-subject {
