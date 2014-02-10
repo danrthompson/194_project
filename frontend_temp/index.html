@@ -28,7 +28,7 @@
 		</header>
 
 		<!-- Workspace -->
-		<section class="workspace">
+		<section class="workspace" ng-class="{true: 'sidebar-inactive', false: 'sidebar_active'}[!sidebar_active]">
 
 			<!-- Email column container: All Email Lists -->
 			<div ui-sortable class="email-columns" style="width: {{workspace_width}}px;">
@@ -72,7 +72,7 @@
 					
 							    	<!-- Email metadata -->
 							    	<div class="email-item-content"
-							    		 ng-click="toggleHighlight(email); toggleTodos(email)">
+							    		 ng-click="toggleHighlight(email); toggleTodos(email);">
 					
 							    		<a href="#" class="todo-indicator">
 							    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
@@ -113,14 +113,15 @@
 			</div>
 			
 			<!-- Drag To Trash -->
-			<div class="trashcan">
-				<a href="" class="trashcan-icon"></a>
+			<div class="trashcan" ng-class="{true: 'sidebar-inactive', false: 'sidebar_active'}[!sidebar_active]">
+				<a href="" class="trashcan-icon" ng-click="sidebar_active = !sidebar_active;"></a>
 			</div>
 
+			
 		</section>
 
 		<!-- Sidebar -->
-		<section class="sidebar email-viewer">
+		<section class="sidebar email-viewer" ng-class="{true: 'sidebar-inactive', false: 'sidebar_active'}[!sidebar_active]" >
 
 			<!-- Just a placeholder For A Thread -->
 			<div class="panel panel-thread thread-message">

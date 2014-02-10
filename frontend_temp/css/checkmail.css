@@ -8449,6 +8449,18 @@ fieldset[disabled] .btn-inverted-info.active {
   color: #707070;
   font-size: 12px;
 }
+.sidebar.sidebar-inactive {
+  right: -30%;
+}
+.sidebar.sidebar_active {
+  right: 0;
+}
+.workspace.sidebar-inactive {
+  right: 0;
+}
+.workspace.sidebar_active {
+  right: 30%;
+}
 .sidebar {
   position: absolute;
   top: 40px;
@@ -8492,6 +8504,10 @@ fieldset[disabled] .btn-inverted-info.active {
 }
 .trashcan .trashcan-icon:before {
   content: "\f1eb";
+}
+.trashcan.sidebar-inactive {
+  position: fixed;
+  left: 95%;
 }
 .email-viewer {
   background-color: #707070;
