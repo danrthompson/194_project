@@ -133,18 +133,24 @@
 			</div>
 
 
-			<div class="panel panel-thread quick-reply">
-				<form class="quick-reply-form qr-expanded" action="">
-					<div class="quick-reply-input">
-						<textarea class="form-control" rows="3"></textarea>
-					</div>
-					<div class="quick-reply-submit">
-						<button type="submit" class="btn btn-success btn-block">Submit</button>
-					</div>
-				</form>
+			<div class="quick-reply-wrapper">
+				<div class="panel panel-thread quick-reply qr-expanded" >
+
+					<!-- Quick Replay toggles between qr-compressed and qr-expanded -->
+					<form class="quick-reply-form" action="">
+						<div class="quick-reply-input">
+							<textarea class="form-control" rows="3"></textarea>
+						</div>
+						<div class="quick-reply-submit">
+							<button type="submit" class="btn btn-success btn-block">Submit</button>
+						</div>
+					</form>
+				</div>
+
+				<!-- When this button is pressed it should toggle the class of the wrapper  -->
+				<a href="">Compress Quick Reply</a>
 			</div>
 			
-
 
 		</section>
 

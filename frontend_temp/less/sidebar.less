@@ -104,19 +104,28 @@
 }
 
 
-.quick-reply-form{
-	width: 100%;	
+.quick-reply{
+	.quick-reply-form{
+		width: 100%;	
 
-	textarea{
-		margin-bottom:10px;
-	}
+		textarea{
+			margin-bottom:10px;
+		}
 	
-	&.qr-compressed {
-		
+		.quick-reply-submit {
+			.make-xs-column(3);
+			float: right;
+		}
+	}
+
+
+
+	&.qr-compressed {		
 		// Text area when compressed
 		textarea {
 			.make-xs-column(9);
 			height:2.5em;
+			margin-bottom: 0px;
 		}
 
 	}
@@ -126,25 +135,15 @@
 			.make-xs-column(12);
 			height: 200px;
 		}
-	
-	}
 
-	.quick-reply-submit {
-		.make-xs-column(3);
-		float: right;
+		.quick-reply-submit{
+			padding: 0px;
+		}
+
 	}
 }
-
-// .quick-reply-input.qr-expanded{
-// 		.make-xs-column(12);
-
-
-// 	textarea{
-// 			height: 200px;
-// 			margin-bottom: 10px;
-// 	}
-
-// }
-
-
+.qr-class-toggle{
+	position: relative;
+	bottom: 10px;
+}
 

@@ -8365,6 +8365,9 @@ fieldset[disabled] .btn-inverted-info.active {
   outline: 0;
   width: 100%;
 }
+.email-todo-item {
+  font-size: 12px;
+}
 .email-todo-item i {
   display: inline-block;
   margin-right: 5px;
@@ -8504,13 +8507,22 @@ fieldset[disabled] .btn-inverted-info.active {
   margin-right: -5px;
   margin: 0;
 }
-.quick-reply-form {
+.quick-reply .quick-reply-form {
   width: 100%;
 }
-.quick-reply-form textarea {
+.quick-reply .quick-reply-form textarea {
   margin-bottom: 10px;
 }
-.quick-reply-form.qr-compressed textarea {
+.quick-reply .quick-reply-form .quick-reply-submit {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: right;
+}
+.quick-reply.qr-compressed textarea {
   position: relative;
   float: left;
   width: 75%;
@@ -8518,8 +8530,9 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-left: 5px;
   padding-right: 5px;
   height: 2.5em;
+  margin-bottom: 0px;
 }
-.quick-reply-form.qr-expanded textarea {
+.quick-reply.qr-expanded textarea {
   position: relative;
   float: left;
   width: 100%;
@@ -8528,14 +8541,12 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-right: 5px;
   height: 200px;
 }
-.quick-reply-form .quick-reply-submit {
+.quick-reply.qr-expanded .quick-reply-submit {
+  padding: 0px;
+}
+.qr-class-toggle {
   position: relative;
-  float: left;
-  width: 25%;
-  min-height: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-  float: right;
+  bottom: 10px;
 }
 html {
   height: 100%;
