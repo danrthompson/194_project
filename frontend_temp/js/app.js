@@ -51,8 +51,6 @@ myapp.controller('AppCtrl', function ($scope) {
       $scope.boards[i].emails.push(randomEmail())
     };    
   };
-
-  // var firebase = new angularFire('http://...')
   
   $scope.boardSortOptions = {
     placeholder: "board_placeholder",
@@ -67,24 +65,7 @@ myapp.controller('AppCtrl', function ($scope) {
 
   $scope.$watch('boards', function(boards) {
     $scope.width = boards.length*241;
-    // $scope.$apply();
   })
-
-  // scope.sortableOptions = {
-  //   placeholder: "app",
-  //   connectWith: ".apps-container"
-  // };
-  
-  // $scope.logModels = function () {
-  //   $scope.sortingLog = [];
-  //   for (var i = 0; i < $scope.rawScreens.length; i++) {
-  //     var logEntry = $scope.rawScreens[i].map(function (x) {
-  //       return x.title;
-  //     }).join(', ');
-  //     logEntry = 'container ' + (i+1) + ': ' + logEntry;
-  //     $scope.sortingLog.push(logEntry);
-  //   }
-  // };
 });
 
 // This function will generate a random email.

@@ -7,14 +7,20 @@
 	<body ng-controller="AppCtrl">
 		<header>
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+				<!-- Navbar label navigation -->
 				<ul class="nav navbar-nav">
 					<li ng-repeat="board in boards"><a href="#">{{ board.title }}</a></li>
 			    </ul>
+
+			    <!-- Navbar logo and extras -->
 			    <div class="navbar-right">
+			    	<!-- Help and  -->
 				    <ul class="nav navbar-nav">
 					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
 				    	<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
 				    </ul>
+
+				    <!-- Logo -->
 					<a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a>
 				</div>
 			</nav>
@@ -50,9 +56,12 @@
 						    	<!-- Email metadata -->
 						    	<div class="email-item-content">
 						    		<a href="#" class="todo-indicator">
+						    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
 						    			<div class="todo-indicator-skin"></div>
 						    			<div class="todo-indicator-tally">{{ email.todos.length }}</div>
 						    		</a>
+
+						    		<!-- Sender, timestamp, and subject -->
 									<h5 class="email-sender">{{ email.sender }} <small class="email-datetime">{{ email.timestamp }}</small></h5>
 									<span class="email-subject">{{ email.subject }}</span>
 						    	</div>
@@ -161,7 +170,7 @@
 		<!-- JAVASCRIPT -->
 
 		<!-- jQuery -->
-		<script src="js/third-party/jquery.min.js"></script>
+	  	<script src="js/third-party/jquery.min.js"></script>
 		<script src="js/third-party/jquery-ui.js"></script>
 
 		<!-- Angular -->
