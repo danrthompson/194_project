@@ -8416,9 +8416,43 @@ fieldset[disabled] .btn-inverted-info.active {
   overflow-y: auto;
   padding: 12px 12px;
 }
+.trashcan {
+  position: fixed;
+  bottom: 10px;
+  left: 65%;
+  width: 100%;
+}
+.trashcan a {
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 100px;
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 40px;
+  background-color: gray;
+  color: #dadee1;
+  font-weight: bold;
+  width: 100%;
+}
+.trashcan a:hover {
+  background-color: #34393d;
+  text-decoration: none;
+}
+.trashcan .trashcan-icon:before {
+  content: "\f1eb";
+}
 .email-viewer {
-  background-color: #bfc5c9;
-  border-left: 1px solid #bfc5c9;
+  background-color: #707070;
+  border-left: 1px solid #dadee1;
 }
 .panel-heading.thread-message-heading {
   background-color: #fff;

@@ -17,9 +17,40 @@
 	padding: @padding-top-sidebar @padding-base-horizontal;
 }
 
+// This is going to need to be fixed when we sort out sidebar scaling
+.trashcan{
+	
+	position: fixed;
+	bottom: 10px;
+	left: 65%;
+	width: 100%;
+	
+
+	a{
+		padding: 10px;
+		padding-left:20px;
+		border-radius: 100px;
+		.ion;
+		font-size: 40px;
+		background-color: gray;
+		color: @gray-lighter;
+		font-weight: bold;
+		width: 100%;
+
+		&:hover{
+			background-color: @gray-dark;
+			text-decoration: none;
+		}
+	}
+	.trashcan-icon:before{
+		content: "\f1eb";
+
+	}
+}
+
 .email-viewer {
-	background-color: @gray-light;
-	border-left: 1px solid @gray-light;
+	background-color: @gray;
+	border-left: 1px solid @gray-lighter;
 }
 
 
