@@ -8426,15 +8426,14 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-bottom: 0;
   border-bottom: none;
 }
-.panel-heading.thread-message-heading .thread-message-title {
-  width: 100%;
-}
-.panel-heading.thread-message-heading .thread-message-title .thread-message-date {
+.panel-heading.thread-message-heading .thread-message-date {
   color: green;
   font-weight: light;
   font-size: 12px;
-  opacity: 0.5;
-  float: right;
+  opacity: 0.8;
+}
+.panel-heading.thread-message-heading .thread-message-title {
+  width: 100%;
 }
 .panel-heading.thread-message-heading h4 {
   margin-bottom: 6px;
@@ -8462,15 +8461,14 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-bottom: 0;
   border-bottom: none;
 }
-.thread-message-heading .thread-message-title {
-  width: 100%;
-}
-.thread-message-heading .thread-message-title .thread-message-date {
+.thread-message-heading .thread-message-date {
   color: green;
   font-weight: light;
   font-size: 12px;
-  opacity: 0.5;
-  float: right;
+  opacity: 0.8;
+}
+.thread-message-heading .thread-message-title {
+  width: 100%;
 }
 .thread-message-heading h4 {
   margin-bottom: 6px;
