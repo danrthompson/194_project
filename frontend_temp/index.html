@@ -17,7 +17,7 @@
 		    	<!-- Navbar logo and extras -->
 		    	<!-- Help and settings -->
 			    <div class="navbar-right-side">
-			    	<button class="btn navbar-btn btn-sm btn-inverted-success">Compose</button>
+			    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="compose_active = true">Compose</button>
 			    	<ul class="nav navbar-nav pull-right">
 					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
 			    		<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
@@ -179,6 +179,50 @@
 			
 
 		</section>
+
+
+		<!-- 
+			Separate Sidebar For Composing Emails
+			In the actual app, we'll just swap out the content of the
+			existing sidebar (adding a textarea for composing emails)
+			but for the time being, this hack will make it easy to show
+			and hide the compose-email field.
+		 -->
+		<!-- <section class="sidebar email-viewer" ng-class="{true: 'sidebar-inactive', false: 'sidebar_active'}[!sidebar_active]" > -->
+		<section class="sidebar email-viewer compose-email" ng-class="{true: 'dont-show-me'}[!compose_active]">
+			<!-- Just a placeholder For A Thread -->
+			<div class="panel panel-thread thread-message">
+				
+
+			<div class="quick-reply-wrapper compose-email-wrapper qr-expanded">
+			
+				<div class="panel panel-thread quick-reply" >
+
+					<!-- Quick Replay toggles between qr-compressed and qr-expanded -->
+					<form class="quick-reply-form compose-email-form" action="">
+						<div class="quick-reply-input">
+							<textarea class="form-control" rows="3">Compose a new email...</textarea>
+						</div>
+						<div class="quick-reply-submit">
+							<button type="submit" class="btn btn-success btn-block" ng-click="compose_active = false">Send</button>
+						</div>
+						<div class="quick-reply-cancel">
+							<button type="reset" class="btn btn-default btn-sm btn-block" ng-click="compose_active = false">Cancel</button>
+						</div>
+					</form>
+				</div>
+
+			
+				<!--  -->
+			</div>
+			
+
+		</section>
+
+
+
+
+
 
 		<!-- JAVASCRIPT -->
 

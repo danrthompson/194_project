@@ -8503,11 +8503,14 @@ fieldset[disabled] .btn-inverted-info.active {
   text-decoration: none;
 }
 .trashcan .trashcan-icon:before {
-  content: "\f1eb";
+  content: "\f10a";
 }
 .trashcan.sidebar-inactive {
   position: fixed;
   left: 95%;
+}
+.trashcan.sidebar-inactive .trashcan-icon:before {
+  content: "\f107";
 }
 .email-viewer {
   background-color: #707070;
@@ -8746,6 +8749,19 @@ fieldset[disabled] .btn-inverted-info.active {
 }
 .quick-reply-wrapper .qr-expand:hover {
   opacity: 1;
+}
+.dont-show-me {
+  display: none;
+}
+.compose-email.compose-inactive {
+  visible: false;
+  margin-left: 10000px;
+}
+.compose-email.compose-inactive textarea {
+  height: 60%;
+}
+.compose-email.compose-active {
+  visible: true;
 }
 .navbar-left-side {
   width: 70%;

@@ -46,7 +46,9 @@
 		}
 	}
 	.trashcan-icon:before{
-		content: "\f1eb";
+		// Commenting out trashcan 
+		// content: "\f1eb";
+		content: "\f10a"
 
 	}
 }
@@ -54,6 +56,11 @@
 .trashcan.sidebar-inactive{
 	position: fixed;
 	left: 95%;
+
+	.trashcan-icon:before{
+		content: "\f107";
+	}
+
 }
 
 .email-viewer {
@@ -251,7 +258,21 @@
 			opacity: 1;
 		}
 	}
+}
 
+.dont-show-me{
+	display:none;
+}
 
-	
+// Quick Compose Email Hack
+.compose-email.compose-inactive{
+	visible: false;
+	margin-left: 10000px;
+	textarea{
+		height: 60%;
+	}
+}
+
+.compose-email.compose-active{
+	visible: true;
 }
