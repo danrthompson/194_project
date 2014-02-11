@@ -1,0 +1,13 @@
+%h2= @email.subject
+= form_tag "/manage_email_labels_post/#{@email.id}", method: 'post' do
+	- @user_labels.each do |label|
+		%p
+			= label_tag "labels[#{label.id}]", label.name
+			- if label.id.in? @email_label_ids then
+				= check_box_tag "labels[#{label.id}]", '1', true
+			- else
+				= check_box_tag "labels[#{label.id}]"
+	%p= submit_tag 'Update Labels'
+	
+
+%p= "User labels: #{@user_labels.length}"

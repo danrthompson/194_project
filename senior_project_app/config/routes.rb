@@ -65,5 +65,8 @@ SeniorProjectApp::Application.routes.draw do
   get 'compose_email' => 'mail#compose_email'
   post 'compose_email' => 'mail#compose_email_post'
   match '/label/:label_id' => 'mail#label'
+  match '/email/:email_id' => 'mail#email'
+  match '/manage_email_labels/:email_id' => 'mail#manage_email_labels'
+  match '/manage_email_labels_post/:email_id' => 'mail#manage_email_labels_post'
 
 end

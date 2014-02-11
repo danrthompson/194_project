@@ -1,4 +1,7 @@
 %h2= "Emails for label: #{@label.name}"
 - @emails.each do |email|
-	%h4= email.subject
-	%br
+	%h4= link_to email.subject, "/email/#{email.id}"
+	%p= "Date: #{email.date}"
+	%p= "From: #{EmailAddress.from_addresses_to_string(email.id)}"
+	%p= "To: #{EmailAddress.to_addresses_to_string(email.id)}"
+	%p= "CC: #{EmailAddress.cc_addresses_to_string(email.id)}"

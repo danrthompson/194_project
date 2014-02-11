@@ -1,13 +1,19 @@
 %p test compose email
-= form_for Email.new, url: '/compose_email' do |f|
+= form_tag '/compose_email', method: 'post' do
 	%p
-		= f.label :to, 'To (enter emails separated by commas):'
-		= f.text_field :to
+		= label_tag 'draft[to]', 'To (enter emails separated by commas):'
+		= text_field_tag 'draft[to]'
 	%p
-		= f.label :subject, 'Subject:'
-		= f.text_field :subject
+		= label_tag 'draft[cc]', 'CC (enter emails separated by commas):'
+		= text_field_tag 'draft[cc]'
 	%p
-		= f.label :body, 'Body:'
-		= f.text_area :body
+		= label_tag 'draft[bcc]', 'BCC (enter emails separated by commas):'
+		= text_field_tag 'draft[bcc]'
+	%p
+		= label_tag 'draft[subject]', 'Subject:'
+		= text_field_tag 'draft[subject]'
+	%p
+		= label_tag 'draft[body]', 'Body:'
+		= text_area_tag 'draft[body]'
 	%p 
-		= f.submit 'Send'
+		= submit_tag 'Send'
