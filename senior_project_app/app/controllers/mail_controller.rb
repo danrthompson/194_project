@@ -13,8 +13,9 @@ class MailController < ApplicationController
 		current_user.refresh_token_if_necessary
 		gmail = connect_to_gmail(current_user)
 		current_user.pull_email_if_necessary(gmail)
+		@labels = Label.where(user_id: current_user.id)
 		# @subject = Mail.first.subject
-		@emails = gmail.inbox.emails[0,5]
+		# @emails = gmail.inbox.emails[0,5]
 		# gmail = Gmail.connect(:xoauth, current_user.email, token: current_user.auth_token)
 		# @count = gmail.inbox.count
 	end
@@ -29,6 +30,15 @@ class MailController < ApplicationController
 
 	def connect_to_gmail(user)
 		Gmail.connect!(:xoauth, user.email, token: user.auth_token)
+	end
+
+	def label
+		@label = Label.find_by_id(params[:label_id])
+		if @label and current_user.id == @label.user_id then
+			@emails = @label.emails
+		else
+			render text: 'Label does not exist or you are unauthorized to view it.' and return
+		end
 	end
 
 

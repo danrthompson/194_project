@@ -56,9 +56,58 @@ class User < ActiveRecord::Base
 	def pull_email_if_necessary(gmail)
 		if self.time_last_pull then
 			# pull email since last pull
+			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull)
 		else
 			# first time pulling email
+			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: 1.month.ago)
 		end
+		if recent_emails.length > 150 then
+			recent_emails = recent_emails[-150,150]
+		end
+		recent_emails.each do |email|
+			if Email.where(user_id: self.id, uid: email.uid).count != 0 then
+				next
+			end
+			puts "New email. Subject: #{email.subject}. UID: #{email.uid}"
+			new_email = Email.new(user_id: self.id, subject: email.subject, uid: email.uid, date: Time.parse(email.date), thread_id: email.thread_id.to_s)
+			if email.html_part then
+				new_email.html_body = email.html_part.decode_body.encode('UTF-8', :invalid => :replace, :undef => :replace)
+			end
+			if email.text_part then
+				new_email.text_body = email.text_part.decode_body.encode('UTF-8', :invalid => :replace, :undef => :replace)
+			end
+			new_email.save
+			email.from.each do |from_addr|
+				EmailAddress.create(name: from_addr.name, email_address: "#{from_addr.mailbox}@#{from_addr.host}", from_address: true, email_id: new_email.id)
+			end
+			if email.to then
+				email.to.each do |to_addr|
+					EmailAddress.create(name: to_addr.name, email_address: "#{to_addr.mailbox}@#{to_addr.host}", to_address: true, email_id: new_email.id)
+				end
+			end
+			if email.cc then
+				email.cc.each do |cc_addr|
+					EmailAddress.create(name: cc_addr.name, email_address: "#{cc_addr.mailbox}@#{cc_addr.host}", cc_address: true, email_id: new_email.id)
+				end
+			end
+			if email.bcc then
+				email.bcc.each do |bcc_addr|
+					EmailAddress.create(name: bcc_addr.name, email_address: "#{bcc_addr.mailbox}@#{bcc_addr.host}", bcc_address: true, email_id: new_email.id)
+				end
+			end
+			labels = email.labels
+			if labels and labels.length > 0 then
+				labels.each do |label_name|
+					label = Label.where(user_id: self.id, name: label_name).first
+					if not label then
+						label = Label.create(user_id: self.id, name: label_name)
+					end
+					label.emails << new_email
+				end
+			end
+		end
+		self.time_last_pull = Time.now
+		save!
 	end
 
 end

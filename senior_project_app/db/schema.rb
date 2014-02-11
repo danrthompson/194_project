@@ -11,18 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140211072550) do
+ActiveRecord::Schema.define(:version => 20140211085133) do
 
   create_table "email_addresses", :force => true do |t|
     t.string   "name"
-    t.string   "email",        :null => false
+    t.string   "email_address", :null => false
     t.boolean  "from_address"
     t.boolean  "to_address"
     t.boolean  "cc_address"
     t.boolean  "bcc_address"
     t.integer  "email_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "emails", :force => true do |t|
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(:version => 20140211072550) do
     t.boolean  "read"
     t.boolean  "sent"
     t.integer  "uid"
-    t.integer  "thread_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
+    t.string   "thread_id"
   end
 
   add_index "emails", ["user_id"], :name => "index_emails_on_user_id"

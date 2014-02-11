@@ -64,5 +64,6 @@ SeniorProjectApp::Application.routes.draw do
   get 'index' => 'mail#index'
   get 'compose_email' => 'mail#compose_email'
   post 'compose_email' => 'mail#compose_email_post'
+  match '/label/:label_id' => 'mail#label'
 
 end

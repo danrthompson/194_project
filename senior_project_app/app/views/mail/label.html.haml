@@ -1,0 +1,4 @@
+%h2= "Emails for label: #{@label.name}"
+- @emails.each do |email|
+	%h4= email.subject
+	%br
