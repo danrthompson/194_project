@@ -65,15 +65,7 @@ auth_provider_x509_cert_url:
 https://www.googleapis.com/oauth2/v1/certs
 
 emails
-date
-subject
 labels (many)
-html_body
-text_body
-read
-sent?
-uid
-thread_id
 
 
 Message methods:

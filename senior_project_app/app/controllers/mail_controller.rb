@@ -65,7 +65,7 @@ class MailController < ApplicationController
 	def label
 		@label = Label.find_by_id(params[:label_id])
 		if @label and current_user.id == @label.user_id then
-			@emails = @label.emails
+			@emails = @label.emails.order(:date).reverse_order
 		else
 			render text: 'Label does not exist or you are unauthorized to view it.' and return
 		end

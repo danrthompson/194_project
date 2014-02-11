@@ -10,6 +10,9 @@
 %p= "To: #{EmailAddress.to_addresses_to_string(@email.id)}"
 %p= "CC: #{EmailAddress.cc_addresses_to_string(@email.id)}"
 %p= "UID: #{@email.uid}"
+%p= link_to 'Reply to email', '/compose_email'
+%p= link_to 'Reply all to email', '/compose_email'
+%p= link_to 'Forward email', '/compose_email'
 - if @email.html_body then
 	%p= @email.html_body.html_safe
 - elsif @email.text_body then

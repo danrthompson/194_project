@@ -55,6 +55,9 @@ class User < ActiveRecord::Base
 
 	def pull_email_if_necessary(gmail)
 		if self.time_last_pull then
+			if Time.now - self.time_last_pull < 7200 then
+				return
+			end
 			# pull email since last pull
 			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull)
 		else
