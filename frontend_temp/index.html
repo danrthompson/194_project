@@ -17,7 +17,7 @@
 		    	<!-- Navbar logo and extras -->
 		    	<!-- Help and settings -->
 			    <div class="navbar-right-side">
-			    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="compose_active = true">Compose</button>
+			    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="compose_active = !compose_active">Compose</button>
 			    	<ul class="nav navbar-nav pull-right">
 					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
 			    		<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
@@ -200,6 +200,11 @@
 
 					<!-- Quick Replay toggles between qr-compressed and qr-expanded -->
 					<form class="quick-reply-form compose-email-form" action="">
+						<div class="quick-reply-input compose-email-metadata">
+							<div class="compose-field input-group input-group-sm"><span class="input-group-addon">To</span><input class="form-control" type="text"></input></div>
+							<div class="compose-field input-group input-group-sm"><span class="input-group-addon">From</span><input class="form-control input-group" type="text"></input></div>
+							<div class="compose-field input-group input-group-sm"><span class="input-group-addon">Subject</span><input class="form-control" type="text"></input></div>
+						</div>
 						<div class="quick-reply-input">
 							<textarea class="form-control" rows="3">Compose a new email...</textarea>
 						</div>

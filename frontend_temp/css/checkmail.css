@@ -8753,6 +8753,23 @@ fieldset[disabled] .btn-inverted-info.active {
 .dont-show-me {
   display: none;
 }
+.compose-email .compose-email-metadata {
+  text-align: right;
+  margin: 10px 0;
+}
+.compose-email .compose-email-metadata .compose-field {
+  margin: 5px 5px;
+}
+.compose-email .compose-email-metadata .compose-field input {
+  width: 100%;
+}
+.compose-email .compose-email-metadata .compose-field p {
+  display: none;
+  float: left;
+  width: 20%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
 .compose-email.compose-inactive {
   visible: false;
   margin-left: 10000px;
