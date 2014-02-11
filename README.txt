@@ -63,3 +63,86 @@ client_id:
 446049003901.apps.googleusercontent.com
 auth_provider_x509_cert_url:
 https://www.googleapis.com/oauth2/v1/certs
+
+emails
+date
+subject
+from (many)
+to (many)
+cc (many)
+bcc (many)
+labels (many)
+html_body
+text_body
+read
+sent?
+uid
+thread_id
+
+
+Message methods:
+all_parts
+attachment
+attachment?
+attachments
+bcc
+body
+body_encoding
+cc
+cc_addrs
+comments
+content_description
+content_type
+date
+decoded
+decode_body
+destinations
+envelope_date
+envelope_from
+from
+from_addrs
+header
+header_fields
+headers
+html_part
+keywords
+multipart?
+parts
+raw_envelope
+raw_source
+read
+reply
+reply_to
+sender
+subject
+text_part
+to
+to_addrs
+
+
+Email methods:
+display
+envelope
+flag
+label
+mark
+message
+move
+move_to
+presence
+pretty_print
+inspect
+ppinspect
+public_methods
+raw_message
+read!
+spam!
+star!
+to_json
+uid
+unflag
+unread!
+unstar!
+
+
+

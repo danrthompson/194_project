@@ -16,8 +16,6 @@ class User < ActiveRecord::Base
 		:auth_token_expiration, presence: true
 	validates :uid, :email, uniqueness: true
 
-	has_many :folders
-
 	def self.create_from_google_oauth2(auth_hash)
 		User.create(
 			provider: auth_hash['provider'],
