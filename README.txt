@@ -67,10 +67,6 @@ https://www.googleapis.com/oauth2/v1/certs
 emails
 date
 subject
-from (many)
-to (many)
-cc (many)
-bcc (many)
 labels (many)
 html_body
 text_body

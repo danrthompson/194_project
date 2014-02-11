@@ -12,6 +12,7 @@ class MailController < ApplicationController
 		# render text: current_user.refresh_token and return
 		current_user.refresh_token_if_necessary
 		gmail = connect_to_gmail(current_user)
+		current_user.pull_email_if_necessary(gmail)
 		# @subject = Mail.first.subject
 		@emails = gmail.inbox.emails[0,5]
 		# gmail = Gmail.connect(:xoauth, current_user.email, token: current_user.auth_token)

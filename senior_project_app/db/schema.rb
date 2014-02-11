@@ -11,7 +11,47 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140201000918) do
+ActiveRecord::Schema.define(:version => 20140211072550) do
+
+  create_table "email_addresses", :force => true do |t|
+    t.string   "name"
+    t.string   "email",        :null => false
+    t.boolean  "from_address"
+    t.boolean  "to_address"
+    t.boolean  "cc_address"
+    t.boolean  "bcc_address"
+    t.integer  "email_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "emails", :force => true do |t|
+    t.datetime "date"
+    t.string   "subject"
+    t.text     "html_body"
+    t.text     "text_body"
+    t.boolean  "read"
+    t.boolean  "sent"
+    t.integer  "uid"
+    t.integer  "thread_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "emails", ["user_id"], :name => "index_emails_on_user_id"
+
+  create_table "emails_labels", :force => true do |t|
+    t.integer "email_id"
+    t.integer "label_id"
+  end
+
+  create_table "labels", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -34,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20140201000918) do
     t.string   "gender"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.datetime "time_last_pull"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

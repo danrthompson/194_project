@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
 		:auth_token_expiration, presence: true
 	validates :uid, :email, uniqueness: true
 
+	has_many :emails
+	has_many :labels
+
 	def self.create_from_google_oauth2(auth_hash)
 		User.create(
 			provider: auth_hash['provider'],
@@ -47,6 +50,14 @@ class User < ActiveRecord::Base
 			else
 				raise 'No token returned'
 			end
+		end
+	end
+
+	def pull_email_if_necessary(gmail)
+		if self.time_last_pull then
+			# pull email since last pull
+		else
+			# first time pulling email
 		end
 	end
 
