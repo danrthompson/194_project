@@ -94,97 +94,111 @@ checkmail.controller('AppCtrl', function ($scope) {
   $scope.boards = [
     {
       title: "Inbox",
-      emails: []
+      threads: []
     },
     {
       title: "Family",
-      emails: []
+      threads: []
     },
     {
       title: "CS194",
-      emails: []
+      threads: []
     },
     {
       title: "Work",
-      emails: []
+      threads: []
     },
     {
       title: "Tigers",
-      emails: []
+      threads: []
     },
     {
       title: "Food",
-      emails: []
+      threads: []
     },
     {
       title: "Spam",
-      emails: []
+      threads: []
     },
     {
       title: "Lord of the Rings",
-      emails: []
+      threads: []
     },
     {
       title: "How long can my labels be?",
-      emails: []
+      threads: []
     },
     {
       title: "Soccer",
-      emails: []
+      threads: []
     },
     {
       title: "Basketball",
-      emails: []
+      threads: []
     },
     {
       title: "Football",
-      emails: []
+      threads: []
     },
     {
       title: "Hockey",
-      emails: []
+      threads: []
     },
     {
       title: "Cricket",
-      emails: []
+      threads: []
     },
     {
       title: "Baseball",
-      emails: []
+      threads: []
     },
     {
       title: "Golf",
-      emails: []
+      threads: []
     },
     {
       title: "Nascar",
-      emails: []
+      threads: []
     }
   ];
 
   for (var i = 0; i < $scope.boards.length; i++) {
     for (var j = 0; j < randomInt(2,4); j++) {
-      $scope.boards[i].emails.push(randomEmail())
+      $scope.boards[i].threads.push(randomThread())
     };    
   };
 
-  $scope.selected_email = null;
+  $scope.selected_thread = null;
   $scope.qr_state = true;
   $scope.sidebar_active = true;
   $scope.compose_active = true;
 
+  $scope.current_response = "";
 
-
-  $scope.selectEmail = function(email) {
-    $scope.selected_email = email;
+  $scope.addReply = function(message) {
+    if ($scope.current_response.length >= 0) {
+        $scope.selected_thread.emails.push({
+        subject: $scope.selected_thread.emails[0].subject,
+        sender: "You",
+        receiver: $scope.selected_thread.emails[0].sender,
+        message: message,
+        timestamp: "now",
+        is_read: true,
+        is_complete: true
+      })
+    }
   }
 
-  $scope.toggleHighlight = function(email) {
-    email.is_highlighted = !email.is_highlighted;
+  $scope.selectThread = function(thread) {
+    $scope.selected_thread = thread;
   }
 
-  $scope.toggleTodos = function(email) {
-    email.todos_open = !email.todos_open;
+  $scope.toggleHighlight = function(thread) {
+    thread.is_highlighted = !thread.is_highlighted;
+  }
+
+  $scope.toggleTodos = function(thread) {
+    thread.todos_open = !thread.todos_open;
   }
 
   $scope.addTodo = function(email) {
@@ -209,7 +223,7 @@ checkmail.controller('AppCtrl', function ($scope) {
   };
 
   $scope.$watch('boards', function(boards) {
-    $scope.workspace_width = boards.length*241;
+    $scope.workspace_width = (boards.length-1)*241;
   })
 });
 
@@ -270,10 +284,29 @@ function randomEmail() {
     "Frink"
   ]
 
-  function someTodos() {
+  var messages = [
+    "Makin their way the only way they know how. That's just a little bit more than the law will allow. Come and knock on our door. We've been waiting for you. Where the kisses are hers and hers and his. Three's company too. It's time to put on makeup. It's time to dress up right. It's time to raise the curtain on the Muppet Show tonight. Now were up in the big leagues getting' our turn at bat. Baby if you've ever wondered - wondered whatever became of me. I'm living on the air in Cincinnati. Cincinnati WKRP. Here he comes Here comes Speed Racer. He's a demon on wheels", 
+    "Wouldn't you like to get away? Sometimes you want to go where everybody knows your name. And they're always glad you came. Movin' on up to the east side. We finally got a piece of the pie. Believe it or not I'm walking on air. I never thought I could feel so free! Now were up in the big leagues getting' our turn at bat. Sunny Days sweepin' the clouds away. On my way to where the air is sweet. Can you tell me how to get how to get to Sesame Street", 
+    "Well we're movin' on up to the east side. To a deluxe apartment in the sky. Sunny Days sweepin' the clouds away. On my way to where the air is sweet. Can you tell me how to get how to get to Sesame Street. The Love Boat soon will be making another run. The Love Boat promises something for everyone. Doin' it our way. There's nothing we wont try. Never heard the word impossible. This time there's no stopping us. The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest. And when the odds are against him and their dangers work to do. You bet your life Speed Racer he will see it through", 
+    "Today still wanted by the government they survive as soldiers of fortune., Today still wanted by the government they survive as soldiers of fortune. He's gainin' on you so you better look alive. He busy revin' up his Powerful Mach 5. The ship set ground on the shore of this uncharted desert isle with Gilligan the Skipper too the millionaire and his wife. It's time to play the music. It's time to light the lights. It's time to meet the Muppets on the Muppet Show tonight. No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Till the one day when the lady met this fellow and they knew it was much more than a hunch.", 
+    "Fleeing from the Cylon tyranny the last Battlestar – Galactica - leads a rag-tag fugitive fleet on a lonely quest - a shining planet known as Earth. They're creepy and they're kooky mysterious and spooky. They're all together ooky the Addams Family. The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest.", 
+  ]
+
+  return {
+    subject: subjects[randomInt(0,subjects.length - 1)],
+    sender: senders[randomInt(0,senders.length - 1)],
+    message: messages[randomInt(0,messages.length - 1)],
+    receiver: "You",
+    timestamp: randomInt(1,12) + ":" + randomInt(10, 60) + "pm",
+    is_read: randomInt(0,1) == 0,
+    is_complete: randomInt(0,1) == 0
+  }
+}
+
+function someTodos() {
     var todos = [
       {
-        action: "Print this out and pee on it",
+        action: "Work on it",
         completed: false,
       },
       {
@@ -289,7 +322,7 @@ function randomEmail() {
         completed: false
       },
       {
-        action: "Ask Lil Jon about this one.",
+        action: "Ask Lil B about this one.",
         completed: false
       }
     ]
@@ -303,14 +336,13 @@ function randomEmail() {
     return response;
   }
 
+function randomThread() {
   return {
-    sender: senders[randomInt(0,senders.length - 1)],
-    subject: subjects[randomInt(0,subjects.length - 1)],
     todos: someTodos(),
-    timestamp: randomInt(1,12) + ":" + randomInt(10, 60) + "pm",
-    is_read: randomInt(0,1) == 0,
-    is_complete: randomInt(0,1) == 0,
-    is_highlighted: false
+    is_highlighted: false,
+    emails: [
+      randomEmail()
+    ]
   }
 }
 

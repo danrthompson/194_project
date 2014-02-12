@@ -205,7 +205,7 @@ table {
   img {
     max-width: 100% !important;
   }
-  @page {
+  @page  {
     margin: 2cm .5cm;
   }
   p,
@@ -1637,6 +1637,7 @@ input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   /* IE8-9 */
+
   line-height: normal;
 }
 input[type="file"] {
@@ -1693,8 +1694,6 @@ output {
 .form-control:focus {
   border-color: #66afe9;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 .form-control:-moz-placeholder {
   color: #bfc5c9;
@@ -8189,8 +8188,14 @@ fieldset[disabled] .btn-inverted-info.active {
   margin-left: 230px;
   overflow-x: auto;
 }
+.workspace::-webkit-scrollbar {
+  height: 4px;
+}
+.workspace::-webkit-scrollbar-thumb {
+  background: #8bc7a1;
+}
 .email-placeholder {
-  background: #aed;
+  border: 4px solid #bde0ca;
   display: block;
 }
 .email-columns {
@@ -8216,7 +8221,9 @@ fieldset[disabled] .btn-inverted-info.active {
 }
 .email-heading {
   padding: 2px 10px;
-  cursor: -webkit-grab;
+}
+.ui-sortable-helper {
+  z-index: 1000;
 }
 .email-column-decorations {
   list-style-type: none;
@@ -8256,15 +8263,26 @@ fieldset[disabled] .btn-inverted-info.active {
   margin: 0;
   position: fixed;
   left: 0px;
-  z-index: 100;
+  z-index: 20;
   background-color: #fff;
+  border-right: 1px solid #bfc5c9;
   height: 100%;
-  outline: 1px solid #bfc5c9;
 }
 .email-column-fixed-left .email-heading {
-  background-color: #428058;
-  text-transform: uppercase;
-  font-weight: bolder;
+  background-color: #689a7f;
+  border-radius: 0px;
+  padding-top: 14px;
+}
+.email-column-fixed-left .email-heading .email-label {
+  font-weight: 500;
+  border-top: 0px;
+}
+.email-column-fixed-left .email-item .email-item-content {
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+.email-column-fixed-left .email-item .email-item-content .todo-indicator-skin {
+  left: -28px;
 }
 .email-item {
   padding: 0 0 0px 0;
@@ -8694,7 +8712,7 @@ fieldset[disabled] .btn-inverted-info.active {
   min-height: 1px;
   padding-left: 5px;
   padding-right: 5px;
-  float: right;
+  float: right !important;
 }
 .quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-cancel {
   position: relative;
@@ -8703,7 +8721,6 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-left: 5px;
   padding-right: 5px;
   float: left;
-  color: pink;
 }
 .quick-reply-wrapper .quick-reply .quick-reply-form .quick-reply-cancel .btn-default {
   color: #aaa;
@@ -8758,7 +8775,17 @@ fieldset[disabled] .btn-inverted-info.active {
   margin: 10px 0;
 }
 .compose-email .compose-email-metadata .compose-field {
-  margin: 5px 5px;
+  position: relative;
+  min-height: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 15px;
+}
+@media (min-width: 992px) {
+  .compose-email .compose-email-metadata .compose-field {
+    float: left;
+    width: 100%;
+  }
 }
 .compose-email .compose-email-metadata .compose-field input {
   width: 100%;

@@ -28,10 +28,10 @@
 		</header>
 
 		<!-- Workspace -->
-		<section class="workspace" ng-class="{true: 'sidebar-inactive', false: 'sidebar_active'}[!sidebar_active]">
+		<section class="workspace" ng-class="{true: 'sidebar-active', false: 'sidebar-inactive'}[selected_thread != null]">
 
 			<!-- Email column container: All Email Lists -->
-			<div ui-sortable class="email-columns" style="width: {{workspace_width}}px;">
+			<div class="email-columns" style="width: {{workspace_width}}px;">
 
 				<div class="scroll-wrapper">
 					<!-- Individual email column -->
@@ -62,39 +62,40 @@
 						  		<!-- Email-item -->
 						  		<!-- TODO: This ng-class expression should be refactored into a method within the controller -->
 							    <li class="list-group-item email-item" 
-							    	ng-class="{true: 'selected'}[email==selected_email] + ' ' +
-							    			  {true: 'completed'}[email.is_complete] + ' ' +
-							    			  {true: 'highlighted'}[email.is_highlighted] + ' ' +
-							    			  {true: 'todos-open'}[email.todos_open] + ' ' +
-							    			  {false: 'unread'}[email.is_read] + ' ' +
-						    			  {true: 'no-todos'}[email.todos == 0]"
-							    	ng-repeat="email in board.emails">
+							    	ng-class="{true: 'selected'}[thread==selected_thread] + ' ' +
+							    			  {true: 'completed'}[thread.is_complete] + ' ' +
+							    			  {true: 'highlighted'}[thread.is_highlighted && !thread == selected_thread] + ' ' +
+							    			  {true: 'todos-open'}[thread.todos_open] + ' ' +
+							    			  {false: 'unread'}[thread.is_read] + ' ' +
+						    			  {true: 'no-todos'}[thread.todos == 0]"
+							    	ng-repeat="thread in board.threads">
 					
 							    	<!-- Email metadata -->
 							    	<div class="email-item-content"
-							    		 ng-click="toggleHighlight(email); toggleTodos(email);">
+							    		 ng-dblclick="selectThread(thread);"
+							    		 ng-click="toggleHighlight(thread); toggleTodos(thread);">
 					
 							    		<a href="#" class="todo-indicator">
 							    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
 							    			<div class="todo-indicator-skin"></div>
-							    			<div class="todo-indicator-tally">{{ email.todos.length }}</div>
+							    			<div class="todo-indicator-tally">{{ thread.todos.length }}</div>
 							    		</a>
 					
 							    		<!-- Sender, timestamp, and subject -->
 										<div class="email-item-metadata">
 											<div class="sender-and-date">
-											<h5 class="email-sender"><span class="sender-name">{{ email.sender }}</span></h5><small class="email-datetime">{{ email.timestamp }}</small></div>
-											<span class="email-subject">{{ email.subject }}</span>
+											<h5 class="email-sender"><span class="sender-name">{{ thread.emails[0].sender }}</span></h5><small class="email-datetime">{{ thread.emails[0].timestamp }}</small></div>
+											<span class="email-subject">{{ thread.emails[0].subject }}</span>
 										</div>
 							    	</div>
 
 									<!-- Tasks associated with email -->
-									<div ui-sortable ng-model="email.todos" class="list-group email-todo-list">
+									<div ui-sortable ng-model="thread.todos" class="list-group email-todo-list">
 										<a href="#" 
 										   class="list-group-item email-todo-item" 
 										   ng-class="{true: 'completed', false: 'incomplete'}[todo.completed]"
 										   ng-click="todo.completed = !todo.completed"
-										   ng-repeat="todo in email.todos">
+										   ng-repeat="todo in thread.todos">
 										   {{ todo.action }}
 									   	</a>
 										
@@ -102,7 +103,7 @@
 											   class="list-group-item add-email-todo-item" 
 											   placeholder="Add a todo item..."
 											   ng-model="email.todo_temp"
-											   enter-submit="addTodo(email)">
+											   enter-submit="addTodo(thread)">
 									</div>
 							    </li>
 						  	</ul>
@@ -113,18 +114,18 @@
 			</div>
 			
 			<!-- Drag To Trash -->
-			<div class="trashcan" ng-class="{true: 'sidebar-inactive', false: 'sidebar_active'}[!sidebar_active]">
-				<a href="" class="trashcan-icon" ng-click="sidebar_active = !sidebar_active;"></a>
+			<div class="trashcan" ng-class="{true: 'sidebar-active', false: 'sidebar-inactive'}[selected_thread != null]">
+				<a href="" class="trashcan-icon" ng-click="selected_thread = null"></a>
 			</div>
 
 			
 		</section>
 
 		<!-- Sidebar -->
-		<section class="sidebar email-viewer" ng-class="{true: 'sidebar-inactive', false: 'sidebar_active'}[!sidebar_active]" >
+		<section class="sidebar email-viewer" ng-class="{true: 'sidebar-active', false: 'sidebar-inactive'}[selected_thread != null]">
 
 			<!-- Just a placeholder For A Thread -->
-			<div class="panel panel-thread thread-message">
+			<div class="panel panel-thread thread-message" ng-repeat="email in selected_thread.emails">
 				<div class="panel-heading thread-message-heading">
 					
 
@@ -133,10 +134,15 @@
 						<a href="" class="replyall-icon"></a>
 						<a href="" class="fwd-icon"></a>
 					</div>
-					<h4 class="thread-message-title">Re: Notification Settings</h3>
+					<h4 class="thread-message-title">{{ selected_thread.subject }}</h3>
 					<ul class="thread-title-subtext">
-						<li>To: <span class="thread-message-to thread-title-subtext">dant@stanford.edu, sara@squarespace.com</span></li>
-						<li>From: <span class="thread-message-from thread-title-subtext">Daniel Haarburger</span><span class="thread-message-date"> on 10/24/2013</span></li>
+						<li>
+							To: <span class="thread-message-to thread-title-subtext">{{ email.receiver }}</span>
+						</li>
+						<li>
+							From: <span class="thread-message-from thread-title-subtext">{{ email.sender }}</span>
+							<span class="thread-message-date"> at {{ email.timestamp }}</span>
+						</li>
 					</ul>
 
 
@@ -145,12 +151,7 @@
 					<hr>
 				</div>
   				<div class="panel-body">
-  					<p>
-    				Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-					<br><br>
-					From, <br>
-					Daniel H.
-    			</p>
+				<p>{{ email.message }}</p>
   				</div>
 			</div>
 
@@ -160,14 +161,14 @@
 
 					<!-- Quick Replay toggles between qr-compressed and qr-expanded -->
 					<form class="quick-reply-form" action="">
-						<div class="quick-reply-input">
-							<textarea class="form-control" rows="3"></textarea>
+						<div class="quick-reply-textarea">
+							<textarea class="form-control" rows="1" ng-model="current_response"></textarea>
 						</div>
 						<div class="quick-reply-submit">
-							<button type="submit" class="btn btn-success btn-block">Submit</button>
+							<button type="submit" class="btn btn-success btn-block" ng-click="addReply(current_response);">Submit</button>
 						</div>
 						<div class="quick-reply-cancel">
-							<button type="reset" class="btn btn-default btn-sm btn-block">Clear</button>
+							<button type="reset" class="btn btn-default btn-block">Clear</button>
 						</div>
 					</form>
 				</div>
@@ -201,18 +202,29 @@
 					<!-- Quick Replay toggles between qr-compressed and qr-expanded -->
 					<form class="quick-reply-form compose-email-form" action="">
 						<div class="quick-reply-input compose-email-metadata">
-							<div class="compose-field input-group input-group-sm"><span class="input-group-addon">To</span><input class="form-control" type="text"></input></div>
-							<div class="compose-field input-group input-group-sm"><span class="input-group-addon">From</span><input class="form-control input-group" type="text"></input></div>
-							<div class="compose-field input-group input-group-sm"><span class="input-group-addon">Subject</span><input class="form-control" type="text"></input></div>
+							<div class="compose-field input-group input-group-sm">
+								<span class="input-group-addon">To</span>
+								<input class="form-control" type="text"></input>
+							</div>
+							<div class="compose-field input-group input-group-sm">
+								<span class="input-group-addon">From</span>
+								<input class="form-control input-group" type="text"></input>
+							</div>
+							<div class="compose-field input-group input-group-sm">
+								<span class="input-group-addon">Subject</span>
+								<input class="form-control" type="text"></input>
+							</div>
 						</div>
-						<div class="quick-reply-input">
-							<textarea class="form-control" rows="3">Compose a new email...</textarea>
+						<div class="col-md-12">
+							<div class="quick-reply-input">
+								<textarea class="form-control" rows="3" placeholder="Compose a new email..."></textarea>
+							</div>
 						</div>
 						<div class="quick-reply-submit">
 							<button type="submit" class="btn btn-success btn-block" ng-click="compose_active = false">Send</button>
 						</div>
 						<div class="quick-reply-cancel">
-							<button type="reset" class="btn btn-default btn-sm btn-block" ng-click="compose_active = false">Cancel</button>
+							<button type="reset" class="btn btn-default btn-block" ng-click="compose_active = false">Cancel</button>
 						</div>
 					</form>
 				</div>
