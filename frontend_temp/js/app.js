@@ -171,7 +171,7 @@ checkmail.controller('AppCtrl', function ($scope) {
   $scope.selected_thread = null;
   $scope.qr_state = true;
   $scope.sidebar_active = true;
-  $scope.compose_active = true;
+  $scope.compose_active = false;
 
   $scope.current_response = "";
 
