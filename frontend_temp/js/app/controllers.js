@@ -1,96 +1,139 @@
-
-var checkmail = angular.module('checkmail', ['ui.sortable']);
-
-// From: http://stackoverflow.com/questions/14925728/how-to-observe-custom-events-in-angularjs
-checkmail.directive('enterSubmit', function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var submit;
-
-      $(element).on({
-        keydown: function (e) {
-          submit = false;
-
-          if (e.which === 13 && !e.shiftKey) {
-            submit = true;
-            e.preventDefault();
-          }
-        },
-
-        keyup: function () {
-          if (submit) {
-            scope.$eval( attrs.enterSubmit );
-
-            // flush model changes manually
-            scope.$digest();
-          }
-        }
-      });
+checkmail.controller('AppCtrl', function ($scope) {
+  $scope.boards = [
+    {
+      title: "Inbox",
+      threads: []
+    },
+    {
+      title: "Family",
+      threads: []
+    },
+    {
+      title: "CS194",
+      threads: []
+    },
+    {
+      title: "Work",
+      threads: []
+    },
+    {
+      title: "Tigers",
+      threads: []
+    },
+    {
+      title: "Food",
+      threads: []
+    },
+    {
+      title: "Spam",
+      threads: []
+    },
+    {
+      title: "Lord of the Rings",
+      threads: []
+    },
+    {
+      title: "How long can my labels be?",
+      threads: []
+    },
+    {
+      title: "Soccer",
+      threads: []
+    },
+    {
+      title: "Basketball",
+      threads: []
+    },
+    {
+      title: "Football",
+      threads: []
+    },
+    {
+      title: "Hockey",
+      threads: []
+    },
+    {
+      title: "Cricket",
+      threads: []
+    },
+    {
+      title: "Baseball",
+      threads: []
+    },
+    {
+      title: "Golf",
+      threads: []
+    },
+    {
+      title: "Nascar",
+      threads: []
     }
+  ];
+
+  for (var i = 0; i < $scope.boards.length; i++) {
+    for (var j = 0; j < randomInt(2,4); j++) {
+      $scope.boards[i].threads.push(randomThread())
+    };    
   };
-});
 
-// TODO: it would be good to decompose this directive into a more flexible system
-checkmail.directive('shiftClick', function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var shift;
+  $scope.selected_thread = null;
+  $scope.qr_state = true;
+  $scope.sidebar_active = true;
+  $scope.compose_active = false;
 
-      $(document).on({
-        keydown: function (e) {
-          shift = false;
+  $scope.current_response = "";
 
-          if (e.shiftKey) {
-            shift = true;
-          }
-        },
-
-        keyup: function () {
-          if (shift) {
-            shift = false;
-          }
-        },
+  $scope.addReply = function(message) {
+    if ($scope.current_response.length >= 0) {
+        $scope.selected_thread.emails.push({
+        subject: $scope.selected_thread.emails[0].subject,
+        sender: "You",
+        receiver: $scope.selected_thread.emails[0].sender,
+        message: message,
+        timestamp: "now",
+        is_read: true,
+        is_complete: true
       })
-
-      $(element).on({
-        click: function(e) {
-          if (shift) {
-            e.preventDefault();
-            scope.$eval( attrs.shiftClick );
-            scope.$digest();
-          };
-        }
-      });
-    }
-  };
-});
-
-checkmail.directive('scrollOnClick', function() {
-  return {
-    restrict: 'A',
-    link: function(scope, $elm, attrs) {
-      var idToScroll = attrs.href;
-      $elm.on('click', function(e) {
-        e.preventDefault();
-
-        var $target;
-        if (idToScroll) {
-          $target = $(idToScroll);
-        } else {
-          $target = $elm;
-        }
-
-        // TODO: Abstract this out a bit
-        $(".workspace").animate({scrollLeft: $target.offset().left - $('.scroll-wrapper').offset().left}, "fast");
-      });
     }
   }
-});
 
+  $scope.selectThread = function(thread) {
+    $scope.selected_thread = thread;
+  }
 
-checkmail.controller('AppCtrl', function ($scope) {
+  $scope.toggleHighlight = function(thread) {
+    thread.is_highlighted = !thread.is_highlighted;
+  }
+
+  $scope.toggleTodos = function(thread) {
+    thread.todos_open = !thread.todos_open;
+  }
+
+  $scope.addTodo = function(email) {
+    if (email.todo_temp) { 
+      email.todos.push({
+        action: email.todo_temp,
+        completed: false
+      });
+      email.todo_temp = "";
+    }
+  }
+  
+  $scope.boardSortOptions = {
+    placeholder: "board_placeholder",
+    forcePlaceholderSize: true,
+  };
+
+  $scope.emailGroupSortableOptions = {
+    placeholder: "email-placeholder",
+    connectWith: ".email-group",
+    forcePlaceholderSize: true,
+  };
+
+  $scope.$watch('boards', function(boards) {
+    $scope.workspace_width = (boards.length-1)*241;
+  })
+});checkmail.controller('AppCtrl', function ($scope) {
   $scope.boards = [
     {
       title: "Inbox",
