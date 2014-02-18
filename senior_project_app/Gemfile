@@ -23,6 +23,7 @@ gem 'gmail_xoauth'
 gem 'rest_client'
 
 gem 'devise'
+gem 'whenever', :require => false
 
 gem 'haml'
 gem 'haml-rails'

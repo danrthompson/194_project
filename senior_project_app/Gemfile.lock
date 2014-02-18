@@ -53,6 +53,7 @@ GEM
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.1)
     builder (3.0.4)
+    chronic (0.10.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -184,6 +185,9 @@ GEM
     uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
+    whenever (0.9.0)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -206,3 +210,4 @@ DEPENDENCIES
   rest_client
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
+  whenever
