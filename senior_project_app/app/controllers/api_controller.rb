@@ -12,6 +12,14 @@ class ApiController < ApplicationController
 		if not label then
 			render text: 'Error, label doesn\'t exist.' and return
 		end
-		render text: Conversation.conversation_array_to_json(label.conversations)
+		render text: Conversation.conversation_array_to_json(label.conversations.order(:most_recent_date).reverse_order)
+	end
+
+	def get_emails
+		conversation = Conversation.find_by_id(params[:conversation_id])
+		if not conversation then
+			render text: 'Error, conversation doesn\'t exist.' and return
+		end
+		render text: Email.email_array_to_json(conversation.emails.order(:date).reverse_order)
 	end
 end
