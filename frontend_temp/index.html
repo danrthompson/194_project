@@ -18,8 +18,12 @@
 		    	<!-- Help and settings -->
 			    <div class="navbar-right-side">
 			    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="compose_active = !compose_active">Compose</button>
+			    	<!-- <button type="button" data-toggle="modal" data-target="#myModal">Test Modal</button> -->
 			    	<ul class="nav navbar-nav pull-right">
-					 	<li><a href="#"><i class="ion-ios7-help"></i></a></li>
+					 	<!-- <li><a href="#" ><i class="ion-ios7-help"></i></a></li> -->
+
+					 	<li><a href="#" type="button" data-toggle="modal" data-target="#myModal" ><i class="ion-ios7-help"></i></a></li>
+
 			    		<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
 			    		<li><a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a></li>
 			    	</ul>
@@ -237,8 +241,34 @@
 
 		</section>
 
+		<!-- <section class="full-screen-modal dont-show modal" id="help-modal"> -->
+		<!-- <section class="full-screen-modal modal" id="help-modal">
 
+			<div class="modal-content"
 
+		</section> -->
+		<!-- Modal -->
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">About CheckMail</h4>
+		      </div>
+		      <div class="modal-body">
+		        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.
+				<br>
+				<br>
+				Donec id elit non mi porta gravida at eget metus. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+		      </div>
+		      <div class="modal-footer">
+		        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+		        <button type="button" class="btn btn-success">Cool, Thanks!</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 
 
@@ -251,6 +281,10 @@
 		<!-- Angular -->
 		<script src="js/third-party/angular.js"></script>
 		<script src="js/third-party/ui-sortable.js"></script>
+
+		<!-- Bootstrap JS for Modals -->
+		<script src="js/third-party/bootstrap-modal.js"></script>
+
 
 		<!-- App -->
 		<script src="js/app.js"></script>
