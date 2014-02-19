@@ -7,6 +7,32 @@ class Email < ActiveRecord::Base
   has_many :labels, through: :emails_labels
   belongs_to :conversation
 
+  def self.email_array_to_json(emails)
+    return (emails.map! {|email| email.to_hash}).to_json
+  end
+
+  def self.email_addresses_to_string(email_addresses)
+    addrs = []
+    email_addresses.each do |addr|
+      addr_array = []
+      if addr.name then
+        addr_array << addr.name
+      end
+      addr_array << "<#{addr.email_address}>"
+      addrs << addr_array.join(' ')
+    end
+    return addrs.join(', ')
+  end
+
+  def to_hash
+    from_addrs = Email.email_addresses_to_string(self.email_addresses.where(from_address: true))
+    to_addrs = Email.email_addresses_to_string(self.email_addresses.where(to_address: true))
+    cc_addrs = Email.email_addresses_to_string(self.email_addresses.where(cc_address: true))
+    bcc_addrs = Email.email_addresses_to_string(self.email_addresses.where(bcc_address: true))
+
+    return {id: self.id, date: self.date, subject: self.subject, html_body: self.html_body, text_body: self.text_body, from_addresses: from_addrs, to_addresses: to_addrs, cc_addresses: cc_addrs, bcc_addresses: bcc_addrs}
+  end
+
   def get_primary_label
   	labels = self.labels.order(:name)
   	labels.each do |label|
@@ -16,4 +42,5 @@ class Email < ActiveRecord::Base
   	end
     return nil
   end
+
 end

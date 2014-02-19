@@ -20,11 +20,26 @@ class Conversation < ActiveRecord::Base
 	end
 
 	def self.conversation_array_to_json(conversations)
-
+		return (conversations.map! {|conversation| conversation.to_hash}).to_json
 	end
 
 	def to_hash
-		email_array = []
-		return {id: self.id, }
+		emails = self.emails.order(:date)
+		from_addrs = []
+		emails.each do |email|
+			email.email_addresses.where(from_address: true).each do |from_addr|
+				if from_addr.name then
+					if not from_addr.name.in? from_addrs then
+						from_addrs << from_addr.name
+					end
+				else
+					if not from_addr.email_address.in? from_addrs then
+						from_addrs << from_addr.email_address
+					end
+				end
+			end
+		end
+		from_addrs = from_addrs.join(', ')
+		return {id: self.id, subject: emails.first.subject, date: emails.last.date.to_s, from_names: from_addrs}
 	end
 end
