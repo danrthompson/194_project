@@ -1,0 +1,1 @@
+var checkmail = angular.module('checkmail', ['ui.sortable']);
