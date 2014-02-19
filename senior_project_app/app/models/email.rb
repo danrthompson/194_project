@@ -3,5 +3,19 @@ class Email < ActiveRecord::Base
 
   has_many :email_addresses
   belongs_to :user
-  has_and_belongs_to_many :labels
+  has_many :emails_labels
+  has_many :labels, through: :emails_labels
+  belongs_to :conversation
+
+  def determine_primary_label_first_time
+  	labels = self.labels.order(:name)
+  	labels.each do |label|
+  		if label.can_be_primary? then
+        email_label_join_record = EmailsLabel.where(email_id: self.id, label_id: label.id).first
+  			email_label_join_record.primary = true
+  			email_label_join_record.save
+  			break
+  		end
+  	end
+  end
 end

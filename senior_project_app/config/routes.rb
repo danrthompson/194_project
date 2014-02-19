@@ -68,5 +68,6 @@ SeniorProjectApp::Application.routes.draw do
   match '/email/:email_id' => 'mail#email'
   match '/manage_email_labels/:email_id' => 'mail#manage_email_labels'
   match '/manage_email_labels_post/:email_id' => 'mail#manage_email_labels_post'
+  get 'homepage/testing_angular'
 
 end

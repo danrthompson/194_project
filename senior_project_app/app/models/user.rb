@@ -18,6 +18,20 @@ class User < ActiveRecord::Base
 
 	has_many :emails
 	has_many :labels
+	has_many :conversations
+
+	def self.refresh_emails_for_all_users
+		puts "Task running: refresh_emails_for_all_users."
+		puts "Time: #{Time.now.localtime}"
+		self.all.each do |user|
+			puts "Running task on user #{user.id}."
+			user.refresh_token_if_necessary
+			gmail = Gmail.connect!(:xoauth, user.email, token: user.auth_token)
+			user.pull_email_if_necessary(gmail)
+			puts "Done with user #{user.id}."
+		end
+		puts "Task complete.\n----------------"
+	end
 
 	def self.create_from_google_oauth2(auth_hash)
 		User.create(
@@ -108,6 +122,8 @@ class User < ActiveRecord::Base
 					label.emails << new_email
 				end
 			end
+			new_email.determine_primary_label_first_time
+			Conversation.add_email_to_conversation(new_email)
 		end
 		self.time_last_pull = Time.now
 		save!
