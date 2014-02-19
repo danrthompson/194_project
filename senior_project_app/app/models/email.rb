@@ -7,15 +7,13 @@ class Email < ActiveRecord::Base
   has_many :labels, through: :emails_labels
   belongs_to :conversation
 
-  def determine_primary_label_first_time
+  def get_primary_label
   	labels = self.labels.order(:name)
   	labels.each do |label|
   		if label.can_be_primary? then
-        email_label_join_record = EmailsLabel.where(email_id: self.id, label_id: label.id).first
-  			email_label_join_record.primary = true
-  			email_label_join_record.save
-  			break
+        return label
   		end
   	end
+    return nil
   end
 end

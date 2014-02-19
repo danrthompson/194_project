@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219042606) do
+ActiveRecord::Schema.define(:version => 20140219063702) do
 
   create_table "conversations", :force => true do |t|
     t.string   "thread_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20140219042606) do
     t.integer  "user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "label_id"
   end
 
   create_table "email_addresses", :force => true do |t|
@@ -53,7 +54,6 @@ ActiveRecord::Schema.define(:version => 20140219042606) do
   create_table "emails_labels", :force => true do |t|
     t.integer "email_id"
     t.integer "label_id"
-    t.boolean "primary"
   end
 
   create_table "labels", :force => true do |t|
