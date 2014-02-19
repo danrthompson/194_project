@@ -109,13 +109,13 @@ checkmail.controller('AppCtrl', function ($scope) {
     thread.todos_open = !thread.todos_open;
   }
 
-  $scope.addTodo = function(email) {
-    if (email.todo_temp) { 
-      email.todos.push({
-        action: email.todo_temp,
+  $scope.addTodo = function(thread) {
+    if (thread.todo_temp) { 
+      thread.todos.push({
+        action: thread.todo_temp,
         completed: false
       });
-      email.todo_temp = "";
+      thread.todo_temp = "";
     }
   }
   
