@@ -14,17 +14,14 @@
 				    </ul>
 				</div>
 
-		    	<!-- Navbar logo and extras -->
 		    	<!-- Help and settings -->
 			    <div class="navbar-right-side">
 			    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="compose_active = !compose_active">Compose</button>
 			    	<!-- <button type="button" data-toggle="modal" data-target="#myModal">Test Modal</button> -->
 			    	<ul class="nav navbar-nav pull-right">
 					 	<!-- <li><a href="#" ><i class="ion-ios7-help"></i></a></li> -->
-
-					 	<li><a href="#" type="button" data-toggle="modal" data-target="#myModal" ><i class="ion-ios7-help"></i></a></li>
-
-			    		<li><a href="#"><i class="ion-ios7-gear"></i></a></li>
+					 	<li><a href="#" type="button" data-toggle="modal" data-target="#help-modal" ><i class="ion-ios7-help"></i></a></li>
+			    		<li><a href="#" type="button" data-toggle="modal" data-target="#account-modal" ><i class="ion-ios7-gear"></i></a></li>
 			    		<li><a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a></li>
 			    	</ul>
 			    </div>
@@ -58,6 +55,7 @@
 									<li><a href="#"><i class="shared-icon ion-ios7-people"></i></a></li>
 									<li><a href="#"><i class="shared-icon ion-ios7-arrow-down"></i></a></li>
 								</ul>
+					
 							</div>
 						
 							<!-- Email group -->
@@ -78,7 +76,7 @@
 							    	<div class="email-item-content"
 							    		 ng-dblclick="selectThread(thread);"
 							    		 ng-click="toggleHighlight(thread); toggleTodos(thread);">
-					
+										<a href="#" class="delete-email-box">x</a>
 							    		<a href="#" class="todo-indicator">
 							    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
 							    			<div class="todo-indicator-skin"></div>
@@ -222,9 +220,7 @@
 							<div class="quick-reply-input">
 								<textarea class="form-control" rows="3" placeholder="Compose a new email..."></textarea>
 							</div>
-						<div class="quick-reply-input">
-							<textarea class="form-control" rows="3" placeholder="Compose a new email..."></textarea>
-						</div>
+							
 						<div class="quick-reply-submit">
 							<button type="submit" class="btn btn-success btn-block" ng-click="compose_active = false">Send</button>
 						</div>
@@ -241,36 +237,76 @@
 
 		</section>
 
-		<!-- <section class="full-screen-modal dont-show modal" id="help-modal"> -->
-		<!-- <section class="full-screen-modal modal" id="help-modal">
-
-			<div class="modal-content"
-
-		</section> -->
-		<!-- Modal -->
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<!-- Help Modal -->
+		<div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		        <h4 class="modal-title" id="myModalLabel">About CheckMail</h4>
 		      </div>
+		      
+			  <!-- Body Content -->
 		      <div class="modal-body">
 		        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.
 				<br>
 				<br>
 				Donec id elit non mi porta gravida at eget metus. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
 		      </div>
+
+		      <!-- Footer Content -->
 		      <div class="modal-footer">
 		        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-		        <button type="button" class="btn btn-success">Cool, Thanks!</button>
+		        <button type="button" class="btn btn-success" data-dismiss="modal">Cool, Thanks!</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 
 
+		<!-- Account Modal -->
+		<div class="modal fade" id="account-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title">Here Are Your Account Settings</h3>
+		      </div>
+		      
+			  <!-- Body Content -->
+		      <div class="modal-body">
+		        
+		        <hr>
+		        <div class="account-settings email-account-wrapper">
+		        	<h3>Active Accounts</h3>
+					<ul class="active-acctounts-list">
+						<li>sampleacct@gmail.com<a href="" class="pull-right">Unlink Account</a></li>
+						<li>sampleacct@gmail.com<a href="" class="pull-right">Unlink Account</a></li>
+						<!-- <li></li> -->
+					</ul>
+					<a href="" class="show-me pull-right" id="add-account-button">+ Add Account</a>
+		        </div>
+
+		        <hr>
+					
+		        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.
+
+		        <hr>  
+
+		      </div>
+
+		      <!-- Footer Content -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 		<!-- JAVASCRIPT -->
 
