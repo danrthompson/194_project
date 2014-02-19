@@ -27,6 +27,7 @@ gem 'whenever', :require => false
 
 gem 'haml'
 gem 'haml-rails'
+gem 'angularjs-rails'
 
 # temporary
 gem 'awesome_print'

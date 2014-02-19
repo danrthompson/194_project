@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
 	has_many :emails
 	has_many :labels
+	has_many :conversations
 
 	def self.refresh_emails_for_all_users
 		puts "Task running: refresh_emails_for_all_users."
@@ -45,6 +46,17 @@ class User < ActiveRecord::Base
 			gender: auth_hash['extra']['raw_info']['gender'],
 			password: Devise.friendly_token[0,20]
 		)
+	end
+
+	def get_primary_labels
+		primary_labels = []
+		self.labels.each do |label|
+			primary = label.emails_labels.where(primary: true).first
+			if primary then
+				primary_labels << label
+			end
+		end
+		return primary_labels
 	end
 
 	def refresh_token_if_necessary
@@ -121,6 +133,8 @@ class User < ActiveRecord::Base
 					label.emails << new_email
 				end
 			end
+			new_email.determine_primary_label_first_time
+			Conversation.add_email_to_conversation(new_email)
 		end
 		self.time_last_pull = Time.now
 		save!

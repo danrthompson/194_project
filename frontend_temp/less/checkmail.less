@@ -33,6 +33,9 @@
 // (these should probably eventually be refactored into smaller files)
 @import "workspace"; // The main "Trello" board
 
+// Popups & modals
+@import "modals";
+
 
 @import "sidebar";   // The sidebar for email viewing
 
@@ -96,4 +99,17 @@ body {
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+
+.dont-show{
+	display: none;
+}
+
+.show-me{
+	display: visible;
+	opacity: 1;
+}
+
+ul {
+	list-style: none;
 }

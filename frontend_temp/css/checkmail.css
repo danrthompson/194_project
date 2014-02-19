@@ -205,7 +205,7 @@ table {
   img {
     max-width: 100% !important;
   }
-  @page  {
+  @page {
     margin: 2cm .5cm;
   }
   p,
@@ -1637,7 +1637,6 @@ input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   /* IE8-9 */
-
   line-height: normal;
 }
 input[type="file"] {
@@ -8289,11 +8288,28 @@ fieldset[disabled] .btn-inverted-info.active {
   border: none;
   background: transparent;
 }
+.email-item .delete-email-box {
+  color: #fff;
+  background-color: #ccc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0px 6px 1px 5px;
+  opacity: 0;
+  text-decoration: none;
+}
+.email-item .delete-email-box:hover {
+  background-color: #8e8e8e;
+}
+.email-item:hover .delete-email-box {
+  opacity: 0.6;
+}
 .email-item .email-item-content {
   padding: 10px;
   cursor: pointer;
   border: 1px solid #dadee1;
   background: #fff;
+  padding-left: 20px;
 }
 .email-item .email-item-content h5 {
   margin: 2px 0;
@@ -8478,6 +8494,67 @@ fieldset[disabled] .btn-inverted-info.active {
 }
 .workspace.sidebar_active {
   right: 30%;
+}
+.modal-header {
+  text-align: center;
+}
+.modal-body {
+  width: 80%;
+  margin-left: 10%;
+}
+.modal-body h3 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.modal-body ul {
+  padding-left: 0px;
+}
+.modal-body ul li {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.account-settings ul {
+  padding-left: 0;
+}
+.account-settings li {
+  margin-left: 0;
+  padding: 5px 15px;
+}
+.account-settings li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+.account-settings li:hover a {
+  opacity: 0.6;
+}
+.account-settings li a {
+  opacity: 0.2;
+  float: right;
+}
+.account-settings li a.show-me {
+  opacity: 1;
+  float: none;
+}
+.account-settings li button {
+  float: right !important;
+}
+.account-settings a#add-account-button {
+  padding: 5px 15px;
+  text-decoration: none;
+}
+.account-settings a#add-account-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+.account-settings a#add-account-button:active {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.account-settings:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
 }
 .sidebar {
   position: absolute;
@@ -8844,4 +8921,14 @@ body {
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+.dont-show {
+  display: none;
+}
+.show-me {
+  display: visible;
+  opacity: 1;
+}
+ul {
+  list-style: none;
 }

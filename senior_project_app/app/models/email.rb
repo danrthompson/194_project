@@ -3,5 +3,17 @@ class Email < ActiveRecord::Base
 
   has_many :email_addresses
   belongs_to :user
-  has_and_belongs_to_many :labels
+  has_many :emails_labels
+  has_many :labels, through: :emails_labels
+  belongs_to :conversation
+
+  def get_primary_label
+  	labels = self.labels.order(:name)
+  	labels.each do |label|
+  		if label.can_be_primary? then
+        return label
+  		end
+  	end
+    return nil
+  end
 end

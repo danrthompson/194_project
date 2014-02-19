@@ -123,6 +123,8 @@
 			font-weight: 500;
 			border-top: 0px;
 		}
+
+
 	}
 
 	.email-item {
@@ -150,13 +152,35 @@
 	border: none;
 	background: transparent;
 
+
+	.delete-email-box{
+		color: #fff;
+		background-color: #ccc;
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0px 6px 1px 5px;
+		opacity: 0;
+		text-decoration: none;
+		&:hover{
+			background-color: #8e8e8e;
+		}
+
+
+	}
+
+	&:hover .delete-email-box{
+		opacity: 0.6;
+	}
+
 	.email-item-content {
 		padding: @panel-body-padding;
 		cursor: pointer;
 
 		border: 1px solid @gray-lighter;
-
 		background: #fff;
+		// Makes room for "X"
+		padding-left: 20px;
 
 		h5 {
 			margin: 2px 0;
