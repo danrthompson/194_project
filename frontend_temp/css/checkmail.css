@@ -8288,6 +8288,22 @@ fieldset[disabled] .btn-inverted-info.active {
   border: none;
   background: transparent;
 }
+.email-item .delete-email-box {
+  color: #fff;
+  background-color: #ccc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0px 6px 1px 5px;
+  opacity: 0;
+  text-decoration: none;
+}
+.email-item .delete-email-box:hover {
+  background-color: #8e8e8e;
+}
+.email-item:hover .delete-email-box {
+  opacity: 0.6;
+}
 .email-item .email-item-content {
   padding: 10px;
   cursor: pointer;
