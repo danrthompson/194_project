@@ -48,6 +48,17 @@ class User < ActiveRecord::Base
 		)
 	end
 
+	def get_primary_labels
+		primary_labels = []
+		self.labels.each do |label|
+			primary = label.emails_labels.where(primary: true).first
+			if primary then
+				primary_labels << label
+			end
+		end
+		return primary_labels
+	end
+
 	def refresh_token_if_necessary
 		if self.auth_token_expiration - 100 < Time.now then
 			data = {
