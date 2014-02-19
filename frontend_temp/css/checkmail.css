@@ -8293,6 +8293,7 @@ fieldset[disabled] .btn-inverted-info.active {
   cursor: pointer;
   border: 1px solid #dadee1;
   background: #fff;
+  padding-left: 20px;
 }
 .email-item .email-item-content h5 {
   margin: 2px 0;
