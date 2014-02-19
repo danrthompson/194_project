@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140211085133) do
+ActiveRecord::Schema.define(:version => 20140219042606) do
+
+  create_table "conversations", :force => true do |t|
+    t.string   "thread_id"
+    t.datetime "most_recent_date"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "email_addresses", :force => true do |t|
     t.string   "name"
@@ -33,10 +41,11 @@ ActiveRecord::Schema.define(:version => 20140211085133) do
     t.boolean  "read"
     t.boolean  "sent"
     t.integer  "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "user_id"
     t.string   "thread_id"
+    t.integer  "conversation_id"
   end
 
   add_index "emails", ["user_id"], :name => "index_emails_on_user_id"
@@ -44,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20140211085133) do
   create_table "emails_labels", :force => true do |t|
     t.integer "email_id"
     t.integer "label_id"
+    t.boolean "primary"
   end
 
   create_table "labels", :force => true do |t|

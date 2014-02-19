@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
 	has_many :emails
 	has_many :labels
+	has_many :conversations
 
 	def self.refresh_emails_for_all_users
 		puts "Task running: refresh_emails_for_all_users."
@@ -121,6 +122,8 @@ class User < ActiveRecord::Base
 					label.emails << new_email
 				end
 			end
+			new_email.determine_primary_label_first_time
+			Conversation.add_email_to_conversation(new_email)
 		end
 		self.time_last_pull = Time.now
 		save!
