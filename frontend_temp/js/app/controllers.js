@@ -1,4 +1,6 @@
-checkmail.controller('AppCtrl', function ($scope) {
+checkmail.controller('AppCtrl', function ($scope, Threads) {
+  $scope.threads = null;
+
   $scope.boards = [
     {
       title: "Inbox",
