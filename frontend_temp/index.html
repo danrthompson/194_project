@@ -61,10 +61,9 @@
 							<!-- Panel Menu -->
 									<div class="panel-menu" ng-class="{true: 'dont-show-me'}[!menu_active]">
 										<ul>
-											<li><a href="">Add Contributor</a></li>
-											<li><a href="">Edit Board</a></li>
-											<li><a href="">Add Filter Rule</a></li>
-
+											<li><a href="#" type="button" data-toggle="modal" data-target="#add-contributor-modal" >Add Contributor</a></li>
+											<li><a href="#" type="button" data-toggle="modal" data-target="#edit-board-modal" >Edit Board</a></li>
+											<li><a href="#" type="button" data-toggle="modal" data-target="#add-filter-modal" >Add Filter</a></li>
 										</ul>
 									</div>
 							</div>
@@ -247,6 +246,81 @@
 			
 
 		</section>
+
+		<!-- Add Filter Modal -->
+		<div class="modal fade" id="add-contributor-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title">Contributors</h3>
+		      </div>
+		      
+			  <!-- Body Content -->
+		      <div class="modal-body">
+		        
+		        <div class="account-settings email-account-wrapper">
+		  
+					<ul class="active-acctounts-list">
+						<li><b>Dan H.</b> - dhaar@test.com <a href="" class="pull-right">Delete Contributor</a></li>
+						<li><b>Samwise</b> - Sam@theshire.com<a href="" class="pull-right">Delete Contributor</a></li>
+					</ul>
+					<!-- <a href="" class="show-me pull-right" id="add-account-button">+ Add Account</a> -->
+
+		        </div>
+
+		    
+
+		      </div>
+
+		      <!-- Footer Content -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Add Filter Modal -->
+		<div class="modal fade" id="add-filter-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title">Active Filters</h3>
+		      </div>
+		      
+			  <!-- Body Content -->
+		      <div class="modal-body">
+		        
+		        <div class="account-settings email-account-wrapper">
+		  
+					<ul class="active-acctounts-list">
+						<li>Pull all emails from:    <b>sampleacct@gmail.com</b><a href="" class="pull-right">Delete Filter</a></li>
+						<li>Pull emails with subject:    <b>BASES</b><a href="" class="pull-right">Delete Filter</a></li>
+					</ul>
+					<a href="" class="show-me pull-right" id="add-account-button">+ Add Filter</a>
+		        </div>
+
+		    
+
+		      </div>
+
+		      <!-- Footer Content -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
 
 		<!-- Help Modal -->
 		<div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
