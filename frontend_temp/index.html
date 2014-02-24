@@ -3,6 +3,8 @@
 		<title>CheckMail</title>
 
 		<link rel="stylesheet" href="css/checkmail.css">
+		<!-- <link href="css/bootstrap-switch.css" rel="stylesheet"> -->
+
 	</head>
 	<body ng-controller="AppCtrl">
 		<header>
@@ -247,7 +249,7 @@
 
 		</section>
 
-		<!-- Add Filter Modal -->
+		<!-- Contributors Modal -->
 		<div class="modal fade" id="add-contributor-modal" tabindex="-1" role="dialog" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -282,9 +284,6 @@
 					</div><!-- /.row -->
 
 		        </div>
-
-		    
-
 		      </div>
 
 		      <!-- Footer Content -->
@@ -332,6 +331,57 @@
 		  </div>
 		</div>
 
+		<!-- Edit Board Modal -->
+		<div class="modal fade" id="edit-board-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title">Edit Board</h3>
+		      </div>
+		      
+			  <!-- Body Content -->
+		      <div class="modal-body">
+		        
+		        <div class="account-settings email-account-wrapper">
+		  
+					<ul class="active-acctounts-list">
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Title</span>
+							  <input type="text" class="form-control" placeholder="Mount Olympus">
+							</div>
+						</li>
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Description</span>
+							  <input type="text" class="form-control" placeholder="Mount Olympus">
+							</div>
+						</li>
+						
+						<!-- Take A Look At This -->
+						<!-- <input type="checkbox" checked data-label-text="Sharing">
+						<input type="checkbox" name="my-checkbox" checked> -->
+					</ul>
+					<a href="" class="show-me pull-right" id="add-account-button">+ Add Filter</a>
+		        </div>
+
+		    
+
+		      </div>
+
+		      <!-- Footer Content -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
 
 
 		<!-- Help Modal -->
@@ -347,7 +397,7 @@
 		      
 			  <!-- Body Content -->
 		      <div class="modal-body">
-		        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.
+		        Fusce dapibus, tellus	 ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.
 				<br>
 				<br>
 				Donec id elit non mi porta gravida at eget metus. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
@@ -417,6 +467,7 @@
 
 		<!-- Bootstrap JS for Modals -->
 		<script src="js/third-party/bootstrap-modal.js"></script>
+		<script src="js/third-party/bootstrap-switch.js"></script>
 
 
 		<!-- App -->
