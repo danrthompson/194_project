@@ -8283,6 +8283,36 @@ fieldset[disabled] .btn-inverted-info.active {
 .email-column-fixed-left .email-item .email-item-content .todo-indicator-skin {
   left: -28px;
 }
+.panel-menu {
+  width: 108%;
+  margin-left: -4%;
+  opacity: 0.95;
+  background-color: #34393d;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  text-align: right;
+}
+.panel-menu ul {
+  padding-left: 0;
+}
+.panel-menu ul li {
+  margin-top: 2px;
+  background-color: #3e464b;
+  width: 100%;
+  padding: 5px 10px;
+}
+.panel-menu ul li:hover {
+  background-color: #34393d;
+}
+.panel-menu ul li:hover a {
+  opacity: 1;
+}
+.panel-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: light;
+  opacity: 0.8;
+}
 .email-item {
   padding: 0 0 0px 0;
   border: none;
