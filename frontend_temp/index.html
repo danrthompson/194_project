@@ -77,6 +77,7 @@
 						  		<!-- TODO: This ng-class expression should be refactored into a method within the controller -->
 							    <li class="list-group-item email-item" 
 							    	ng-class="{true: 'selected'}[thread==selected_thread] + ' ' +
+							    			  {false: 'dont-show-me'}[email_visible] + ' ' +
 							    			  {true: 'completed'}[thread.is_complete] + ' ' +
 							    			  {true: 'highlighted'}[thread.is_highlighted && !thread == selected_thread] + ' ' +
 							    			  {true: 'todos-open'}[thread.todos_open] + ' ' +
@@ -85,10 +86,13 @@
 							    	ng-repeat="thread in board.threads">
 					
 							    	<!-- Email metadata -->
-							    	<div class="email-item-content"
+							    	<!-- <div class="email-item-content"
+							    		 ng-dblclick="selectThread(thread);"
+							    		 ng-click="toggleHighlight(thread); toggleTodos(thread);"> -->
+							    		 <div class="email-item-content"
 							    		 ng-dblclick="selectThread(thread);"
 							    		 ng-click="toggleHighlight(thread); toggleTodos(thread);">
-										<a href="#" class="delete-email-box">x</a>
+										<a href="#" class="delete-email-box" ng-click="email_visible = false">x</a>
 							    		<a href="#" class="todo-indicator">
 							    			<!-- The "skin" is the angled color. The "tally" is the... tally. You guessed it. -->
 							    			<div class="todo-indicator-skin"></div>
