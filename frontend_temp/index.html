@@ -55,11 +55,11 @@
 								<h4 class="email-label">{{ board.title }}</h4>
 								<ul class="email-column-decorations">
 									<li><a href="#"><i class="shared-icon ion-ios7-people"></i></a></li>
-									<li><a href="#"><i class="shared-icon ion-ios7-arrow-down"></i></a></li>
+									<li><a href="#" ng-click="menu_active = !menu_active"><i class="shared-icon ion-ios7-arrow-down"></i></a></li>
 								</ul>
 					
 							<!-- Panel Menu -->
-									<div class="panel-menu">
+									<div class="panel-menu" ng-class="{true: 'dont-show-me'}[!menu_active]">
 										<ul>
 											<li><a href="">Add Contributor</a></li>
 											<li><a href="">Edit Board</a></li>

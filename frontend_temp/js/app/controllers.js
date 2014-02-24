@@ -82,6 +82,7 @@ checkmail.controller('AppCtrl', function ($scope, Threads) {
   $scope.qr_state = true;
   $scope.sidebar_active = true;
   $scope.compose_active = false;
+  $scope.menu_active = false;
 
   $scope.current_response = "";
 
