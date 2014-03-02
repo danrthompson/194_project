@@ -1,4 +1,4 @@
-checkmail.controller('AppCtrl', function ($scope, Threads) {
+checkmail.controller('AppCtrl', function ($scope) {
   $scope.threads = null;
 
   $scope.boards = [
@@ -124,149 +124,18 @@ checkmail.controller('AppCtrl', function ($scope, Threads) {
   }
   
   $scope.boardSortOptions = {
-    placeholder: "board_placeholder",
     forcePlaceholderSize: true,
+    tolerance: "pointer",
+    axis: "x"
   };
 
   $scope.emailGroupSortableOptions = {
     placeholder: "email-placeholder",
     connectWith: ".email-group",
     forcePlaceholderSize: true,
-  };
-
-  $scope.$watch('boards', function(boards) {
-    $scope.workspace_width = (boards.length-1)*241;
-  })
-});checkmail.controller('AppCtrl', function ($scope) {
-  $scope.boards = [
-    {
-      title: "Inbox",
-      threads: []
-    },
-    {
-      title: "Family",
-      threads: []
-    },
-    {
-      title: "CS194",
-      threads: []
-    },
-    {
-      title: "Work",
-      threads: []
-    },
-    {
-      title: "Tigers",
-      threads: []
-    },
-    {
-      title: "Food",
-      threads: []
-    },
-    {
-      title: "Spam",
-      threads: []
-    },
-    {
-      title: "Lord of the Rings",
-      threads: []
-    },
-    {
-      title: "How long can my labels be?",
-      threads: []
-    },
-    {
-      title: "Soccer",
-      threads: []
-    },
-    {
-      title: "Basketball",
-      threads: []
-    },
-    {
-      title: "Football",
-      threads: []
-    },
-    {
-      title: "Hockey",
-      threads: []
-    },
-    {
-      title: "Cricket",
-      threads: []
-    },
-    {
-      title: "Baseball",
-      threads: []
-    },
-    {
-      title: "Golf",
-      threads: []
-    },
-    {
-      title: "Nascar",
-      threads: []
-    }
-  ];
-
-  for (var i = 0; i < $scope.boards.length; i++) {
-    for (var j = 0; j < randomInt(2,4); j++) {
-      $scope.boards[i].threads.push(randomThread())
-    };    
-  };
-
-  $scope.selected_thread = null;
-  $scope.qr_state = true;
-  $scope.sidebar_active = true;
-  $scope.compose_active = false;
-
-  $scope.current_response = "";
-
-  $scope.addReply = function(message) {
-    if ($scope.current_response.length >= 0) {
-        $scope.selected_thread.emails.push({
-        subject: $scope.selected_thread.emails[0].subject,
-        sender: "You",
-        receiver: $scope.selected_thread.emails[0].sender,
-        message: message,
-        timestamp: "now",
-        is_read: true,
-        is_complete: true
-      })
-    }
-  }
-
-  $scope.selectThread = function(thread) {
-    $scope.selected_thread = thread;
-  }
-
-  $scope.toggleHighlight = function(thread) {
-    thread.is_highlighted = !thread.is_highlighted;
-  }
-
-  $scope.toggleTodos = function(thread) {
-    thread.todos_open = !thread.todos_open;
-  }
-
-  $scope.addTodo = function(email) {
-    if (email.todo_temp) { 
-      email.todos.push({
-        action: email.todo_temp,
-        completed: false
-      });
-      email.todo_temp = "";
-    }
-  }
-  
-  $scope.boardSortOptions = {
-    placeholder: "board_placeholder",
-    forcePlaceholderSize: true,
-  };
-
-  $scope.emailGroupSortableOptions = {
-    placeholder: "email-placeholder",
-    connectWith: ".email-group",
-    forcePlaceholderSize: true,
+    scrollSensitivity: 10,
+    tolerance: "pointer",
+    zIndex: 9999
   };
 
   $scope.$watch('boards', function(boards) {

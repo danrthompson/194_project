@@ -205,7 +205,7 @@ table {
   img {
     max-width: 100% !important;
   }
-  @page {
+  @page  {
     margin: 2cm .5cm;
   }
   p,
@@ -1637,6 +1637,7 @@ input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   /* IE8-9 */
+
   line-height: normal;
 }
 input[type="file"] {
@@ -8376,8 +8377,8 @@ fieldset[disabled] .btn-inverted-info.active {
   top: 40px;
   bottom: 0;
   left: 0;
-  right: 30%;
-  margin-left: 230px;
+  right: 0;
+  margin-left: 227px;
   overflow-x: auto;
 }
 .workspace::-webkit-scrollbar {
@@ -8413,9 +8414,6 @@ fieldset[disabled] .btn-inverted-info.active {
 }
 .email-heading {
   padding: 2px 10px;
-}
-.ui-sortable-helper {
-  z-index: 1000;
 }
 .email-column-decorations {
   list-style-type: none;
@@ -8479,32 +8477,16 @@ fieldset[disabled] .btn-inverted-info.active {
 .panel-menu {
   width: 108%;
   margin-left: -4%;
-  opacity: 0.95;
-  background-color: #34393d;
+  opacity: 1;
   margin-bottom: 0;
   padding-bottom: 0;
   text-align: right;
 }
-.panel-menu ul {
-  padding-left: 0;
+.panel-menu a {
+  color: #f3f3f3;
 }
-.panel-menu ul li {
-  margin-top: 2px;
-  background-color: #3e464b;
-  width: 100%;
-  padding: 5px 10px;
-}
-.panel-menu ul li:hover {
-  background-color: #34393d;
-}
-.panel-menu ul li:hover a {
-  opacity: 1;
-}
-.panel-menu ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: light;
-  opacity: 0.8;
+.panel-menu a:hover {
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 .email-item {
   padding: 0 0 0px 0;

@@ -1,3 +1,23 @@
+checkmail.directive('workspace', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/workspace/main.html'
+  };
+});
+
+checkmail.directive('sidebar', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/sidebar/view.html'
+  };
+});
+
+
+
+
+
+// HELPER DIRECTIVES
+
 // From: http://stackoverflow.com/questions/14925728/how-to-observe-custom-events-in-angularjs
 checkmail.directive('enterSubmit', function () {
   return {
