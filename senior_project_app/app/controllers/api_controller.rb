@@ -68,7 +68,7 @@ class ApiController < ApplicationController
 		original_email = gmail.mailbox('[Gmail]/All Mail').find(:all, {query: ['UID', email.uid]}).first
 		reply = original_email.reply
 
-
+		
 	end
 
 	def connect_to_gmail(user)
