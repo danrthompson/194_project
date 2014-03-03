@@ -4,6 +4,9 @@
 // also let me know if you'd like me to step in and help implement any of
 // this.
 
+// I'm just gonna leave this link in here too since it might help answer some questions:
+// https://restful-api-design.readthedocs.org/en/latest/methods.html
+
 // GET    /api/labels     => List of all labels sorted by label.order.
 // POST   /api/labels     => Create a new label
 // PATCH  /api/labels     => Patch all labels in request. If order is changed on any label, reject the patch unless all labels have a valid (unique) order
