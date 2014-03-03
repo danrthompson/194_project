@@ -1,6 +1,10 @@
 // This is a very sparse document right now. There are a lot of things our API
 // _should_ do eventually, but I'm just outlining the things I need right now.
 
+// ===== THE GIST =====
+
+// GET /api/labels
+
 // ===== LABELS =====
 
 // List all labels
