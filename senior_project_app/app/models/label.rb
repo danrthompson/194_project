@@ -1,5 +1,5 @@
 class Label < ActiveRecord::Base
-	attr_accessible :name, :user_id, :primary
+	attr_accessible :name, :user_id
 	belongs_to :user
 	has_many :emails_labels
 	has_many :emails, through: :emails_labels
@@ -9,14 +9,11 @@ class Label < ActiveRecord::Base
 	@@non_primary_label_names = ['Important', 'Sent', 'Boomerang']
 
 	def self.label_array_to_json(labels)
-		label_array = []
-		labels.each do |label|
-			label_array << {uid: label.id, 
-				title: label.name, 
-				order: label.order_value,
-				threads: label.conversations.map {|conversation| conversation.to_hash}}
-		end
-		return label_array.to_json
+		return (labels.map {|label| label.to_hash}).to_json
+	end
+
+	def to_hash
+		return {uid: self.id, title: self.name, order: self.order_value, threads: self.conversations.map {|conversation| conversation.to_hash}}
 	end
 
 	def can_be_primary?
