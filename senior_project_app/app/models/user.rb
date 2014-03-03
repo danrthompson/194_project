@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 	end
 
 	def get_primary_labels
-		Label.joins(:conversations).where('conversations.user_id' => self.id).uniq
+		Label.joins(:conversations).where('conversations.user_id' => self.id).uniq.order(:order_value)
 	end
 
 	def refresh_token_if_necessary

@@ -28,18 +28,19 @@ class Conversation < ActiveRecord::Base
 		from_addrs = []
 		emails.each do |email|
 			email.email_addresses.where(from_address: true).each do |from_addr|
-				if from_addr.name then
-					if not from_addr.name.in? from_addrs then
-						from_addrs << from_addr.name
-					end
-				else
-					if not from_addr.email_address.in? from_addrs then
-						from_addrs << from_addr.email_address
-					end
-				end
+				# if from_addr.name then
+				# 	if not from_addr.name.in? from_addrs then
+				# 		from_addrs << from_addr.name
+				# 	end
+				# else
+				# 	if not from_addr.email_address.in? from_addrs then
+				# 		from_addrs << from_addr.email_address
+				# 	end
+				# end
+				from_addrs << {uid: from_addr.id, address: from_addr.email_address, address_type: :from, name: from_addr.name}
 			end
 		end
-		from_addrs = from_addrs.join(', ')
-		return {id: self.id, subject: emails.first.subject, date: emails.last.date.to_s, from_names: from_addrs}
+		# from_addrs = from_addrs.join(', ')
+		return {uid: self.id, subject: emails.first.subject, latest_date: self.most_recent_date.to_i, email_addresses: from_addrs}
 	end
 end

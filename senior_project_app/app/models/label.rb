@@ -11,7 +11,10 @@ class Label < ActiveRecord::Base
 	def self.label_array_to_json(labels)
 		label_array = []
 		labels.each do |label|
-			label_array << {id: label.id, name: label.name}
+			label_array << {uid: label.id, 
+				title: label.name, 
+				order: label.order_value,
+				threads: label.conversations.map {|conversation| conversation.to_hash}}
 		end
 		return label_array.to_json
 	end
