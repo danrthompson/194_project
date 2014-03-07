@@ -1,0 +1,41 @@
+<section class="sidebar email-viewer compose-email">
+	<!-- Just a placeholder For A Thread -->
+	<div class="panel panel-thread thread-message">
+		
+
+	<div class="quick-reply-wrapper compose-email-wrapper qr-expanded">
+	
+		<div class="panel panel-thread quick-reply" >
+
+			<!-- Quick reply toggles between qr-compressed and qr-expanded -->
+			<form class="quick-reply-form compose-email-form" action="">
+				<div class="quick-reply-input compose-email-metadata">
+					<div class="compose-field input-group input-group-sm">
+						<span class="input-group-addon">To</span>
+						<input class="form-control" type="text"></input>
+					</div>
+					<div class="compose-field input-group input-group-sm">
+						<span class="input-group-addon">From</span>
+						<input class="form-control input-group" type="text"></input>
+					</div>
+					<div class="compose-field input-group input-group-sm">
+						<span class="input-group-addon">Subject</span>
+						<input class="form-control" type="text"></input>
+					</div>
+				</div>
+					<div class="quick-reply-input">
+						<textarea class="form-control" rows="3" placeholder="Compose a new email..."></textarea>
+					</div>
+					
+				<div class="quick-reply-submit">
+					<button type="submit" class="btn btn-success btn-block" ng-click="compose_active = false">Send</button>
+				</div>
+				<div class="quick-reply-cancel">
+					<button type="reset" class="btn btn-default btn-block" ng-click="compose_active = false">Cancel</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</section>
