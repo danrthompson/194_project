@@ -1,16 +1,10 @@
-angular.module('workspace', ['resources.labels'])
+angular.module('workspace', ['resources.labels', 'resources.threads'])
 
 // .config(['$routeSegmentProvider',function($routeSegmentProvider) {
 	
 // }])
 
-.controller('WorkspaceCtrl', ['$scope', '$location', 'Labels', function($scope, $location, Labels) {
-
-	$scope.labels = Labels.query();
-
-	$scope.selectThread = function(thread) {
-		$location.path("thread/" + thread.uid);
-	};
+.controller('WorkspaceCtrl', ['$scope', '$location', 'Threads', function($scope, $location, Threads) {
 
 	$scope.archiveThread = function(thread) {
 		alert("Not implemented yet.");
@@ -18,6 +12,9 @@ angular.module('workspace', ['resources.labels'])
 
 	$scope.reorderLabels = function(labels) {
 		alert("Not implemented yet.");
+	};
+
+	$scope.addLabel = function(label) {
 	};
 
 	$scope.editLabel = function(label) {

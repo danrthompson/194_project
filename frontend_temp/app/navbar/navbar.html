@@ -2,13 +2,13 @@
 	<!-- Navbar label navigation -->
 	<div class="navbar-left-side">
 		<ul class="nav navbar-nav quick-nav-labels">
-			<li ng-repeat="label in labels"><a href="#" ng-click="scrollToLabel(label)">{{ label.title }}</a></li>
+			<li ng-repeat="label in labels"><a href="#" ng-click="scrollToLabel(label)">{{ label.title }} {{ label.threads.length }}</a></li>
 	    </ul>
 	</div>
 
 	<!-- Help and settings -->
     <div class="navbar-right-side">
-    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="compose()">Compose</button>
+    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="openCompose()">Compose</button>
     	<!-- <button type="button" data-toggle="modal" data-target="#myModal">Test Modal</button> -->
     	<ul class="nav navbar-nav pull-right">
 		 	<!-- <li><a href="#" ><i class="ion-ios7-help"></i></a></li> -->

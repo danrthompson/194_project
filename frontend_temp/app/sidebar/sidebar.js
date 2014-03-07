@@ -1,4 +1,4 @@
-angular.module('sidebar', [])
+angular.module('sidebar', ['resources.threads'])
 
 // .config(['$routeSegmentProvider',function($routeSegmentProvider) {
 	
@@ -25,5 +25,24 @@ angular.module('sidebar', [])
 	};
 }])
 
-.controller('SidebarCtrl', [function(){
+.controller('SidebarCtrl', ['$scope', '$location', 'Threads', function($scope, $location, Threads) {
+	// $scope.$watch('state.selected_thread', function(thread) {
+	// 	$scope.selected_thread = thread;
+	// });
+
+	$scope.getFrom = function(email) {
+		return _.find(email.email_addresses, function(d) {
+			return d.address_type === "from";
+		});
+	};
+
+	$scope.replyToThread = function(thread, reply) {
+		var whole_reply = {
+			message: reply,
+		}
+	};
+
+	$scope.expandReply = function() {
+		alert("Not yet implemented.");
+	};
 }]);

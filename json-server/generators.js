@@ -1,6 +1,7 @@
 // This file provides some utilities for generating fake data.
 
-var Faker = require('Faker');
+var Faker = require('Faker'),
+    changeCase = require('change-case');
 
 var addresses = [],
     threads = [],
@@ -78,7 +79,7 @@ function generateLabel(order) {
 }
 
 function generateThread() {
-    var subject = Faker.Lorem.sentence(),
+    var subject = changeCase.titleCase(Faker.Lorem.sentence()),
         uid = Faker.random.number(10000);
 
     var emails = [];
@@ -118,7 +119,7 @@ function generateEmail(subject, n) {
     var email = {
         subject: "Re: ".repeat(n) + subject,
         email_addresses: [from,to],
-        message: Faker.Lorem.sentences(),
+        message: Faker.Lorem.paragraph(),
         timestamp: +(new Date(Faker.Date.between(2013, 2014))),
         is_read: randomInt(0,1) === 0
     };

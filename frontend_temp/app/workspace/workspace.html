@@ -1,4 +1,4 @@
-<section class="workspace">
+<section ng-class="{true: 'sidebar-visible'}[sidebarIsVisible()]" class="workspace">
 
 	<!-- Email column container: All Email Lists -->
 	<div class="email-columns" style="width: {{ (labels.length - 1)*242 }}px;">
@@ -38,12 +38,13 @@
 					</div>
 				
 					<!-- Email group -->
-				  	<ul ui-sortable="emailGroupSortableOptions" ng-model="label" class="list-group email-group">
+				  	<ul ui-sortable="emailGroupSortableOptions" ng-model="label.threads" class="list-group email-group">
 			
 				  		<!-- Email-item -->
 				  		<!-- TODO: This ng-class expression should be refactored into a method within the controller -->
 					    <li class="list-group-item email-item"
-					    	ng-repeat="thread in label.threads">
+					    	ng-repeat="thread in label.threads"
+					    	ng-class="{true: 'selected'}[isSelectedThread(thread)]">
 			
 					    	<!-- Email metadata -->
 					    	<div class="email-item-content"

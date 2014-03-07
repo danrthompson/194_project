@@ -15,11 +15,15 @@
 	overflow-x: auto;
 
 	.pretty-horizontal-scrollbar(4px);
+
+	&.sidebar-visible{
+		right: @sidebar-width;
+	}
 }
 
 .email-placeholder {
 	// border-radius: @border-radius-small;
-	border: 4px solid @green-light;
+	background: #ddd;
 	display: block;
 }
 
@@ -53,6 +57,10 @@
 
 .email-heading {
 	padding: @panel-heading-padding;
+}
+
+.email-group {
+	height: 200px;
 }
 
 .ui-sortable-helper {
@@ -419,14 +427,6 @@
 
 .sidebar.sidebar_active{
 	right: 0;
-}
-
-.workspace.sidebar-inactive{
-	right: 0;
-}
-
-.workspace.sidebar_active{
-	right: @sidebar-width;
 }
 
 

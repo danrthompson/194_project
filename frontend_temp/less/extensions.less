@@ -15,14 +15,19 @@
 
 	.panel-heading {
 		border: none;
+
 	}
 }
 
 .panel-thread {
-	.panel-variant(@panel-default-border; @panel-default-text; @panel-default-heading-bg; @panel-default-border);
+	.panel-variant(@panel-default-border; @panel-default-text; #fff; @panel-default-border);
 
 	box-shadow: none;
 	border: 0px;
+
+	.panel-heading {
+		color: @text-color;
+	}
 
 	// background: transparent;
 }
@@ -39,3 +44,38 @@
 .btn-inverted-primary { .button-inverted-variant(@brand-primary, @brand-primary, #fff, @brand-primary); }
 .btn-inverted-success { .button-inverted-variant(@brand-success, @brand-success, #fff, @brand-success); }
 .btn-inverted-info    { .button-inverted-variant(@brand-info, @brand-info, #fff, @brand-info); }
+
+.label-inverted {
+  display: inline;
+  padding: @padding-base-vertical @padding-base-horizontal;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  border: 1px solid;
+}
+
+.label-inverted-default {
+  .label-inverted-variant(@label-default-bg);
+}
+
+.label-inverted-primary {
+  .label-inverted-variant(@label-primary-bg);
+}
+
+.label-inverted-success {
+  .label-inverted-variant(@label-success-bg);
+}
+
+.label-inverted-info {
+  .label-inverted-variant(@label-info-bg);
+}
+
+.label-inverted-warning {
+  .label-inverted-variant(@label-warning-bg);
+}
+
+.label-inverted-danger {
+  .label-inverted-variant(@label-danger-bg);
+}
