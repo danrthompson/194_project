@@ -106,3 +106,13 @@
         background: @color;
     }
 }
+
+.label-inverted-variant(@color) {
+  border-color: @color;
+  &[href] {
+    &:hover,
+    &:focus {
+      border-color: darken(@color, 10%);
+    }
+  }
+}
