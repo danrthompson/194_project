@@ -1,7 +1,7 @@
 <section ng-class="{true: 'sidebar-visible'}[sidebarIsVisible()]" class="workspace">
 
 	<!-- Email column container: All Email Lists -->
-	<div class="email-columns" style="width: {{ (labels.length - 1)*242 }}px;">
+	<div class="email-columns" style="width: {{ (labels.length - 1)*244 }}px;">
 
 		<div class="scroll-wrapper">
 			<!-- Individual email column -->
@@ -56,9 +56,9 @@
 								<div class="email-item-metadata">
 									<div class="sender-and-date">
 										<h5 class="email-sender">
-											<span class="sender-name">{{ thread.email_addresses[0].first_name }}</span>
+											<span class="sender-name">{{ thread.email_addresses[0].name }}</span>
 										</h5>
-										<small class="email-datetime">{{ thread.timestamp | date }}</small>
+										<small class="email-datetime">{{ thread.latest_date | date:'shortTime' }}</small>
 									</div>
 									<span class="email-subject">{{ thread.subject }}</span>
 								</div>

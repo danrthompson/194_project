@@ -3,17 +3,31 @@ angular.module('checkmail', [
 		'workspace',
 		'sidebar',
 		'ui.sortable',
-		'restangular'
+		'restangular',
 		// 'route-segment',
 		// 'view-segment'
 	])
 
+.run(['$window', '$templateCache', function($window, $templateCache) {
+  var templates = $window.JST,
+      fileName,
+      fileContent;
+ 
+  for (fileName in templates) {
+    fileContent = templates[fileName];
+    $templateCache.put(fileName, fileContent);
+    // Note that we're passing the function fileContent, and not the object
+    // returned by its invocation. More on that on Digging Deeper.
+    console.log(fileName);
+  }
+}])
+
 // Configuration settings for the angular app
 .constant('settings', {
-	api_base_url: 'http://localhost:3000/'
+	api_base_url: 'http://localhost:3000/api/'
 })
 
-.controller('AppCtrl', ['$scope', 'Labels', function($scope, Labels) {
+.controller('AppCtrl', ['$scope', 'Labels', 'settings', function($scope, Labels) {
 	$scope.labels = Labels.query();
 
 	$scope.state = {
