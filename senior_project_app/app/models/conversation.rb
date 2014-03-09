@@ -41,6 +41,6 @@ class Conversation < ActiveRecord::Base
 			end
 		end
 		# from_addrs = from_addrs.join(', ')
-		return {uid: self.id, subject: emails.first.subject, latest_date: self.most_recent_date.to_i, email_addresses: from_addrs}
+		return {uid: self.id, subject: emails.first.subject, latest_date: self.most_recent_date.to_i*1000, email_addresses: from_addrs}
 	end
 end
