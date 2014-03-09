@@ -1,4 +1,6 @@
 SeniorProjectApp::Application.routes.draw do
+  get "static_pages/index"
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # The priority is based upon order of creation:
