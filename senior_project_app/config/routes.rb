@@ -82,6 +82,7 @@ SeniorProjectApp::Application.routes.draw do
 
   namespace :api do
     resources :labels, except: [:new, :edit]
+    resources :threads, except: [:new, :edit, :index]
   end
 
 
