@@ -1,0 +1,119 @@
+{
+    "labels": [
+        {
+            "uid": 1,
+            "title": "Inbox",
+            "order": 1,
+            "threads": [
+                {
+                    "uid": 1,
+                    "subject": "Free pizza at 3:00pm",
+                    "latest_date": 1333065600000,
+                    "email_addresses": [
+                        {
+                            "uid": 1,
+                            "address": "johnny@google.com",
+                            "address_type": "from",
+                            "name": "Johnny",
+                            "email_count": 3
+                        },
+                        {
+                            "uid": 2,
+                            "address": "timmy@aol.com",
+                            "address_type": "cc",
+                            "name": "Johnny",
+                            "email_count": 1
+                        }
+                    ]
+                },
+                {
+                    "uid": 2,
+                    "subject": "Who took all of my pizza??",
+                    "latest_date": 1334065600000,
+                    "email_addresses": [
+                        {
+                            "uid": 3,
+                            "address": "jake@google.com",
+                            "address_type": "from",
+                            "name": "Johnny",
+                            "email_count": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "uid": 2,
+            "title": "Family",
+            "order": 2,
+            "threads": [
+                {
+                    "uid": 3,
+                    "subject": "You suck",
+                    "latest_date": 1333065600000,
+                    "email_addresses": [
+                        {
+                            "uid": 1,
+                            "address": "johnny@google.com",
+                            "address_type": "from",
+                            "name": "Johnny",
+                            "email_count": 5
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+
+    "threads": [
+        {
+            "uid": 1,
+            "subject": "Free pizza at 3:00pm",
+            "latest_date": 1333065600000,
+            "email_addresses": [
+                {
+                    "uid": 1,
+                    "address": "johnny@google.com",
+                    "address_type": "from",
+                    "name": "Johnny",
+                    "email_count": 3
+                },
+                {
+                    "uid": 2,
+                    "address": "timmy@aol.com",
+                    "address_type": "cc",
+                    "name": "Johnny",
+                    "email_count": 1
+                }
+            ]
+        },
+        {
+            "uid": 2,
+            "subject": "Who took all of my pizza??",
+            "latest_date": 1333065600000,
+            "email_addresses": [
+                {
+                    "uid": 1,
+                    "address": "jake@google.com",
+                    "address_type": "from",
+                    "name": "Johnny",
+                    "email_count": 4
+                }
+            ]
+        },
+        {
+            "uid": 3,
+            "subject": "You suck",
+            "latest_date": 1333065600000,
+            "email_addresses": [
+                {
+                    "uid": 1,
+                    "address": "johnny@google.com",
+                    "address_type": "from",
+                    "name": "Johnny",
+                    "email_count": 5
+                }
+            ]
+        }
+    ]
+}
