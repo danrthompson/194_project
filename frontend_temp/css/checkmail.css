@@ -8830,6 +8830,17 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-bottom: 0px;
   color: #ccc;
 }
+#home-wrapper .second-page .second-page-text {
+  background-color: #689A7F;
+}
+#home-wrapper .second-page .second-page-text p {
+  width: 70%;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 70px 0px;
+  margin: auto;
+  color: white;
+}
 #home-wrapper .second-page #screen-shot {
   width: 100%;
   height: auto;
@@ -8838,13 +8849,28 @@ fieldset[disabled] .btn-inverted-info.active {
   padding-top: 120px;
   background-color: white;
 }
+#home-wrapper .ending-text.about-us-page,
+#home-wrapper .ending-text.press-page {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+#home-wrapper .ending-text.about-us-page h2,
+#home-wrapper .ending-text.press-page h2 {
+  text-align: left;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#home-wrapper .ending-text.about-us-page p,
+#home-wrapper .ending-text.press-page p {
+  margin: 0;
+  padding-left: 0;
+}
 #home-wrapper .ending-text .content-wrapper {
   width: 70%;
   margin: auto;
-  height: 330px;
+  min-height: 330px;
 }
 #home-wrapper .ending-text .content-wrapper p {
-  padding: 15px;
   color: #707070;
   text-align: left;
   font-size: 18px;
@@ -8865,7 +8891,6 @@ fieldset[disabled] .btn-inverted-info.active {
   background-color: #f3f3f3;
   text-align: center;
   padding-top: 40px;
-  border-bottom: 10px solid #707070;
 }
 #home-wrapper .footer .sign-up-button {
   border: 2px solid #F3f3f3;
@@ -8930,6 +8955,16 @@ fieldset[disabled] .btn-inverted-info.active {
   background-image: url('../img/computer.png');
   background-repeat: no-repeat;
   background-size: cover;
+}
+.center-text {
+  text-align: center;
+}
+.center-texta:hover {
+  text-decoration: none;
+}
+.message-us-footer {
+  min-height: 130px;
+  padding-top: 10px;
 }
 .sidebar {
   position: absolute;
