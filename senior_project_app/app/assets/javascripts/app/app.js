@@ -4,23 +4,24 @@ angular.module('checkmail', [
 		'sidebar',
 		'ui.sortable',
 		'restangular',
+		'templates'
 		// 'route-segment',
 		// 'view-segment'
 	])
 
-.run(['$window', '$templateCache', function($window, $templateCache) {
-  var templates = $window.JST,
-      fileName,
-      fileContent;
+// .run(['$window', '$templateCache', function($window, $templateCache) {
+//   var templates = $window.JST,
+//       fileName,
+//       fileContent;
  
-  for (fileName in templates) {
-    fileContent = templates[fileName];
-    $templateCache.put(fileName, fileContent);
-    // Note that we're passing the function fileContent, and not the object
-    // returned by its invocation. More on that on Digging Deeper.
-    console.log(fileName);
-  }
-}])
+//   for (fileName in templates) {
+//     fileContent = templates[fileName];
+//     $templateCache.put(fileName, fileContent);
+//     // Note that we're passing the function fileContent, and not the object
+//     // returned by its invocation. More on that on Digging Deeper.
+//     console.log(fileName);
+//   }
+// }])
 
 // Configuration settings for the angular app
 .constant('settings', {

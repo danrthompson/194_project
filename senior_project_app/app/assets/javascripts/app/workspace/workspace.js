@@ -15,7 +15,7 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 		// template: 'wutsup',
-		templateUrl: 'templates/workspace/workspace',
+		templateUrl: 'workspace/workspace.html',
 		// replace: true,
 		// transclude: true,
 		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
