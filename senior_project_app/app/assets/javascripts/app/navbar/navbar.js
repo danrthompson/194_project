@@ -1,4 +1,4 @@
-angular.module('navbar', [])
+angular.module('navbar', ['modals'])
 
 .directive('navbar', [function(){
 	// Runs during compile
@@ -21,9 +21,22 @@ angular.module('navbar', [])
 	};
 }])
 
-.controller('NavbarCtrl', ['$scope', '$location', function($scope, $location) {
+.controller('NavbarCtrl', ['$scope', '$location', '$modal', function($scope, $location, $modal) {
 	$scope.scrollToLabel = function(label) { alert("Not implemented yet."); };
-	$scope.openHelp      = function() { alert("Not implemented yet."); };
-	$scope.openSettings  = function() { alert("Not implemented yet."); };
+
+	$scope.openHelp      = function() {
+		$modal.open({
+			templateUrl: 'modals/help.html',
+			controller: 'HelpModalCtrl',
+		});
+	};
+	
+	$scope.openSettings  = function() {
+		$modal.open({
+			templateUrl: 'modals/account.html',
+			controller: 'AccountModalCtrl',
+		});
+	};
+
 	$scope.openAbout     = function() { alert("Not implemented yet."); };
 }]);

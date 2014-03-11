@@ -3,6 +3,7 @@ angular.module('checkmail', [
 		'workspace',
 		'sidebar',
 		'ui.sortable',
+		'ui.bootstrap',
 		'restangular',
 		'templates'
 		// 'route-segment',

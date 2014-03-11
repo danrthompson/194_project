@@ -19,56 +19,10 @@
 	padding: @padding-top-sidebar @padding-base-horizontal;
 }
 
-// This is going to need to be fixed when we sort out sidebar scaling
-.trashcan{
-	
-	position: fixed;
-	bottom: 10px;
-	left: 65%;
-	width: 100%;
-	
-
-	a{
-		padding: 10px;
-		padding-left:20px;
-		border-radius: 100px;
-		.ion;
-		font-size: 40px;
-		border: 2px solid @gray-light;
-		color: @gray-light;
-		font-weight: bold;
-		width: 100%;
-
-		&:hover{
-			background-color: @gray-light;
-			color: #fff;
-			text-decoration: none;
-		}
-	}
-	.trashcan-icon:before{
-		// Commenting out trashcan 
-		// content: "\f1eb";
-		content: "\f10a"
-
-	}
-}
-
-.trashcan.sidebar-inactive{
-	position: fixed;
-	left: 95%;
-
-	.trashcan-icon:before{
-		content: "\f107";
-	}
-
-}
-
 .email-viewer {
 	background-color: @gray-lighter;
 	border-left: 1px solid @gray-light;
 }
-
-
 
 // Thread Window Styling
 
@@ -174,133 +128,19 @@
 	}
 }
 
-.quick-reply-wrapper {
-
-
-	.quick-reply{
-		padding: @padding-base-horizontal;
+.email-compose-metadata {
+	.form-group {
+		margin-bottom: @padding-base-vertical;
 	}
-
-	.quick-reply-form {
-		.make-row();
-		margin: 0;
-	}
-
-	.quick-reply{
-		.quick-reply-form{
-			width: 100%;	
-			margin-bottom: 0;
-			textarea{
-			}
-		
-		
-			.quick-reply-submit {
-				.make-xs-column(3);
-				.pull-right;
-			}
-			.quick-reply-cancel{
-				.make-xs-column(3);
-				float: left;
-				.btn-default{
-					color: #aaa;
-				}
-			}
-
-		}
-	}
-
-
-	&.qr-compressed {		
-		// Text area when compressed
-		textarea {
-			.make-xs-column(9);
-			height:2.5em;
-			margin-bottom: 0px;
-		}
-
-		.quick-reply-cancel{
-			display: none;
-		}
-	}
-
-	&.qr-expanded{
-		textarea{
-			.make-xs-column(12);
-			height: 200px;
-			margin-bottom: 10px;
-		}
-
-		.quick-reply-submit{
-			padding: 0px;
-		}
-
-	}
-
-
-	.qr-class-toggle{
-		position: relative;
-	}
-
-	.qr-expand{
-		.text-sm;
-		position: relative;
-		top: -1.25em;
-		color: white;
-		opacity: 0.75;
-		text-decoration: none;
-		letter-spacing: 1.1;
-		font-weight: light;
-
-
-		&:hover{
-			opacity: 1;
-		}
+	.form-group:last-child {
+		margin-bottom: 0;
 	}
 }
 
-
-
-.dont-show-me{
-	display:none;
-}
-
-.compose-email{
-	.compose-email-metadata{
-
-		.compose-field{
-				// height: 30px;
-				.make-md-column(12);
-				margin-bottom: 15px;
-				
-
-			
-			input{
-				// height: 25px;
-				// float: left;
-				width: 100%;
-			}
-			p{
-				display: none;
-				float: left;
-				width: 20%;
-				margin-top: 0;
-				margin-bottom: 0
-			}
-		}
-		text-align: right;
-		margin: 10px 0;
+.email-compose-body {
+	padding: @padding-large-vertical @padding-large-horizontal;
+	min-height: 100px;
+	&:focus {
+		outline: 0;
 	}
-}
-
-// Quick Compose Email Hack
-.compose-email.compose-inactive{
-	visible: false;
-	margin-left: 10000px;
-	textarea{
-		height: 60%;
-	}
-}
-
-.compose-email.compose-active{
-	visible: true;
 }

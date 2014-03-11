@@ -1,12 +1,17 @@
 angular.module('modals', [])
 
-.controller('HelpModalCtrl', ['$scope', '$location', function($scope, $location) {
-	$scope.labels = Labels.query();
+.controller('HelpModalCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance) {
+	$scope.close = function() {
+		$modalInstance.close();
+	};
+}])
 
-	$scope.scrollToLabel = function(label) { alert("Not implemented yet."); };
-	
-	$scope.compose       = function() { alert("Not implemented yet."); };
-	$scope.openHelp      = function() { alert("Not implemented yet."); };
-	$scope.openSettings  = function() { alert("Not implemented yet."); };
-	$scope.openAbout     = function() { alert("Not implemented yet."); };
+.controller('AccountModalCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance) {
+	$scope.dismiss = function(reason) {
+		$modalInstance.dismiss(reason);
+	};
+
+	$scope.close = function(result) {
+		$modalInstance.close(result);
+	};
 }]);

@@ -1,4 +1,4 @@
-angular.module('sidebar', ['resources.threads'])
+angular.module('sidebar', ['resources.threads', 'contenteditable'])
 
 // .config(['$routeSegmentProvider',function($routeSegmentProvider) {
 	
@@ -36,6 +36,10 @@ angular.module('sidebar', ['resources.threads'])
 		});
 	};
 
+	$scope.sendEmail = function() {
+
+	};
+
 	$scope.replyToThread = function(thread, reply) {
 		var whole_reply = {
 			message: reply,
@@ -44,5 +48,15 @@ angular.module('sidebar', ['resources.threads'])
 
 	$scope.expandReply = function() {
 		alert("Not yet implemented.");
+	};
+}])
+
+.controller('ComposeCtrl', ['$scope', 'Threads', function($scope, Threads) {
+	$scope.draft = {};
+	
+	$scope.sendEmail = function() {
+		console.log($scope.draft);
+		$scope.draft = {};
+		$scope.closeCompose();
 	};
 }]);

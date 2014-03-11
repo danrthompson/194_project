@@ -42,19 +42,19 @@
 
 	<!-- Composing -->
 	<!-- Should be moved to compose.html eventually -->
-	<div class="panel panel-thread" ng-show="composingEmail()">
-		<div class="panel-heading">
+	<div class="panel panel-thread" ng-show="composingEmail()" ng-controller="ComposeCtrl">
+		<div class="panel-heading email-compose-metadata">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="To">
+				<input type="text" class="form-control" placeholder="To" spellcheck="false" ng-model="draft.to">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Subject">
+				<input type="text" class="form-control" placeholder="Subject" spellcheck="false" ng-model="draft.subject">
 			</div>
 		</div>
-		<div class="panel-body" contenteditable="true" placeholder="Yo"></div>
+		<div class="panel-body email-compose-body" contenteditable="true" placeholder="Yo" ng-model="draft.content"></div>
 		<div class="panel-footer">
 			<button class="btn btn-default" ng-click="closeCompose()">Cancel</button>
-			<button class="btn btn-success pull-right">Send</button>
+			<button class="btn btn-success pull-right" ng-click="sendEmail()">Send</button>
 		</div>
 	</div>
 </section>
