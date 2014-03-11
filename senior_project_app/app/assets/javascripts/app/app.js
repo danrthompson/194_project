@@ -3,30 +3,21 @@ angular.module('checkmail', [
 		'workspace',
 		'sidebar',
 		'ui.sortable',
-		'ui.bootstrap',
+		'ui.bootstrap', 
 		'restangular',
 		'templates'
 		// 'route-segment',
 		// 'view-segment'
 	])
 
-// .run(['$window', '$templateCache', function($window, $templateCache) {
-//   var templates = $window.JST,
-//       fileName,
-//       fileContent;
- 
-//   for (fileName in templates) {
-//     fileContent = templates[fileName];
-//     $templateCache.put(fileName, fileContent);
-//     // Note that we're passing the function fileContent, and not the object
-//     // returned by its invocation. More on that on Digging Deeper.
-//     console.log(fileName);
-//   }
-// }])
-
 // Configuration settings for the angular app
 .constant('settings', {
 	api_base_url: 'http://localhost:3000/api/'
+})
+
+.config(function($httpProvider) {
+	var authToken = $("meta[name=\"csrf-token\"]").attr("content");
+	$httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
 })
 
 .controller('AppCtrl', ['$scope', 'Labels', 'settings', function($scope, Labels) {
@@ -34,7 +25,6 @@ angular.module('checkmail', [
 
 	$scope.state = {
 		selected_thread: null,
-		email_draft: null,
 		composing_email: false
 	};
 
@@ -54,6 +44,12 @@ angular.module('checkmail', [
 	$scope.openCompose = function() {
 		$scope.state.composing_email = true;
 		$scope.state.selected_thread = null;
+	};
+
+	$scope.newLabel = function() {
+		var new_label = new Labels();
+		new_label.title = "Wussussup";
+		new_label.$save();
 	};
 
 	$scope.closeCompose = function() {

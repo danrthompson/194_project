@@ -1,16 +1,16 @@
 class Api::LabelsController < ApplicationController
 	before_filter :authenticate_user!
+
 	def index
-		render text: Label.label_array_to_json(current_user.get_primary_labels)
+		# render text: Label.label_array_to_json(current_user.get_primary_labels)
+		render text: Label.label_array_to_json(current_user.labels)
 	end
 
 	def create
-		data = JSON.parse(params[:data])
-
 		label = Label.new
 		label.user = current_user
-		label.name = data['title']
-		label.order_value = data['order']
+		label.name = params['title']
+		label.order_value = params['order']
 
 		label.save!
 

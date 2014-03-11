@@ -1,7 +1,7 @@
 <section ng-class="{true: 'sidebar-visible'}[sidebarIsVisible()]" class="workspace">
 
 	<!-- Email column container: All Email Lists -->
-	<div class="email-columns" style="width: {{ (labels.length - 1)*244 }}px;">
+	<div class="email-columns" style="width: {{ (labels.length)*244 }}px;">
 
 		<div class="scroll-wrapper">
 			<!-- Individual email column -->
@@ -16,25 +16,22 @@
 
 				<!-- Email panel -->
 				<div class="panel panel-email">
-
-					
 			
 					<!-- Panel heading -->
 					<div class="panel-heading email-heading">
 						<h4 class="email-label">{{ label.title }}</h4>
 						<ul class="email-column-decorations">
-							<li><a href="#"><i class="shared-icon ion-ios7-people"></i></a></li>
-							<li><a href="#" ng-click="menu_active = !menu_active"><i class="shared-icon ion-ios7-arrow-down"></i></a></li>
+							<li class="email-column-decoration "><a href="#" class="link"><i class="shared-icon ion-ios7-people"></i></a></li>
+							<li class="email-column-decoration dropdown">
+								<a href="#" class="link dropdown-toggle"><i class="shared-icon ion-ios7-arrow-down"></i></a>
+
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#" ng-click="addContributor(label)">Add contributor</a></li>
+									<li><a href="#" ng-click="editLabel(label)">Edit label</a></li>
+									<li><a href="#" ng-click="addFilter(label)">Add filter</a></li>
+								</ul>
+							</li>
 						</ul>
-			
-						<!-- Panel Menu -->
-						<div class="panel-menu" ng-class="{true: 'dont-show-me'}[!menu_active]">
-							<ul class="nav nav-stacked">
-								<li><a href="#" ng-click="addContributor(label)">Add contributor</a></li>
-								<li><a href="#" ng-click="editLabel(label)">Edit label</a></li>
-								<li><a href="#" ng-click="addFilter(label)">Add filter</a></li>
-							</ul>
-						</div>
 					</div>
 				
 					<!-- Email group -->
@@ -84,6 +81,10 @@
 					    </li>
 				  	</ul>
 				</div>
+			</div>
+
+			<div class="email-column new-label">
+				<button class="btn btn-lg btn-success" ng-click="newLabel()">New label</button>
 			</div>
 		</div>
 
