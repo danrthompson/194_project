@@ -1,5 +1,6 @@
 SeniorProjectApp::Application.routes.draw do
   get "static_pages/index"
+  get "static_pages/home"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 

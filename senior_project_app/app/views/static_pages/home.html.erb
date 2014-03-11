@@ -1,12 +1,10 @@
-<html ng-app="checkmail">
+<html>
 	<head>
 		<title>CheckMail</title>
 
-		<link rel="stylesheet" href="css/checkmail.css">
-		<!-- <link href="css/bootstrap-switch.css" rel="stylesheet"> -->
-
+		<%= stylesheet_link_tag "checkmail", :media => "all" %>
 	</head>
-	<body ng-controller="AppCtrl">
+	<body>
 		<div id="home-wrapper">
 			<!-- <h1>Hello World</h1> -->
 			<header>
@@ -23,7 +21,7 @@
 				    	<ul class="nav navbar-nav pull-right">
 			    			<li><button class="btn navbar-btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#sign-up-modal">Sign Up</button></li>
 			    			<li><button class="btn navbar-btn btn-sm btn-default" type="button" data-toggle="modal" data-target="#login-modal">Login</button></li>
-				    		<li><a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a></li>
+				    		<li><a href="#" class="navbar-brand"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
 				    	</ul>
 				    </div>
 
@@ -46,7 +44,7 @@
 			<div class="second-page">
 				<div class="second-page-header pg-header"><h2>A New Way Of Seeing Things</h2></div>
 
-				<img src="img/screen.png" alt="" id="screen-shot">
+				<img src="<%= image_path("screen.png") %>" alt="" id="screen-shot">
 				<div class="second-page-text">
 					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Sed posuere consectetur est at lobortis. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla.</p>
 				</div>
@@ -58,34 +56,14 @@
 				<div class="content-wrapper">
 					<p class="half-width pull-right">Email shouldn&#39;t be a worry. It should be simple. You should get the same satisfaction using email as finishing a great project.<br><br>
 
-That&#39;s where CheckMail comes in. Where here to make email nice again. Sign up, make some lists, and we&#39;ll help you take control of your life.  </p> 
-					<div class="half-width pull-left logo-img"><a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#sign-up-modal"><img src="img/check-mail-logo.png" alt=""></a></div>
+					That&#39;s where CheckMail comes in. We&#39;re here to make email nice again. Sign up, make some lists, and we&#39;ll help you take control of your life.  </p> 
+					<div class="half-width pull-left logo-img"><a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#sign-up-modal"><img src="<%= image_path("check-mail-logo.png") %>" alt=""></a></div>
 				</div>
 			</div>
 
 			<div class="footer">
-    			<a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#login-modal">Sign Up With Gmail</a>
-
+    			<a href="" class="btn btn-lg btn-success" type="button" data-toggle="modal" data-target="#login-modal">Sign Up With Gmail</a>
 			</div>
-			<!-- JAVASCRIPT -->
-
-			<!-- jQuery --> 
-		  	<script src="js/third-party/jquery.min.js"></script>
-			<script src="js/third-party/jquery-ui.js"></script>
-
-			<!-- Angular -->
-			<script src="js/third-party/angular.js"></script>
-			<script src="js/third-party/ui-sortable.js"></script>
-
-			<!-- Bootstrap JS for Modals -->
-			<script src="js/third-party/bootstrap-modal.js"></script>
-			<script src="js/third-party/bootstrap-switch.js"></script>
-
-			<!-- App -->
-			<script src="js/app/index.js"></script>
-			<script src="js/app/directives.js"></script>
-			<script src="js/app/controllers.js"></script>
-			<script src="js/app/factories.js"></script>
 		</div>
 
 	

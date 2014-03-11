@@ -1,32 +1,23 @@
-
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
-
-#home-wrapper{
-	font-family: 'Lato', sans-serif;
-
-}
-
-.home-nav.navbar-default {
- 	background-color: @gray-darker;
+.home-nav {
+ 	// background-color: @gray-darker;
 	// text-transform: upper
 
- 	color: white;
- 	li > a {color: white; font-weight: 100;}
+ 	// color: white;
+ 	// li > a {color: white; font-weight: 100;}
 
 
- .navbar-btn.btn-sm{
-	margin-right: 20px;
-	height: 25px;
-	margin-top: 7px;
-	padding-top: 3px;
-
+ 	.navbar-btn.btn-sm {
+		margin-right: 20px;
+		height: 25px;
+		margin-top: 7px;
+		padding-top: 3px;
 	}
-	 .navbar-right-side{
+
+	.navbar-right-side {
 	 	border-left: 0px;
-	 }
+	}
+
  	margin-bottom: 0px;
-
-
 }
 
 #home-wrapper{
@@ -36,10 +27,9 @@
 		background-color: white;
 		// margin-top: -50px;
 		h2 {
-			font-family: 'Lato', sans-serif;
-			font-weight: 300;
+			// font-weight: 300;
 			font-size: 30;
-			letter-spacing: 2px;
+			// letter-spacing: 2px;
 			text-align:  center;
 			color: @gray;
 		}
@@ -58,10 +48,11 @@
 					font-weight: 500;
 					font-size: 42;
 					text-transform: uppercase; 
+					letter-spacing: 2px;
 					padding-top: 90px;
 					margin-top: 0px;
 					padding-bottom: 0px;
-					color: #ccc;
+					color: @gray;
 				} 
 				height: 300px;
 		}
@@ -218,7 +209,7 @@
 
 	.left-image{
 		height: 100%;
-		background-image: url('../img/computer.png');
+		background-image: image-url("computer.png");
 		background-repeat:no-repeat;
 		background-size:cover;
 		// background-size: contain;
