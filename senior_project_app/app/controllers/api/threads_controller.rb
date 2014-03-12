@@ -18,6 +18,13 @@ class Api::ThreadsController < ApplicationController
 	end
 
 	def destroy
+		thread = Conversation.find(params[:id])
+		if thread.user_id != current_user.id then
+			head :unauthorized and return
+		end
 
+		thread.destroy
+
+		head :ok
 	end
 end
