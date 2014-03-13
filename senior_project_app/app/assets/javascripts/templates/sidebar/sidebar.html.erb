@@ -10,7 +10,7 @@
 			<li class="list-group-item" ng-repeat="email in state.selected_thread.emails">
 				<div class="list-group-item-heading row">
 					<div class="col-md-8">
-						<h5>{{ getFrom(email).full_name }}:</h5>
+						<h5>{{ getFrom(email).name }}:</h5>
 					</div>
 
 					<div class="col-md-4 text-right text-green"><h6>{{ email.timestamp | date }}</h6></div>

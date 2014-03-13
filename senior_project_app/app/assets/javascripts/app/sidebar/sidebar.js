@@ -32,7 +32,7 @@ angular.module('sidebar', ['resources.threads', 'contenteditable'])
 
 	$scope.getFrom = function(email) {
 		return _.find(email.email_addresses, function(d) {
-			return d.address_type === "from";
+			return d.type === "from";
 		});
 	};
 
