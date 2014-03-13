@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303192456) do
+ActiveRecord::Schema.define(:version => 20140313044401) do
 
   create_table "conversations", :force => true do |t|
     t.string   "thread_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20140303192456) do
     t.integer  "user_id"
     t.string   "thread_id"
     t.integer  "conversation_id"
+    t.string   "gmsg_id"
   end
 
   add_index "emails", ["user_id"], :name => "index_emails_on_user_id"

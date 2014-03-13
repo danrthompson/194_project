@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
 				return
 			end
 			# pull email since last pull
-			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull - 1.day)
+			recent_emails = gmail.mailbox('[Gmail]/All Mail', true).emails(after: self.time_last_pull - 1.day, include: :envelope)
 		else
 			# first time pulling email
 			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: 1.month.ago)
@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
 				next
 			end
 			puts "New email. Subject: #{email.subject}. UID: #{email.uid}"
-			new_email = Email.new(user_id: self.id, subject: email.subject, uid: email.uid, date: Time.parse(email.date), thread_id: email.thread_id.to_s)
+			new_email = Email.new(user_id: self.id, subject: email.subject, uid: email.uid, date: Time.parse(email.date), thread_id: email.thread_id.to_s, gmsg_id: email.msg_id.to_s)
 			if email.html_part then
 				new_email.html_body = email.html_part.decode_body.encode('UTF-8', :invalid => :replace, :undef => :replace)
 			end
@@ -119,6 +119,7 @@ class User < ActiveRecord::Base
 			labels = email.labels
 			if labels and labels.length > 0 then
 				labels.each do |label_name|
+					label_name = Label.legible_name label_name
 					label = Label.where(user_id: self.id, name: label_name).first
 					if not label then
 						label = Label.create(user_id: self.id, name: label_name)

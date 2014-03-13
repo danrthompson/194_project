@@ -8,6 +8,15 @@ class Label < ActiveRecord::Base
 
 	@@non_primary_label_names = ['Important', 'Sent', 'Boomerang']
 	@@names_not_removed_on_archive = ['Important', 'Sent', 'Boomerang']
+	@@gmail_label_name_to_readable_name = {"\\Inbox" => 'Inbox', "\\Important" => 'Important', "\\Sent" => 'Sent'}
+
+	def self.legible_name(label_name)
+		if @@gmail_label_name_to_readable_name[label_name] then
+			@@gmail_label_name_to_readable_name[label_name]
+		else
+			label_name
+		end
+	end
 
 	def self.label_array_to_json(labels)
 		return (labels.map {|label| label.to_hash}).to_json
