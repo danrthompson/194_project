@@ -79,12 +79,13 @@ class User < ActiveRecord::Base
 		if not gmail then
 			gmail = self.get_gmail_connection
 		end
+		gmail.peek = true
 		if self.time_last_pull then
 			if Time.now - self.time_last_pull < 7200 then
 				return
 			end
 			# pull email since last pull
-			recent_emails = gmail.mailbox('[Gmail]/All Mail', true).emails(after: self.time_last_pull - 1.day, include: :envelope)
+			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull - 1.day)
 		else
 			# first time pulling email
 			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: 1.month.ago)

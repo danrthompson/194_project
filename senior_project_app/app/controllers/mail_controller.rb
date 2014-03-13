@@ -10,7 +10,7 @@ class MailController < ApplicationController
 		#   :parameters => {},
 		#   :headers => {'Content-Type' => 'application/json'})
 		# render text: current_user.refresh_token and return
-		current_user.pull_email_if_necessary(gmail)
+		current_user.pull_email_if_necessary
 		@labels = Label.where(user_id: current_user.id)
 		# @subject = Mail.first.subject
 		# @emails = gmail.inbox.emails[0,5]
