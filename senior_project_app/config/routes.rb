@@ -80,6 +80,7 @@ SeniorProjectApp::Application.routes.draw do
 
 
   put 'api/labels/order'
+  put 'api/threads/order'
 
   namespace :api do
     resources :labels, except: [:new, :edit]
