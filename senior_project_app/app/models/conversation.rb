@@ -60,4 +60,25 @@ class Conversation < ActiveRecord::Base
 		self.save!
 	end
 
+	def relabel(new_label, gmail)
+		old_label = self.label
+		self.emails.each do |email|
+			gmail_email = nil
+			if not new_label.in? email.labels then
+				email.labels << new_label
+				gmail_email = User.get_all_mail_mailbox(gmail).emails(msg_id: email.gmsg_id).first
+				gmail_email.label new_label.name
+			end
+			if old_label.in? email.labels then
+				email.labels.destroy old_label
+				if not gmail_email then
+					gmail_email = User.get_all_mail_mailbox(gmail).emails(msg_id: email.gmsg_id).first
+				end
+				gmail_email.gmail_unflag(Label.gem_name(old_label.name))
+			end
+		end
+		self.label = new_label
+		self.save!
+	end
+
 end

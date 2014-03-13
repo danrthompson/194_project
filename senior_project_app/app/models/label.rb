@@ -9,10 +9,19 @@ class Label < ActiveRecord::Base
 	@@non_primary_label_names = ['Important', 'Sent', 'Boomerang']
 	@@names_not_removed_on_archive = ['Important', 'Sent', 'Boomerang']
 	@@gmail_label_name_to_readable_name = {"\\Inbox" => 'Inbox', "\\Important" => 'Important', "\\Sent" => 'Sent'}
+	@@gmail_readable_name_to_label_name = {'Inbox' => "\\Inbox", 'Sent' => "\\Sent"}
 
 	def self.legible_name(label_name)
 		if @@gmail_label_name_to_readable_name[label_name] then
 			@@gmail_label_name_to_readable_name[label_name]
+		else
+			label_name
+		end
+	end
+
+	def self.gem_name(label_name)
+		if @@gmail_readable_name_to_label_name[label_name] then
+			@@gmail_readable_name_to_label_name[label_name]
 		else
 			label_name
 		end

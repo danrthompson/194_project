@@ -19,7 +19,23 @@ class Api::ThreadsController < ApplicationController
 	end
 
 	def update
+		thread = Conversation.find(params[:id])
+		if thread.user_id != current_user.id then
+			head :unauthorized and return
+		end
 
+		data = JSON.parse(params[:data])
+
+		if not data['label_id'].nil? then
+			new_label = Label.find(data['label_id'])
+			if new_label.user_id != current_user.id then
+				head :unauthorized and return
+			end
+			gmail = current_user.get_gmail_connection
+			thread.relabel new_label, gmail
+		end
+
+		head :ok
 	end
 
 	def destroy
