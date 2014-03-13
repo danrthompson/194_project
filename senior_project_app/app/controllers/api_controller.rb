@@ -63,7 +63,7 @@ class ApiController < ApplicationController
 		user = email.user
 		gmail = user.get_gmail_connection
 		
-		original_email = gmail.mailbox('[Gmail]/All Mail').find(:all, {query: ['UID', email.uid]}).first
+		original_email = User.get_all_mail_mailbox(gmail).find(:all, {query: ['UID', email.uid]}).first
 		reply = original_email.reply
 
 		

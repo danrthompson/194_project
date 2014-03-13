@@ -79,18 +79,19 @@ class Email < ActiveRecord::Base
     return nil
   end
 
-  def archive
+  def archive(gmail)
     sent = false
     self.labels.all.each do |label|
       if label.name == 'Sent' then
         sent = true
       end
       if label.removed_on_archive? then
-        label.emails_labels.where(email_id: email.id).first.destroy
+        label.emails_labels.where(email_id: self.id).first.destroy
       end
     end
     if not sent then
-      
+      gemail = User.get_all_mail_mailbox(gmail).emails(msg_id: self.gmsg_id).first
+      gemail.archive!
     end
   end
 

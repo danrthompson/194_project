@@ -27,8 +27,9 @@ class Api::ThreadsController < ApplicationController
 		if thread.user_id != current_user.id then
 			head :unauthorized and return
 		end
+		gmail = current_user.get_gmail_connection
 
-		thread.archive
+		thread.archive gmail
 
 		head :ok
 	end

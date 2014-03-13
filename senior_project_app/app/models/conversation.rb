@@ -48,9 +48,9 @@ class Conversation < ActiveRecord::Base
 		return {id: self.id, subject: emails.first.subject, email_ids: email_ids, latest_date: self.most_recent_date.to_i*1000, email_addresses: from_addrs}
 	end
 
-	def archive
+	def archive(gmail)
 		self.emails.all.each do |email|
-			email.archive
+			email.archive gmail
 		end
 		self.label = nil
 		self.save!

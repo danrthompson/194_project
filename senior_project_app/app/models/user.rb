@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
 	has_many :labels
 	has_many :conversations
 
+	def self.get_all_mail_mailbox(gmail)
+		gmail.mailbox('[Gmail]/All Mail')
+	end
+
 	def self.refresh_emails_for_all_users
 		puts "Task running: refresh_emails_for_all_users."
 		puts "Time: #{Time.now.localtime}"
@@ -85,10 +89,10 @@ class User < ActiveRecord::Base
 				return
 			end
 			# pull email since last pull
-			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull - 1.day)
+			recent_emails = self.class.get_all_mail_mailbox(gmail).emails(after: self.time_last_pull - 1.day)
 		else
 			# first time pulling email
-			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: 1.month.ago)
+			recent_emails = self.class.get_all_mail_mailbox(gmail).emails(after: 1.month.ago)
 		end
 		if recent_emails.length > 150 then
 			recent_emails = recent_emails[-150,150]
