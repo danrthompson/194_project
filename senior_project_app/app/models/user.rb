@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
 		puts "Time: #{Time.now.localtime}"
 		self.all.each do |user|
 			puts "Running task on user #{user.id}."
-			user.refresh_token_if_necessary
-			gmail = Gmail.connect!(:xoauth2, user.email, oauth2_token: user.auth_token)
+			gmail = user.get_gmail_connection
 			user.pull_email_if_necessary(gmail)
 			puts "Done with user #{user.id}."
 		end
@@ -46,6 +45,11 @@ class User < ActiveRecord::Base
 			gender: auth_hash['extra']['raw_info']['gender'],
 			password: Devise.friendly_token[0,20]
 		)
+	end
+
+	def get_gmail_connection
+		self.refresh_token_if_necessary
+		Gmail.connect!(:xoauth2, self.email, oauth2_token: self.auth_token)
 	end
 
 	def get_primary_labels
@@ -71,7 +75,10 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def pull_email_if_necessary(gmail)
+	def pull_email_if_necessary(gmail=nil)
+		if not gmail then
+			gmail = self.get_gmail_connection
+		end
 		if self.time_last_pull then
 			if Time.now - self.time_last_pull < 7200 then
 				return

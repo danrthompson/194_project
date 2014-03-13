@@ -31,8 +31,7 @@ class ApiController < ApplicationController
 		if params[:to].blank? or params[:subject].blank? then
 			render text: 'To field and subject field required.' and return
 		end
-		user.refresh_token_if_necessary
-		gmail = connect_to_gmail(user)
+		gmail = user.get_gmail_connection
 
 		to_data = params[:to]
 		subject_data = params[:subject]
@@ -62,8 +61,7 @@ class ApiController < ApplicationController
 			render text: 'Error, email doesn\'t exist.' and return
 		end
 		user = email.user
-		user.refresh_token_if_necessary
-		gmail = connect_to_gmail(user)
+		gmail = user.get_gmail_connection
 		
 		original_email = gmail.mailbox('[Gmail]/All Mail').find(:all, {query: ['UID', email.uid]}).first
 		reply = original_email.reply
@@ -71,7 +69,4 @@ class ApiController < ApplicationController
 		
 	end
 
-	def connect_to_gmail(user)
-		Gmail.connect!(:xoauth2, user.email, oauth2_token: user.auth_token)
-	end
 end

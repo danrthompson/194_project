@@ -44,10 +44,17 @@ class Email < ActiveRecord::Base
   end
 
   def archive
+    sent = false
     self.labels.all.each do |label|
+      if label.name == 'Sent' then
+        sent = true
+      end
       if label.removed_on_archive? then
         label.emails_labels.where(email_id: email.id).first.destroy
       end
+    end
+    if not sent then
+      
     end
   end
 
