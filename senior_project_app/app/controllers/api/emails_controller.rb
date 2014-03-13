@@ -1,4 +1,4 @@
-class Api::ThreadsController < ApplicationController
+class Api::EmailsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def create
@@ -6,12 +6,14 @@ class Api::ThreadsController < ApplicationController
 	end
 
 	def show
-		thread = Conversation.find(params[:id])
-		if thread.user_id != current_user.id then
-			head :unauthorized and return
+		emails = Email.find params[:id].split(',')
+		emails.each do |email|
+			if email.user_id != current_user.id then
+				head :unauthorized and return
+			end
 		end
 
-		render text: (thread.to_hash).to_json
+		render text: Email.email_array_to_json(emails).to_json
 	end
 
 	def reply

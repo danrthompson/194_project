@@ -8,7 +8,7 @@ class Email < ActiveRecord::Base
   belongs_to :conversation
 
   def self.email_array_to_json(emails)
-    return (emails.map! {|email| email.to_hash}).to_json
+    return (emails.map! {|email| email.to_hash})
   end
 
   def self.email_addresses_to_string(email_addresses)
@@ -24,13 +24,49 @@ class Email < ActiveRecord::Base
     return addrs.join(', ')
   end
 
-  def to_hash
-    from_addrs = Email.email_addresses_to_string(self.email_addresses.where(from_address: true))
-    to_addrs = Email.email_addresses_to_string(self.email_addresses.where(to_address: true))
-    cc_addrs = Email.email_addresses_to_string(self.email_addresses.where(cc_address: true))
-    bcc_addrs = Email.email_addresses_to_string(self.email_addresses.where(bcc_address: true))
+  def self.email_addresses_to_hash(email_addresses)
+    addrs = []
+    email_addresses.each do |addr|
+      if addr.from_address
+        type = "from"
+      end
 
-    return {id: self.id, date: self.date, subject: self.subject, html_body: self.html_body, text_body: self.text_body, from_addresses: from_addrs, to_addresses: to_addrs, cc_addresses: cc_addrs, bcc_addresses: bcc_addrs}
+      if addr.to_address
+        type = "to"
+      end
+
+      if addr.cc_address
+        type = "cc"
+      end
+
+      if addr.bcc_address
+        type = "bcc"
+      end
+
+      hash = {
+        name: addr.name,
+        address: addr.email_address,
+        type: type
+      }
+      addrs << hash
+    end
+    return addrs
+  end
+
+  def to_hash
+    # from_addrs = Email.email_addresses_to_string(self.email_addresses.where(from_address: true))
+    # to_addrs   = Email.email_addresses_to_string(self.email_addresses.where(to_address: true))
+    # cc_addrs   = Email.email_addresses_to_string(self.email_addresses.where(cc_address: true))
+    # bcc_addrs  = Email.email_addresses_to_string(self.email_addresses.where(bcc_address: true))
+
+    return {
+      id:              self.id,
+      timestamp:            self.date.to_i * 1000,
+      subject:         self.subject,
+      html_body:       self.html_body,
+      text_body:       self.text_body,
+      email_addresses: Email.email_addresses_to_hash(self.email_addresses)
+    }
   end
 
   def get_primary_label

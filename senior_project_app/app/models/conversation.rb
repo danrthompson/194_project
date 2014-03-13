@@ -26,6 +26,7 @@ class Conversation < ActiveRecord::Base
 	def to_hash
 		emails = self.emails.order(:date)
 		from_addrs = []
+		email_ids = []
 		emails.each do |email|
 			email.email_addresses.where(from_address: true).each do |from_addr|
 				# if from_addr.name then
@@ -37,11 +38,14 @@ class Conversation < ActiveRecord::Base
 				# 		from_addrs << from_addr.email_address
 				# 	end
 				# end
-				from_addrs << {uid: from_addr.id, address: from_addr.email_address, address_type: :from, name: from_addr.name}
+				from_addrs << {id: from_addr.id, address: from_addr.email_address, address_type: :from, name: from_addr.name}
 			end
+
+			email_ids << email.id
 		end
+
 		# from_addrs = from_addrs.join(', ')
-		return {uid: self.id, subject: emails.first.subject, latest_date: self.most_recent_date.to_i*1000, email_addresses: from_addrs}
+		return {id: self.id, subject: emails.first.subject, email_ids: email_ids, latest_date: self.most_recent_date.to_i*1000, email_addresses: from_addrs}
 	end
 
 	def archive
