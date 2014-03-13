@@ -11,7 +11,7 @@ class Api::ThreadsController < ApplicationController
 			head :unauthorized and return
 		end
 
-		render text: (thread.to_hash).to_json
+		render text: (thread.to_hash_with_emails).to_json
 	end
 
 	def reply

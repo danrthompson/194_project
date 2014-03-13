@@ -48,6 +48,10 @@ class Conversation < ActiveRecord::Base
 		return {id: self.id, subject: emails.first.subject, email_ids: email_ids, latest_date: self.most_recent_date.to_i*1000, email_addresses: from_addrs}
 	end
 
+	def to_hash_with_emails
+		{id: self.id, label_id: self.label_id, order: self.order_value, emails: Email.email_array_to_json(self.emails.order(:date))}
+	end
+
 	def archive(gmail)
 		self.emails.all.each do |email|
 			email.archive gmail

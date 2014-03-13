@@ -61,10 +61,12 @@ class Email < ActiveRecord::Base
 
     return {
       id:              self.id,
-      timestamp:            self.date.to_i * 1000,
+      thread_id:       self.conversation_id,
+      date:            self.date.to_i * 1000,
       subject:         self.subject,
       html_body:       self.html_body,
       text_body:       self.text_body,
+      read:            false,
       email_addresses: Email.email_addresses_to_hash(self.email_addresses)
     }
   end
