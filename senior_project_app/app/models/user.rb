@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 		self.all.each do |user|
 			puts "Running task on user #{user.id}."
 			user.refresh_token_if_necessary
-			gmail = Gmail.connect!(:xoauth, user.email, token: user.auth_token)
+			gmail = Gmail.connect!(:xoauth2, user.email, oauth2_token: user.auth_token)
 			user.pull_email_if_necessary(gmail)
 			puts "Done with user #{user.id}."
 		end
@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
 				return
 			end
 			# pull email since last pull
-			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull)
+			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull - 1.day)
 		else
 			# first time pulling email
 			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: 1.month.ago)

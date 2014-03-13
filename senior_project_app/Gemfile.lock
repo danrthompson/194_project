@@ -7,7 +7,7 @@ GIT
       omniauth-oauth2
 
 PATH
-  remote: ../../new_gmail
+  remote: ../../gmail
   specs:
     gmail (0.4.5)
       gmail_xoauth (>= 0.3.0)

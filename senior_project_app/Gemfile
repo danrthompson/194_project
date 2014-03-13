@@ -14,14 +14,7 @@ gem 'google-api-client', :require => 'google/api_client'
 gem 'omniauth'
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 
-# gem 'gmail', git: 'git://github.com/tmesquita/gmail'
-# gem 'gmail', git: 'git://github.com/ryanlchan/gmail'
-# gem 'gmail', git: 'git://github.com/manybots/gmail'
-# gem 'gmail', git: 'git://github.com/sherm8n/gmail'
-# gem 'gmail', git: 'git://github.com/humanbagel/gmail'
-# gem 'gmail', git: 'git://github.com/90seconds/gmail'
-# gem 'gmail', path: '../../gmail'
-gem 'gmail', path: '../../new_gmail'
+gem 'gmail', path: '../../gmail'
 
 gem 'oauth2'
 gem 'gmail_xoauth'
@@ -38,6 +31,7 @@ gem 'angularjs-rails'
 
 # temporary
 gem 'awesome_print'
+gem 'pry'
 # end temporary
 
 

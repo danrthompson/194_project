@@ -72,6 +72,6 @@ class ApiController < ApplicationController
 	end
 
 	def connect_to_gmail(user)
-		Gmail.connect!(:xoauth, user.email, token: user.auth_token)
+		Gmail.connect!(:xoauth2, user.email, oauth2_token: user.auth_token)
 	end
 end
