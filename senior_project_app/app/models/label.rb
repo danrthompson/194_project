@@ -23,7 +23,7 @@ class Label < ActiveRecord::Base
 	end
 
 	def to_hash
-		return {uid: self.id, title: self.name, order: self.order_value, threads: self.conversations.map {|conversation| conversation.to_hash}}
+		return {id: self.id, title: self.name, order: self.order_value, threads: self.conversations.map {|conversation| conversation.to_hash}}
 	end
 
 	def can_be_primary?
