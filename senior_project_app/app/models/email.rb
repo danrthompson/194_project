@@ -43,4 +43,12 @@ class Email < ActiveRecord::Base
     return nil
   end
 
+  def archive
+    self.labels.all.each do |label|
+      if label.removed_on_archive? then
+        label.emails_labels.where(email_id: email.id).first.destroy
+      end
+    end
+  end
+
 end

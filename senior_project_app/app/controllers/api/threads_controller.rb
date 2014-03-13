@@ -23,7 +23,7 @@ class Api::ThreadsController < ApplicationController
 			head :unauthorized and return
 		end
 
-		thread.destroy
+		thread.archive
 
 		head :ok
 	end

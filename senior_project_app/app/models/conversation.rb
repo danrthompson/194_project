@@ -43,4 +43,13 @@ class Conversation < ActiveRecord::Base
 		# from_addrs = from_addrs.join(', ')
 		return {uid: self.id, subject: emails.first.subject, latest_date: self.most_recent_date.to_i*1000, email_addresses: from_addrs}
 	end
+
+	def archive
+		self.emails.all.each do |email|
+			email.archive
+		end
+		self.label = nil
+		self.save!
+	end
+
 end

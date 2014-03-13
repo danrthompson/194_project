@@ -7,6 +7,7 @@ class Label < ActiveRecord::Base
 	validates :name, :user_id, presence: true
 
 	@@non_primary_label_names = ['Important', 'Sent', 'Boomerang']
+	@@names_not_removed_on_archive = ['Important', 'Sent', 'Boomerang']
 
 	def self.label_array_to_json(labels)
 		return (labels.map {|label| label.to_hash}).to_json
@@ -18,6 +19,14 @@ class Label < ActiveRecord::Base
 
 	def can_be_primary?
 		if not self.name.in? @@non_primary_label_names then
+			true
+		else
+			false
+		end
+	end
+
+	def removed_on_archive?
+		if not self.name.in? @@names_not_removed_on_archive then
 			true
 		else
 			false
