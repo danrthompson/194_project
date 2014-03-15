@@ -7,16 +7,22 @@
 			<h4>{{ state.selected_thread.subject }}</h4>
 		</div>
 		<ul class="list-group">
-			<li class="list-group-item" ng-repeat="email in state.selected_thread.emails">
+			<li class="list-group-item email-display-item" 
+				ng-repeat="email in state.selected_thread.emails" 
+				ng-class="{true: 'collapsed'}[email.collapsed]"
+				ng-click="email.collapsed = false">
 				<div class="list-group-item-heading row">
 					<div class="col-md-8">
-						<h5>{{ getFrom(email).name }}:</h5>
+						<h5>{{ email | displayFrom }} -- {{ email.id }}:</h5>
 					</div>
 
-					<div class="col-md-4 text-right text-green"><h6>{{ email.timestamp | date }}</h6></div>
+					<div class="col-md-4 text-right text-muted"><h6>{{ email.date | amCalendar }} (<span am-time-ago="email.date"></span>)</h6></div>
 				</div>
-				<div class="list-group-text">
-					{{ email.message }}
+				<div class="list-group-text email-container" ng-show="!email.has_html">
+					{{ email.text_body }}
+				</div>
+				<div class="list-group-text email-container" ng-show="email.has_html">
+					<iframe class="email-html-body" ng-src="{{ email.html_url}}" frameborder="0" email-frame></iframe>
 				</div>
 			</li>
 		</ul>

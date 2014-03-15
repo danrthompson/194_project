@@ -24,6 +24,36 @@
 	border-left: 1px solid @gray-light;
 }
 
+.collapsed {
+	background: @gray-lightest; 
+	cursor: pointer;
+
+	&:hover {
+		background: lighten(@gray-lightest, 3%);
+	}
+
+	.email-container {
+		display: none;
+	}
+}
+
+.email-container {
+	width: 100%;
+	overflow-x: scroll;
+
+	iframe {
+		width: 100%;
+	}
+}
+
+.list-group-item-heading {
+	padding: @padding-base-vertical @padding-base-horizontal;
+}
+
+.email-display-item {
+	padding: 0;
+}
+
 // Thread Window Styling
 
 .panel-heading.thread-message-heading{
@@ -116,16 +146,6 @@
 	}
 
 	
-}
-
-.thread-message{
-	p{
-		margin:10px;
-		margin-top: 5px;
-			color: @gray;
-			opacity: 0.9;
-			line-height: 1.6;
-	}
 }
 
 .email-compose-metadata {

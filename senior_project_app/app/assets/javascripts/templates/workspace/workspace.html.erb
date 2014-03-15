@@ -53,9 +53,9 @@
 								<div class="email-item-metadata">
 									<div class="sender-and-date">
 										<h5 class="email-sender">
-											<span class="sender-name">{{ thread.email_addresses[0].name }}</span>
+											<span class="sender-name">{{ thread | displayFrom }}</span>
 										</h5>
-										<small class="email-datetime">{{ thread.latest_date | date:'shortTime' }}</small>
+										<small class="email-datetime">{{ thread.latest_date | amCalendar }}</small>
 									</div>
 									<span class="email-subject">{{ thread.subject }}</span>
 								</div>

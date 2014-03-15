@@ -16,6 +16,12 @@ class Api::EmailsController < ApplicationController
 		render text: Email.email_array_to_json(emails).to_json
 	end
 
+	def html
+		email = Email.find params[:id]
+
+		render text: email.html_body
+	end
+
 	def reply
 
 	end

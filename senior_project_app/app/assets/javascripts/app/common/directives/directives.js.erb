@@ -1,0 +1,37 @@
+angular.module('common.directives', [])
+
+.directive('emailFrame', [function(){
+	return {
+		restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+		link: function($scope, iElm, iAttrs, controller) {
+			iElm.bind('load', function(e) {
+				var contents = iElm.contents(),
+					head = $('head', contents);
+
+				head.append('<%= stylesheet_link_tag "email", :media => "all" %>');
+
+				$('a', contents).attr('target', '_blank');
+
+				window.setTimeout(function() {
+					iElm.css({
+						height: contents.find('body').height() + 20
+					});
+				}, 100);
+			});
+		}
+	};
+}])
+
+.filter('displayFrom', function() {
+	return function(email) {
+		var address = _.find(email.email_addresses, function(d) {
+			return d.type === "from";
+		});
+
+		if (address.name) {
+			return address.name;
+		} else {
+			return address.address;
+		}
+	}
+})

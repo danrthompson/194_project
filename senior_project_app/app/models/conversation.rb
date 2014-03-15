@@ -38,7 +38,7 @@ class Conversation < ActiveRecord::Base
 				# 		from_addrs << from_addr.email_address
 				# 	end
 				# end
-				from_addrs << {id: from_addr.id, address: from_addr.email_address, address_type: :from, name: from_addr.name}
+				from_addrs << {id: from_addr.id, address: from_addr.email_address, type: :from, name: from_addr.name}
 			end
 
 			email_ids << email.id

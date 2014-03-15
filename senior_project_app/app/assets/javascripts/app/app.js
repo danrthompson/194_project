@@ -5,7 +5,9 @@ angular.module('checkmail', [
 		'ui.sortable',
 		'ui.bootstrap', 
 		'restangular',
-		'templates'
+		'templates',
+		'common.directives',
+		'angularMoment'
 		// 'route-segment',
 		// 'view-segment'
 	])
@@ -20,7 +22,7 @@ angular.module('checkmail', [
 	$httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken;
 })
 
-.controller('AppCtrl', ['$scope', 'Restangular', 'settings', function($scope, Restangular, settings) {
+.controller('AppCtrl', ['$scope', 'Restangular', 'settings', '$sce', function($scope, Restangular, settings, $sce) {
 	Restangular.setBaseUrl('/api/');
 
 	// console.log(Restangular.all('/api/labels'));
@@ -34,12 +36,23 @@ angular.module('checkmail', [
 		composing_email: false
 	};
 
+	$scope.toTrusted = $sce.trustAsHtml;
+
+	$scope.getTrustedUrl = $sce.getTrustedUrl;
+
 	$scope.selectThread = function(thread) {
 		var several = Restangular.several,
 			args = ['emails'].concat(thread.email_ids);
 
 		// ugly hack to use an array as an argument to a several call
 		several.apply(this, args).getList().then(function(emails) {
+			emails.forEach(function(email) {
+				email.html_url = $sce.trustAsResourceUrl("/api/emails/" + email.id + "/html");
+				email.collapsed = true;
+			});
+
+			emails[emails.length - 1].collapsed = false;
+
 			thread.emails = emails;
 		});
 

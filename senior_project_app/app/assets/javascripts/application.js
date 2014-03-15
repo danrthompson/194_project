@@ -15,3 +15,14 @@
 //= require angular
 //= require_tree ./templates
 //= require_tree ./app
+
+moment.lang('en', {
+    calendar : {
+        lastDay : 'MMM Do',
+        sameDay : 'LT',
+        nextDay : '[Tomorrow at] LT',
+        lastWeek : 'MMM Do',
+        nextWeek : 'MMM Do',
+        sameElse : 'MMM Do'
+    }
+});

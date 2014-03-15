@@ -25,20 +25,10 @@ angular.module('sidebar', ['resources.threads', 'contenteditable'])
 	};
 }])
 
-.controller('SidebarCtrl', ['$scope', '$location', 'Threads', function($scope, $location, Threads) {
+.controller('SidebarCtrl', ['$scope', '$location', '$element', function($scope, $location, $element) {
 	// $scope.$watch('state.selected_thread', function(thread) {
 	// 	$scope.selected_thread = thread;
 	// });
-
-	$scope.getFrom = function(email) {
-		return _.find(email.email_addresses, function(d) {
-			return d.type === "from";
-		});
-	};
-
-	$scope.sendEmail = function() {
-
-	};
 
 	$scope.replyToThread = function(thread, reply) {
 		var whole_reply = {
@@ -49,6 +39,15 @@ angular.module('sidebar', ['resources.threads', 'contenteditable'])
 	$scope.expandReply = function() {
 		alert("Not yet implemented.");
 	};
+
+	window.resizeIframe = function(e) {
+		console.log(e);
+	};
+
+	// var body = $('body', contentWindow.document),
+	// 	html = $('html', contentWindow.document);
+
+	// body.append('<%= stylesheet_link_tag "email", :media => "all" %>')
 }])
 
 .controller('ComposeCtrl', ['$scope', 'Threads', function($scope, Threads) {
