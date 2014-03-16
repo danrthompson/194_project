@@ -25,11 +25,19 @@ angular.module('checkmail', [
 .controller('AppCtrl', ['$scope', 'Restangular', 'settings', '$sce', function($scope, Restangular, settings, $sce) {
 	Restangular.setBaseUrl('/api/');
 
-	// console.log(Restangular.all('/api/labels'));
+	$scope.labels = [];
 
-	Restangular.all('labels').getList().then(function(labels) {
-		$scope.labels = labels;
-	});
+	$scope.refreshLabels = function() {
+		Restangular.all('labels').getList().then(function(labels) {
+			labels.forEach(function(e) {
+				e.threads = _.sortBy(e.threads, 'order').reverse();
+			});
+
+			labels = _.sortBy(labels, 'order');
+
+			$scope.labels = labels;
+		});
+	};
 
 	$scope.state = {
 		selected_thread: null,
@@ -79,6 +87,10 @@ angular.module('checkmail', [
 		new_label.$save();
 	};
 
+	$scope.getSelectedThread = function() {
+		return $scope.state.selected_thread;
+	};
+
 	$scope.closeCompose = function() {
 		$scope.state.composing_email = false;
 	};
@@ -90,6 +102,11 @@ angular.module('checkmail', [
 
 	$scope.composingEmail = function() {
 		return $scope.state.composing_email;
+	};
+
+	$scope.closeSidebar = function() {
+		$scope.state.composing_email = false;
+		$scope.state.selected_thread = null;
 	};
 
 	$scope.sidebarIsVisible = function() {

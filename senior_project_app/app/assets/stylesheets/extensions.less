@@ -4,18 +4,18 @@
 // If it extends a Bootstrap element in some way and is expected to be used in
 // multiple ways, it belongs here. This file might be more aptly called global.less.
 
-.panel-email {
-	.panel-variant(@panel-default-border; @panel-default-text; @panel-default-heading-bg; @panel-default-border);
+.panel-label {
+	.panel-variant(@panel-default-border; @panel-default-text; @gray; @panel-default-border);
 
 	// Speeds up scrolling immensely
 	box-shadow: none;
-	border: 0px;
+	border: 0;
 
 	background: transparent;
 
 	.panel-heading {
 		border: none;
-
+		padding: @padding-base-vertical @padding-base-horizontal;
 	}
 }
 
@@ -42,6 +42,7 @@
 
 .btn-inverted-default { .button-inverted-variant(@gray-dark, @gray-dark, #fff, @gray-dark); }
 .btn-inverted-primary { .button-inverted-variant(@brand-primary, @brand-primary, #fff, @brand-primary); }
+.btn-inverted-danger { .button-inverted-variant(@brand-danger, @brand-danger, #fff, @brand-danger); }
 .btn-inverted-success { .button-inverted-variant(@brand-success, @brand-success, #fff, @brand-success); }
 .btn-inverted-info    { .button-inverted-variant(@brand-info, @brand-info, #fff, @brand-info); }
 
@@ -78,4 +79,9 @@
 
 .label-inverted-danger {
   .label-inverted-variant(@label-danger-bg);
+}
+
+.form-inverted {
+	background: none;
+	color: #fff;
 }

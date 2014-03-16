@@ -23,13 +23,12 @@ class Api::LabelsController < ApplicationController
 			head :unauthorized and return
 		end
 
-		data = JSON.parse(params[:data])
-
-		if not data['title'].nil? then
-			label.name = data['title']
+		if not params['title'].nil? then
+			label.name = params['title']
 		end
-		if not data['order'].nil? then
-			label.order_value = data['order']
+		
+		if not params['order'].nil? then
+			label.order_value = params['order']
 		end
 
 		label.save!

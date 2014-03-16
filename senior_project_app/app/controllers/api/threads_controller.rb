@@ -20,20 +20,29 @@ class Api::ThreadsController < ApplicationController
 
 	def update
 		thread = Conversation.find(params[:id])
+
 		if thread.user_id != current_user.id then
 			head :unauthorized and return
 		end
 
-		data = JSON.parse(params[:data])
+		if not params['label_id'].nil? then
+			new_label = Label.find(params['label_id'])
 
-		if not data['label_id'].nil? then
-			new_label = Label.find(data['label_id'])
 			if new_label.user_id != current_user.id then
 				head :unauthorized and return
 			end
-			gmail = current_user.get_gmail_connection
-			thread.relabel new_label, gmail
+
+			thread.label = new_label
+
+			# gmail = current_user.get_gmail_connection
+			# thread.relabel new_label, gmail
 		end
+
+		if not params['order'].nil? then
+			thread.order_value = params['order']
+		end
+
+		thread.save!
 
 		head :ok
 	end
@@ -47,20 +56,6 @@ class Api::ThreadsController < ApplicationController
 
 		thread.archive gmail
 
-		head :ok
-	end
-
-	def order
-		current_user_id = current_user.id
-		thread_info_array = JSON.parse(params['data'])
-		thread_info_array.each do |thread_info|
-			thread = Conversation.find(thread_info['uid'])
-			if thread.user_id != current_user_id then
-				head :unauthorized and return
-			end
-			thread.order_value = thread_info['order']
-			thread.save
-		end
 		head :ok
 	end
 end

@@ -1,0 +1,49 @@
+
+	<!-- Email panel -->
+	<div class="panel panel-label">
+
+		<!-- Panel heading -->
+		<div class="panel-heading label-heading">
+			<h4 class="label-title"
+				 ng-click="label.editing = true"
+				 ng-hide="label.editing">
+				 {{ label.title }}
+			</h4>
+
+			<div class="input-group" ng-show="label.editing">
+				<input type="text" class="form-control form-inverted" placeholder="{{label.title}}" ng-model="label.new_title">
+				<span class="input-group-btn">
+					<button class="btn btn-inverted-success" ng-click="editLabel(label);"><span class="ion-checkmark"></span></button>
+				</span>
+			</div>
+		</div>
+	
+		<!-- Email group -->
+	  	<ul ui-sortable="emailGroupSortableOptions" ng-model="label.threads" class="list-group thread-list">
+
+		    <li class="list-group-item thread-item"
+		    	ng-repeat="thread in label.threads"
+		    	ng-class="{true: 'selected'}[isSelectedThread(thread)]">
+
+		    	<!-- Email metadata -->
+		    	<div class="thread-item-content"
+		    	     ng-click="selectThread(thread);">
+
+					<div class="thread-overlay">
+						<button class="archive-thread btn btn-success"><span class="ion-checkmark"></span></button>
+					</div>
+
+		    		<!-- Sender, timestamp, and subject -->
+					<div class="thread-item-metadata">
+						<div class="sender-and-date">
+							<h5 class="thread-sender">
+								<span class="sender-name">{{ thread | displayFrom }}</span>
+							</h5>
+							<small class="thread-datetime">{{ thread.latest_date | amCalendar }}</small>
+						</div>
+						<span class="thread-subject">{{ thread.subject }}</span>
+					</div>
+		    	</div>
+		    </li>
+	  	</ul>
+	</div>
