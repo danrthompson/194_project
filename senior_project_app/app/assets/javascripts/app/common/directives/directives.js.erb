@@ -3,20 +3,29 @@ angular.module('common.directives', [])
 .directive('emailFrame', [function(){
 	return {
 		restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+		scope: {
+			open: '='
+		},
 		link: function($scope, iElm, iAttrs, controller) {
 			iElm.bind('load', function(e) {
 				var contents = iElm.contents(),
 					head = $('head', contents);
 
+				$('a', contents).attr('target', '_blank');
+				$('.gmail_extra', contents).remove();
+
 				head.append('<%= stylesheet_link_tag "email", :media => "all" %>');
 
-				$('a', contents).attr('target', '_blank');
+				$('body', contents).children().wrapAll('<div class="hidden-wrapper" />');
+			});
 
+			$scope.$watch('open', function() {
 				window.setTimeout(function() {
-					iElm.css({
-						height: contents.find('body').height() + 20
-					});
-				}, 100);
+					var computed_height = $('.hidden-wrapper', iElm.contents()).height();
+					computed_height *= 1.05;
+					computed_height += 20;
+					iElm.height(computed_height);
+				}, 300)
 			});
 		}
 	};

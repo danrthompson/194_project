@@ -21,7 +21,7 @@ angular.module('navbar', ['modals'])
 	};
 }])
 
-.controller('NavbarCtrl', ['$scope', '$location', '$modal', function($scope, $location, $modal) {
+.controller('NavbarCtrl', ['$scope', '$modal', function($scope, $modal) {
 	$scope.scrollToLabel = function(label) { alert("Not implemented yet."); };
 
 	$scope.openHelp      = function() {

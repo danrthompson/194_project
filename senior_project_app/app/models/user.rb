@@ -85,9 +85,9 @@ class User < ActiveRecord::Base
 		end
 		gmail.peek = true
 		if self.time_last_pull then
-			if Time.now - self.time_last_pull < 7200 then
-				return
-			end
+			# if Time.now - self.time_last_pull < 7200 then
+			# 	return
+			# end
 			# pull email since last pull
 			recent_emails = self.class.get_all_mail_mailbox(gmail).emails(after: self.time_last_pull - 1.day)
 		else

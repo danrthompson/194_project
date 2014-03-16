@@ -1,9 +1,14 @@
 <div class="navbar navbar-default navbar-static-top">
 	<!-- Navbar label navigation -->
 	<div class="navbar-left-side">
-		<ul class="nav navbar-nav quick-nav-labels">
-			<li ng-repeat="label in labels"><a href="#" ng-click="scrollToLabel(label)">{{ label.title }} {{ label.threads.length }}</a></li>
-	    </ul>
+		<div class="pull-right">
+			<button class="btn btn-sm navbar-btn btn-inverted-primary">Add label</button>
+			<button class="btn btn-sm navbar-btn btn-inverted-default" 
+				    ng-click="closeSidebar();"
+				    ng-show="sidebarIsVisible();">
+				    Collapse sidebar
+			</button>
+		</div>
 	</div>
 
 	<!-- Help and settings -->
@@ -12,8 +17,8 @@
     	<!-- <button type="button" data-toggle="modal" data-target="#myModal">Test Modal</button> -->
     	<ul class="nav navbar-nav pull-right">
 		 	<!-- <li><a href="#" ><i class="ion-ios7-help"></i></a></li> -->
-		 	<li><a href="#" ng-click="openHelp()"><i class="ion-ios7-help"></i></a></li>
-    		<li><a href="#" ng-click="openSettings()"><i class="ion-ios7-gear"></i></a></li>
+		 	<li><a href="#" ng-click="openHelp()"><i class="ion-help"></i></a></li>
+    		<li><a href="#" ng-click="openSettings()"><i class="ion-settings"></i></a></li>
     		<li><a href="#" ng-click="openAbout()"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
     	</ul>
     </div>

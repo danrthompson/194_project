@@ -1,4 +1,4 @@
-angular.module('sidebar', ['resources.threads', 'contenteditable'])
+angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'])
 
 // .config(['$routeSegmentProvider',function($routeSegmentProvider) {
 	
@@ -30,24 +30,46 @@ angular.module('sidebar', ['resources.threads', 'contenteditable'])
 	// 	$scope.selected_thread = thread;
 	// });
 
-	$scope.replyToThread = function(thread, reply) {
-		var whole_reply = {
-			message: reply,
-		}
-	};
+	// $scope.eraseReply();
 
 	$scope.expandReply = function() {
-		alert("Not yet implemented.");
+		$scope.reply.address = getFrom(getLastEmail($scope.getSelectedThread())).address;
+		$scope.reply.expanded  = true;
 	};
+
+	$scope.eraseReply = function() {
+		$scope.reply = {
+			expanded: false,
+			message: null,
+			address: null
+		};
+	};
+
+	$scope.sendReply = function(thread) {
+		console.log(thread, $scope.reply);
+
+		$scope.eraseReply();
+	};
+
+	$scope.$watch($scope.getSelectedThread, function(oldValue, newValue) {
+		if (oldValue != newValue) {
+			$scope.eraseReply();
+		}
+	});
 
 	window.resizeIframe = function(e) {
 		console.log(e);
 	};
 
-	// var body = $('body', contentWindow.document),
-	// 	html = $('html', contentWindow.document);
+	function getLastEmail(thread) {
+		return _.last(thread.emails);
+	}
 
-	// body.append('<%= stylesheet_link_tag "email", :media => "all" %>')
+	function getFrom (thread) {
+		return _.find(thread.email_addresses, function(d) {
+			return d.type === "from";
+		});
+	}
 }])
 
 .controller('ComposeCtrl', ['$scope', 'Threads', function($scope, Threads) {

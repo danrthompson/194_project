@@ -4,44 +4,56 @@
 	<!-- Should be moved to view.html eventually -->
 	<div class="panel panel-thread" ng-show="threadIsSelected()">
 		<div class="panel-heading">
-			<h4>{{ state.selected_thread.subject }}</h4>
+			<h4>{{ getSelectedThread().subject }}</h4>
 		</div>
+
 		<ul class="list-group">
 			<li class="list-group-item email-display-item" 
-				ng-repeat="email in state.selected_thread.emails" 
+				ng-repeat="email in getSelectedThread().emails" 
 				ng-class="{true: 'collapsed'}[email.collapsed]"
 				ng-click="email.collapsed = false">
 				<div class="list-group-item-heading row">
 					<div class="col-md-8">
-						<h5>{{ email | displayFrom }} -- {{ email.id }}:</h5>
+						<h5>{{ email | displayFrom }}</h5>
 					</div>
 
-					<div class="col-md-4 text-right text-muted"><h6>{{ email.date | amCalendar }} (<span am-time-ago="email.date"></span>)</h6></div>
+					<div class="col-md-4 text-right text-muted">
+						<h6>{{ email.date | amCalendar }} (<span am-time-ago="email.date"></span>)</h6>
+					</div>
 				</div>
 				<div class="list-group-text email-container" ng-show="!email.has_html">
 					{{ email.text_body }}
 				</div>
 				<div class="list-group-text email-container" ng-show="email.has_html">
-					<iframe class="email-html-body" ng-src="{{ email.html_url}}" frameborder="0" email-frame></iframe>
+					<iframe class="email-html-body" ng-src="{{ email.html_url}}" open="email.collapsed" frameborder="0" email-frame></iframe>
 				</div>
 			</li>
 		</ul>
-		<div class="panel-footer">
-			<div class="input-group">
-				<span class="input-group-btn dropup">
-					<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="ion-reply"></span></button>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#"><span class="text-muted ion-reply"></span>&nbsp; Reply</a></li>
-						<li><a href="#"><span class="text-muted ion-reply-all"></span>&nbsp; Reply all</a></li>
-						<li><a href="#"><span class="text-muted ion-forward"></span>&nbsp; Forward</a></li>
-					</ul>
 
-				</span>
-				<input type="text" class="form-control" ng-model="reply" placeholder="Reply">
+		<div class="panel-footer quick-reply" ng-hide="reply.expanded">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="ion-reply"></span></span>
+				<input type="text" class="form-control" ng-model="reply.message" placeholder="Reply">
 				<span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="expandReply()"><span class="ion-arrow-expand"></span></button>
-					<button class="btn btn-success" ng-click="replyToThread(state.selected_thread, reply)">Send</button>
+					<button type="button" class="btn btn-default" ng-click="expandReply();"><span class="ion-arrow-expand"></span></button>
+					<button class="btn btn-success" ng-click="sendReply(getSelectedThread())">Send</button>
 				</span>
+			</div>
+		</div>
+		
+
+		<div class="full-reply" ng-show="reply.expanded">
+			<div class="panel-heading email-compose-metadata">
+				<div class="input-group">
+					<span class="input-group-addon"><span class="ion-at"></span></span>
+					<input type="email" class="form-control" ng-model="reply.address" placeholder="Reply">
+					<!-- <tags-input ng-model="reply.addresses" placeholder="Add another email address"></tags-input> -->
+				</div>
+			</div>
+			<div class="panel-body email-compose-body" contenteditable ng-model="reply.message"></div>	
+			<div class="panel-footer">
+				<button class="btn btn-default" ng-click="eraseReply()">Cancel</button>
+				<button class="btn btn-success pull-right" ng-click="sendReply(getSelectedThread())">Send</button>
 			</div>
 		</div>
 	</div>
@@ -51,7 +63,7 @@
 	<div class="panel panel-thread" ng-show="composingEmail()" ng-controller="ComposeCtrl">
 		<div class="panel-heading email-compose-metadata">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="To" spellcheck="false" ng-model="draft.to">
+				<input type="email" class="form-control" placeholder="To" spellcheck="false" ng-model="draft.to">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Subject" spellcheck="false" ng-model="draft.subject">

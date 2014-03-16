@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140313044401) do
+ActiveRecord::Schema.define(:version => 20140316112530) do
 
   create_table "conversations", :force => true do |t|
     t.string   "thread_id"
     t.datetime "most_recent_date"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "label_id"
-    t.integer  "order_value"
+    t.integer  "order_value",      :limit => 8
   end
 
   create_table "email_addresses", :force => true do |t|
