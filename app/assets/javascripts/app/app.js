@@ -46,10 +46,6 @@ angular.module('checkmail', [
 		composing_email: false
 	};
 
-	$scope.toTrusted = $sce.trustAsHtml;
-
-	$scope.getTrustedUrl = $sce.getTrustedUrl;
-
 	$scope.selectThread = function(thread) {
 		var several = Restangular.several,
 			args = ['emails'].concat(thread.email_ids);

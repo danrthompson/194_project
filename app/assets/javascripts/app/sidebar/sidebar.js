@@ -5,23 +5,10 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 // }])
 
 .directive('sidebar', [function(){
-	// Runs during compile
 	return {
-		// name: '',
-		// priority: 1,
-		// terminal: true,
-		// scope: {}, // {} = isolate, true = child, false/undefined = no change
 		controller: 'SidebarCtrl',
-		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-		// template: 'wutsup',
 		templateUrl: 'sidebar/sidebar.html',
-		// replace: true,
-		// transclude: true,
-		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-		link: function($scope, iElm, iAttrs, controller) {
-			
-		}
 	};
 }])
 
@@ -41,7 +28,8 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 	};
 
 	$scope.sendReply = function(thread) {
-
+		// infer email we're replying to from last email in thread. this is
+		// not the best way to do things.
 		var reply_to = thread.emails[thread.emails.length - 1];
 		var email = {
 			id: reply_to.id,
@@ -58,15 +46,12 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 		email.collapsed = !email.collapsed;
 	};
 
+	// if the user changes threads, clear the reply draft
 	$scope.$watch($scope.getSelectedThread, function(oldValue, newValue) {
 		if (oldValue != newValue) {
 			$scope.eraseReply();
 		}
 	});
-
-	window.resizeIframe = function(e) {
-		console.log(e);
-	};
 
 	function getLastEmail(thread) {
 		return _.last(thread.emails);

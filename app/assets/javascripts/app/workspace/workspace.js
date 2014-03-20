@@ -5,9 +5,6 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 		controller: 'WorkspaceCtrl',
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 		templateUrl: 'workspace/workspace.html',
-		link: function($scope, iElm, iAttrs, controller) {
-			
-		}
 	};
 }])
 
@@ -22,7 +19,7 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 .controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', '$http', function($scope, $location, Restangular, $http) {
 	$scope.archiveThread = function(thread) {
 		$http.delete('/api/threads/' + thread.id).success(function(data, status) {
-			console.log(status);
+			$scope.refreshLabels();
 		});
 	};
 
@@ -30,15 +27,12 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 		Restangular.one('labels/', label.id).customPUT({id: label.id, hidden: true}).then($scope.refreshLabels);
 	};
 
-	$scope.addCollaborator = function(label) {
-		alert("Not implemented yet.");
-	};
-
 	$scope.editLabel = function(label) {
 		if (typeof label.editing === 'undefined') label.editing = false;
 		label.editing = !label.editing;
 	};
 
+	// jQuery ui sortable options for the columns
 	$scope.labelSortableOptions = {
 		tolerance: "pointer",
 		stop: function(e, ui) {
@@ -49,6 +43,7 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 		}
 	};
 
+	// ui sortable options for threads in columns
 	$scope.emailGroupSortableOptions = {
 		placeholder: "thread-placeholder",
 		connectWith: ".thread-list",
@@ -59,6 +54,7 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 		appendTo: 'workspace',
 		zIndex: 9999,
 		stop: function(e, ui) {
+
 			var position = ui.item.sortable.dropindex,
 				label_index = ui.item.sortable.droptarget.scope().$index,
 				label = $scope.labels[label_index],
@@ -66,10 +62,12 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 
 			var new_order = calculateOrder(label, position);
 
+			// send a request to update position of thread in new label
 			Restangular.one('threads', thread.id).customPUT({id: thread.id, order: new_order, label_id: label.id}).then($scope.refreshLabels);
 		}
 	};
 
+	// calculate order based on the threads it's sandwiched between
 	function calculateOrder(label, position) {
 		var before = label.threads[position - 1],
 			after = label.threads[position+1];
