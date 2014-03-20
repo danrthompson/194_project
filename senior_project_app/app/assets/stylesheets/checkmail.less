@@ -1,0 +1,103 @@
+
+// checkmail.less
+//------------------------------
+// This file imports all of the modules to form the MegaStylesheet™. The basic
+// order of business is to import the things that other things will
+// probably need to refer to first.
+
+// Compilation Instructions:
+//------------------------------
+// I highly recommend using CodeKit to build out this file. LESS.app doesn't
+// do so well with the imports. Set the output path of this file
+// <checkmail.less> to ../css/checkmail.css (so it should compile in the CSS
+// folder contained within the parent directory). <checkmail.css> should
+// eventually be the only file contained within that directory, and it should
+// be compressed and minified eventually. Right now GitHub says our project is
+// like 70% CSS. That's kind of silly, and I bet we can whittle that number
+// down eventually.
+
+
+// Dat bootstrap
+@import "bootstrap/bootstrap";
+@import "bootstrap/bootstrap-switch";
+
+// Pretty icons
+@import "ionicons";
+
+// Customize everything
+@import "variables";               // Redefining Bootstrap variables
+@import "ionicons-customizations"; // Just a few changes to make the icons play a little nicer with Bootstrap
+@import "mixins";                  // Mixins to augment Bootstrap mixins
+@import "extensions";              // Reusable xtensions to Bootstrap elements
+
+// Main components
+// (these should probably eventually be refactored into smaller files)
+@import "workspace"; // The main "Trello" board
+
+// Popups & modals
+@import "modals";
+@import "homepage";
+
+@import "sidebar";   // The sidebar for email viewing
+
+
+@import "navbar"; // Custom navigation styling
+
+// Lonesome variables
+@sidebar-width:      35%;
+@label-column-width: 230px;
+
+@padding-top-sidebar:  @padding-base-horizontal;
+@margin-top-workspace: @padding-base-horizontal;
+
+@thread-hover-bg: @green-lighter;
+
+@thread-indicator-bg: @green-primary;
+@thread-unread-indicator-color: @green-primary;
+
+// EMAIL ITEM STATES
+
+// Selected
+@thread-selected-bg: @green-primary;
+@thread-selected-border-color: darken(@green-primary, 10%);
+
+@thread-selected-hover-bg:           darken(@thread-selected-bg, 10%);
+@thread-selected-hover-border-color: darken(@thread-selected-border-color, 10%);
+
+@thread-selected-sender-color:   #fff;
+@thread-selected-subject-color:  rgba(255,255,255,.8);
+@thread-selected-datetime-color: rgba(255,255,255,.5);
+
+@thread-selected-indicator-bg:       lighten(@green-dark, 10%);
+@thread-selected-indicator-hover-bg: @green-dark;
+@thread-selected-indicator-color: #fff;
+
+// Highlighted
+@thread-highlighted-bg:           @green-lighter;
+@thread-highlighted-border-color: darken(@green-lighter, 10%);
+
+@thread-highlighted-hover-bg:           darken(@thread-highlighted-bg, 5%);
+@thread-highlighted-hover-border-color: darken(@thread-highlighted-border-color, 5%);
+
+@thread-highlighted-sender-color:   inherit;
+@thread-highlighted-subject-color:  inherit;
+@thread-highlighted-datetime-color: inherit;
+
+@thread-highlighted-indicator-bg:       @thread-indicator-bg;
+@thread-highlighted-indicator-hover-bg: @green-light;
+@thread-highlighted-indicator-color:    #fff;
+
+
+// This CSS is doing the lord's work
+// (stopping Safari from bouncing everywhere when you scroll)
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}

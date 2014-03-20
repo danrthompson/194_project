@@ -14,8 +14,8 @@ gem 'google-api-client', :require => 'google/api_client'
 gem 'omniauth'
 gem 'omniauth-google-oauth2', :git => 'https://github.com/zquestz/omniauth-google-oauth2.git'
 
-# gem 'gmail', git: 'git://github.com/drowningcat/gmail'
 gem 'gmail', path: '../../gmail'
+
 gem 'oauth2'
 gem 'gmail_xoauth'
 # gem 'mail'
@@ -31,17 +31,20 @@ gem 'angularjs-rails'
 
 # temporary
 gem 'awesome_print'
+gem 'pry'
 # end temporary
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  # gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'less-rails'
+  gem 'angular-rails-templates'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end

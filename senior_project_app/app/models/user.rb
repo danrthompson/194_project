@@ -20,13 +20,16 @@ class User < ActiveRecord::Base
 	has_many :labels
 	has_many :conversations
 
+	def self.get_all_mail_mailbox(gmail)
+		gmail.mailbox('[Gmail]/All Mail')
+	end
+
 	def self.refresh_emails_for_all_users
 		puts "Task running: refresh_emails_for_all_users."
 		puts "Time: #{Time.now.localtime}"
 		self.all.each do |user|
 			puts "Running task on user #{user.id}."
-			user.refresh_token_if_necessary
-			gmail = Gmail.connect!(:xoauth, user.email, token: user.auth_token)
+			gmail = user.get_gmail_connection
 			user.pull_email_if_necessary(gmail)
 			puts "Done with user #{user.id}."
 		end
@@ -46,6 +49,11 @@ class User < ActiveRecord::Base
 			gender: auth_hash['extra']['raw_info']['gender'],
 			password: Devise.friendly_token[0,20]
 		)
+	end
+
+	def get_gmail_connection
+		self.refresh_token_if_necessary
+		Gmail.connect!(:xoauth2, self.email, oauth2_token: self.auth_token)
 	end
 
 	def get_primary_labels
@@ -71,16 +79,20 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def pull_email_if_necessary(gmail)
+	def pull_email_if_necessary(gmail=nil)
+		if not gmail then
+			gmail = self.get_gmail_connection
+		end
+		gmail.peek = true
 		if self.time_last_pull then
-			if Time.now - self.time_last_pull < 7200 then
-				return
-			end
+			# if Time.now - self.time_last_pull < 7200 then
+			# 	return
+			# end
 			# pull email since last pull
-			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: self.time_last_pull)
+			recent_emails = self.class.get_all_mail_mailbox(gmail).emails(after: self.time_last_pull - 1.day)
 		else
 			# first time pulling email
-			recent_emails = gmail.mailbox('[Gmail]/All Mail').emails(after: 1.month.ago)
+			recent_emails = self.class.get_all_mail_mailbox(gmail).emails(after: 1.month.ago)
 		end
 		if recent_emails.length > 150 then
 			recent_emails = recent_emails[-150,150]
@@ -90,7 +102,7 @@ class User < ActiveRecord::Base
 				next
 			end
 			puts "New email. Subject: #{email.subject}. UID: #{email.uid}"
-			new_email = Email.new(user_id: self.id, subject: email.subject, uid: email.uid, date: Time.parse(email.date), thread_id: email.thread_id.to_s)
+			new_email = Email.new(user_id: self.id, subject: email.subject, uid: email.uid, date: Time.parse(email.date), thread_id: email.thread_id.to_s, gmsg_id: email.msg_id.to_s)
 			if email.html_part then
 				new_email.html_body = email.html_part.decode_body.encode('UTF-8', :invalid => :replace, :undef => :replace)
 			end
@@ -119,6 +131,7 @@ class User < ActiveRecord::Base
 			labels = email.labels
 			if labels and labels.length > 0 then
 				labels.each do |label_name|
+					label_name = Label.legible_name label_name
 					label = Label.where(user_id: self.id, name: label_name).first
 					if not label then
 						label = Label.create(user_id: self.id, name: label_name)

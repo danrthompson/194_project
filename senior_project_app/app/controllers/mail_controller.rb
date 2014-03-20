@@ -10,13 +10,10 @@ class MailController < ApplicationController
 		#   :parameters => {},
 		#   :headers => {'Content-Type' => 'application/json'})
 		# render text: current_user.refresh_token and return
-		current_user.refresh_token_if_necessary
-		gmail = connect_to_gmail(current_user)
-		current_user.pull_email_if_necessary(gmail)
+		current_user.pull_email_if_necessary
 		@labels = Label.where(user_id: current_user.id)
 		# @subject = Mail.first.subject
 		# @emails = gmail.inbox.emails[0,5]
-		# gmail = Gmail.connect(:xoauth, current_user.email, token: current_user.auth_token)
 		# @count = gmail.inbox.count
 	end
 
@@ -26,8 +23,7 @@ class MailController < ApplicationController
 
 	def compose_email_post
 		# render text: params and return
-		current_user.refresh_token_if_necessary
-		gmail = connect_to_gmail(current_user)
+		gmail = current_user.get_gmail_connection
 		if not params[:draft] or params[:draft][:to].blank? or params[:draft][:subject].blank? then
 			render text: 'Form improperly submitted.' and return
 		end
@@ -56,10 +52,6 @@ class MailController < ApplicationController
 		# 	bcc params[:draft][:bcc]
 		# end
 		redirect_to '/'
-	end
-
-	def connect_to_gmail(user)
-		Gmail.connect!(:xoauth, user.email, token: user.auth_token)
 	end
 
 	def label

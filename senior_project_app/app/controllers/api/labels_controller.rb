@@ -1,16 +1,16 @@
 class Api::LabelsController < ApplicationController
 	before_filter :authenticate_user!
+
 	def index
 		render text: Label.label_array_to_json(current_user.get_primary_labels)
+		# render text: Label.label_array_to_json(current_user.labels.order(:order_value))
 	end
 
 	def create
-		data = JSON.parse(params[:data])
-
 		label = Label.new
 		label.user = current_user
-		label.name = data['title']
-		label.order_value = data['order']
+		label.name = params['title']
+		label.order_value = params['order']
 
 		label.save!
 
@@ -23,13 +23,12 @@ class Api::LabelsController < ApplicationController
 			head :unauthorized and return
 		end
 
-		data = JSON.parse(params[:data])
-
-		if not data['title'].nil? then
-			label.name = data['title']
+		if not params['title'].nil? then
+			label.name = params['title']
 		end
-		if not data['order'].nil? then
-			label.order_value = data['order']
+		
+		if not params['order'].nil? then
+			label.order_value = params['order']
 		end
 
 		label.save!

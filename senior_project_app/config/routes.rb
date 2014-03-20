@@ -1,4 +1,7 @@
 SeniorProjectApp::Application.routes.draw do
+  get "static_pages/index"
+  get "static_pages/home"
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # The priority is based upon order of creation:
@@ -77,10 +80,16 @@ SeniorProjectApp::Application.routes.draw do
 
 
   put 'api/labels/order'
+  put 'api/threads/order'
 
   namespace :api do
     resources :labels, except: [:new, :edit]
     resources :threads, except: [:new, :edit, :index]
+    resources :emails, except: [:new, :edit, :index] do
+      member do
+        get :html
+      end
+    end
   end
 
 

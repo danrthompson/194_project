@@ -1,0 +1,11 @@
+<div class="ngTagsInput" tabindex="-1" ng-class="options.customClass" ti-transclude-append="">
+    <div class="tags" ng-class="{focused: hasFocus}">
+        <ul class="tag-list">
+            <li class="tag-item" ng-repeat="tag in tags" ng-class="getCssClass($index)">
+                <span contact address="tag"></span>
+                <button type="button" ng-click="remove($index)">{{options.removeTagSymbol}}</button>
+            </li>
+        </ul>
+        <input class="tag-input form-control" placeholder="{{options.placeholder}}" maxlength="{{options.maxLength}}" tabindex="{{options.tabindex}}" ng-model="newTag" ng-change="newTagChange()" ti-autosize="">
+    </div>
+</div>
