@@ -1,0 +1,249 @@
+<html ng-app="checkmail">
+	<head>
+		<title>CheckMail</title>
+
+		<title>CheckMail</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	  	    
+		<%= javascript_include_tag "bootstrap" %>
+		<%= stylesheet_link_tag "checkmail", :media => "all" %>
+	
+
+	</head>
+	<body ng-controller="AppCtrl">
+		<div id="home-wrapper">
+			<!-- <h1>Hello World</h1> -->
+			<header>
+				<div class="navbar navbar-default navbar-static-top home-nav">
+					<!-- Navbar label navigation -->
+					<div class="navbar-left-side">
+						<ul class="nav navbar-nav quick-nav-labels">
+							<li><a href="home.html">Home</a></li>
+							<li><a href="tour.html">Tour</a></li>
+							<li><a href="about.html">About Us</a></li>
+					    </ul>
+					</div>
+				    <div class="navbar-right-side home-navbar-right">
+				    	<ul class="nav navbar-nav pull-right">
+			    			<li><button class="btn navbar-btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#sign-up-modal">Sign Up</button></li>
+			    			<li><button class="btn navbar-btn btn-sm btn-default" type="button" data-toggle="modal" data-target="#login-modal">Login</button></li>
+				    		<li><a href="#" class="navbar-brand"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
+				    	</ul>
+				    </div>
+
+				</div>
+			</header>
+
+
+			<div class="ending-text press-page">
+				<h2 class="center-text">Get In Touch With Us</h2>
+				<div class="content-wrapper">
+					
+					<br>
+					
+					<p class="eighty-width auto-margin"><br> We have big plans for the future. If you're curious about the app, the team, or our plans for the future, feel free to reach out. <br><br> Since we're all about email, the best way to reach us is to <a href="" type="button" data-toggle="modal" data-target="#send-email-modal">shoot us a message</a>. </p> 
+					<!-- <img src="http://www.thecoolhunter.net/images/loca.jpg" alt=""> -->
+
+
+
+
+					<!-- <div class="half-width pull-left logo-img"><a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#sign-up-modal"><img src="img/check-mail-logo.png" alt=""></a></div> -->
+				</div>
+			</div>
+
+			<div class="footer">
+    			<a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#send-email-modal">Send Us An Email</a>
+
+			</div>
+			<!-- JAVASCRIPT -->
+
+			<!-- jQuery --> 
+		  	<script src="js/third-party/jquery.min.js"></script>
+			<script src="js/third-party/jquery-ui.js"></script>
+
+			<!-- Angular -->
+			<script src="js/third-party/angular.js"></script>
+			<script src="js/third-party/ui-sortable.js"></script>
+
+			<!-- Bootstrap JS for Modals -->
+			<script src="js/third-party/bootstrap-modal.js"></script>
+			<script src="js/third-party/bootstrap-switch.js"></script>
+
+			<!-- App -->
+			<script src="js/app/index.js"></script>
+			<script src="js/app/directives.js"></script>
+			<script src="js/app/controllers.js"></script>
+			<script src="js/app/factories.js"></script>
+		</div>
+
+	
+
+
+
+		  	<!-- Add Filter Modal -->
+		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title">Login</h3>
+		      </div>
+		      
+			  <!-- Body Content -->
+		      <div class="modal-body">		
+				<div class="account-settings email-account-wrapper">
+		  
+					<ul class="active-acctounts-list">
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Email</span>
+							  <input type="text" class="form-control" placeholder="zeus@olympus.com">
+							</div>
+						</li>
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Password</span>
+							  <input type="password" class="form-control" placeholder="Top Secret">
+							</div>
+						</li>
+					</ul>
+		        </div>
+		    
+
+		      </div>
+
+		      <!-- Footer Content -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+		        <button type="button" class="btn btn-success" data-dismiss="modal">Login</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+
+
+		  	<!-- Send Email Modal -->
+		<div class="modal fade" id="send-email-modal" tabindex="-1" role="dialog" aria-hidden="true">
+				  <div class="modal-dialog">
+		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title">Message Us Through CheckMail</h3>
+		      </div>
+		      
+			  <!-- Body Content -->
+		      <div class="modal-body">
+				<div class="account-settings email-account-wrapper">
+		  
+					<ul class="active-acctounts-list">
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Email</span>
+							  <input type="text" class="form-control" placeholder="zeus@olympus.com">
+							</div>
+						</li>
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Password</span>
+							  <input type="password" class="form-control" placeholder="Top Secret">
+							</div>
+						</li>
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Confirm Password</span>
+							  <input type="password" class="form-control" placeholder="Top Secret">
+							</div>
+						</li>
+				        <button type="button" class="btn btn-success pull-right" data-dismiss="modal">Sign Up</button>
+
+					</ul>
+
+		        </div>
+				
+				<br>
+	        	<hr>
+		        <div class="center-text message-us-footer">
+		        	
+		        	<h3>...or shoot us a regular email</h3>
+		        	<a href="mailto:test@gmail.com"> (by clicking this link)</a>
+		        	<br>
+		        </div>
+		    
+
+		      </div>
+
+		     
+		    </div>
+		  </div>
+		</div>
+
+
+
+
+		  	<!-- Add Filter Modal -->
+		<div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      
+			  <!-- Header Content -->
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title">Sign Up</h3>
+		      </div>
+		      
+			  <!-- Body Content -->
+		      <div class="modal-body">
+		       <!--  
+		        <div class="account-settings email-account-wrapper">
+		  
+					<ul class="active-acctounts-list">
+						<li>Pull all emails from:    <b>sampleacct@gmail.com</b><a href="" class="pull-right">Delete Filter</a></li>
+						<li>Pull emails with subject:    <b>BASES</b><a href="" class="pull-right">Delete Filter</a></li>
+					</ul>
+					<a href="" class="show-me pull-right" id="add-account-button">+ Add Filter</a>
+		        </div> -->
+				<div class="account-settings email-account-wrapper">
+		  
+					<ul class="active-acctounts-list">
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Email</span>
+							  <input type="text" class="form-control" placeholder="zeus@olympus.com">
+							</div>
+						</li>
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Password</span>
+							  <input type="password" class="form-control" placeholder="Top Secret">
+							</div>
+						</li>
+						<li>
+							<div class="input-group">
+							  <span class="input-group-addon">Confirm Password</span>
+							  <input type="password" class="form-control" placeholder="Top Secret">
+							</div>
+						</li>
+					</ul>
+		        </div>
+		    
+
+		      </div>
+
+		      <!-- Footer Content -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+		        <button type="button" class="btn btn-success" data-dismiss="modal">Sign Up</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+	</body>
+</html>

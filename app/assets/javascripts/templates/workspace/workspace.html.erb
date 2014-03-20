@@ -1,0 +1,7 @@
+<section ng-class="{true: 'sidebar-visible'}[sidebarIsVisible()]" class="workspace">
+
+	<!-- Email column container: All Email Lists -->
+	<div class="labels-columns" ui-sortable="labelSortableOptions" ng-model="labels">
+		<label-column class="label-column" ng-repeat="label in labels"></label-column>
+	</div>
+</section>

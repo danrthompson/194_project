@@ -1,0 +1,170 @@
+// sidebar.less
+//------------------------------
+// Styling for the sidebar. Not much more to it.
+
+.sidebar {
+	position: absolute;
+	top: @navbar-height;
+	bottom: 0;
+	right: 0;
+	width: @sidebar-width;
+
+	overflow-y: auto;
+
+	// .pretty-vertical-scrollbar(4px, @gray);
+
+	// FIXME: This means the sidebar will overlap the workspace
+	// min-width: 400px;
+
+	padding: @padding-top-sidebar @padding-base-horizontal;
+}
+
+.email-viewer {
+	background-color: @gray-lighter;
+	border-left: 1px solid @gray-light;
+	.pretty-vertical-scrollbar(5px, @green-primary);
+}
+
+.email-metadata { 
+	cursor: pointer;
+}
+
+.collapsed {
+	background: @gray-lightest; 
+
+	&:hover {
+		background: lighten(@gray-lightest, 3%);
+	}
+
+	.email-container {
+		display: none;
+	}
+}
+
+.email-container {
+	width: 100%;
+	overflow-x: scroll;
+
+	iframe {
+		width: 100%;
+	}
+}
+
+.list-group-item-heading {
+	padding: @padding-base-vertical @padding-base-horizontal;
+}
+
+.email-display-item {
+	padding: 0;
+}
+
+// Thread Window Styling
+
+.panel-heading.thread-message-heading{
+	.thread-message-heading
+}
+
+.thread-message-heading{
+	background-color: #fff;
+	color: @gray-dark;
+	padding-bottom: 0;
+	border-bottom: none;
+	// background-color: @gray-dark;
+	
+	
+	.panel-heading.thread-message-heading:hover .message-reply-icons{
+		background-color: pink;
+	}
+	
+	.message-reply-icons{
+
+		font-size: 1.65em;
+		position: absolute;
+		right: 30px;
+		top: 30px;
+		
+
+		a {
+			color: gray;
+			text-decoration: none;
+			margin: 10px 6px;
+			opacity: 0.45;
+			&:hover{
+				color: green;
+				opacity: 1;
+			}
+
+		}
+		.ionicon{
+			.ion;
+		}
+		.reply-icon:before{
+			content: "\f21e";
+		}
+		.replyall-icon:before{
+			content: "\f21d";
+		}
+		.fwd-icon:before{
+			content: "\f13a"
+		}
+		
+	}
+
+
+	.thread-message-date{
+				color: green;
+				font-weight: light;
+				.text-sm;
+				opacity: 0.8;
+				// float: right;
+				
+			}
+	.thread-message-title{
+		width: 100%;
+		
+	}
+	h4{
+		margin-bottom: @padding-base-vertical;
+	}
+	
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li{
+		color: @gray;
+		  width: 95%;
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  opacity: 0.5;
+	}
+
+	hr{
+		margin-bottom: 0px;
+		margin-top: 10px;
+		// margin-top: @padding-base-vertical;
+		// padding:  0;
+	}
+
+	
+}
+
+.email-compose-metadata {
+	.form-group {
+		margin-bottom: @padding-base-vertical;
+	}
+	.form-group:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.email-compose-body {
+	padding: @padding-large-vertical @padding-large-horizontal;
+	min-height: 100px;
+	&:focus {
+		outline: 0;
+	}
+}

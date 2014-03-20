@@ -1,0 +1,118 @@
+.button-inverted-variant(@color; @background; @hover; @border) {
+    color: @color;
+    background-color: transparent;
+    border-color: @border;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open .dropdown-toggle& {
+        color: @hover;
+        background-color: @background;
+                border-color: @border;
+    }
+    &:active,
+    &.active,
+    .open .dropdown-toggle& {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            background-color: @background;
+                    border-color: @border;
+        }
+    }
+
+    .badge {
+        color: @background;
+        background-color: @color;
+    }
+}
+
+.margin-top-bottom(@top, @bottom){
+    margin-top:@top;
+    margin-bottom:@bottom;
+}
+
+.padding-top-bottom(@top, bottom){
+    padding-top: @top;
+    padding-bottom: @bottom;
+}
+
+.margin-padding(@value){
+    margin: @value;
+    padding: @value;
+}
+
+.thread-state-variant(@bg,
+                     @hover-bg,
+                     @border-color,
+                     @hover-border-color,
+                     @sender-color,
+                     @subject-color,
+                     @datetime-color,
+                     @indicator-color,
+                     @indicator-bg,
+                     @indicator-hover-bg) {
+
+    .thread-item-content {
+        background:   @bg;
+        border-color: @border-color;
+
+        &:hover {
+            background: @hover-bg;
+            border-color: @hover-border-color;
+        }
+    }
+
+    .thread-sender   { color: @sender-color; }
+    .thread-subject  { color: @subject-color; }
+    .thread-datetime { color: @datetime-color; }
+
+    .todo-indicator-tally { color: @indicator-color; }
+
+    .todo-indicator-skin  { 
+        border-right-color: @indicator-bg;
+
+        &:hover {
+            border-right-color: @indicator-hover-bg;             
+        }
+    }
+}
+
+.pretty-horizontal-scrollbar(@thickness) {
+    &::-webkit-scrollbar {
+        height: @thickness;
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: @green-primary;
+    }
+}
+
+.pretty-vertical-scrollbar(@thickness, @color) {
+    &::-webkit-scrollbar {
+        width: @thickness;
+    }
+
+    &::-webkit-scrollbar-thumb { 
+        background: @color;
+    }
+}
+
+.label-inverted-variant(@color) {
+  border-color: @color;
+  &[href] {
+    &:hover,
+    &:focus {
+      border-color: darken(@color, 10%);
+    }
+  }
+}
