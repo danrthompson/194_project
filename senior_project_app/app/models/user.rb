@@ -98,6 +98,7 @@ class User < ActiveRecord::Base
 				next
 			end
 			puts "New email. Subject: #{email.subject}. UID: #{email.uid}"
+			email_read = email.is_read?
 			new_email = Email.new(user_id: self.id, subject: email.subject, uid: email.uid, date: Time.parse(email.date), thread_id: email.thread_id.to_s, gmsg_id: email.msg_id.to_s)
 			if email.html_part then
 				new_email.html_body = email.html_part.decode_body.encode('UTF-8', :invalid => :replace, :undef => :replace)
@@ -135,7 +136,7 @@ class User < ActiveRecord::Base
 					label.emails << new_email
 				end
 			end
-			Conversation.add_email_to_conversation(new_email)
+			Conversation.add_email_to_conversation(new_email, email_read)
 		end
 		self.time_last_pull = Time.now
 		save!

@@ -7,6 +7,14 @@ class Api::LabelsController < ApplicationController
 	end
 
 	def create
+		if params['title'].blank? then
+			head :bad_request and return
+		end
+
+		gmail = current_user.get_gmail_connection
+
+		gmail.labels.new params['title']
+
 		label = Label.new(hidden: false, name: params['title'], order_value: params['order'])
 		label.user = current_user
 
