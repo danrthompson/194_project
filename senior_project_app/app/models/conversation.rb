@@ -1,5 +1,5 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :thread_id, :most_recent_date, :user_id
+  attr_accessible :thread_id, :most_recent_date, :user_id, :archived
   has_many :emails
   belongs_to :user
   belongs_to :label
@@ -7,7 +7,7 @@ class Conversation < ActiveRecord::Base
 	def self.add_email_to_conversation(email)
 		conversation = self.where(user_id: email.user_id, thread_id: email.thread_id).first
 		if not conversation then
-			conversation = self.create(user_id: email.user_id, thread_id: email.thread_id, most_recent_date: email.date)
+			conversation = self.create(user_id: email.user_id, thread_id: email.thread_id, most_recent_date: email.date, archived: false)
 		end
 		conversation.emails << email
 		if not conversation.most_recent_date or email.date > conversation.most_recent_date then
@@ -51,7 +51,8 @@ class Conversation < ActiveRecord::Base
 			order:           self.get_order(),
 			email_ids:       email_ids,
 			latest_date:     self.most_recent_date.to_i*1000,
-			email_addresses: from_addrs
+			email_addresses: from_addrs,
+			archived:        self.archived
 		}
 	end
 
@@ -68,7 +69,8 @@ class Conversation < ActiveRecord::Base
 			id:       self.id,
 			label_id: self.label_id,
 			order:    self.get_order(),
-			emails:   Email.email_array_to_json(self.emails.order(:date))
+			emails:   Email.email_array_to_json(self.emails.order(:date)),
+			archived: self.archived
 		}
 	end
 
@@ -76,7 +78,7 @@ class Conversation < ActiveRecord::Base
 		self.emails.all.each do |email|
 			email.archive gmail
 		end
-		self.label = nil
+		self.archived = true
 		self.save!
 	end
 
