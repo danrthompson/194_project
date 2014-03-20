@@ -39,10 +39,6 @@ class Api::ThreadsController < ApplicationController
 		render text: (thread.to_hash_with_emails).to_json
 	end
 
-	def reply
-
-	end
-
 	def update
 		thread = Conversation.find(params[:id])
 

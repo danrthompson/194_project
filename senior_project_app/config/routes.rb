@@ -5,6 +5,7 @@ SeniorProjectApp::Application.routes.draw do
   get "static_pages/about"
   get "static_pages/press"
   get "static_pages/tour"
+  get "static_pages/welcome"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -77,6 +78,7 @@ SeniorProjectApp::Application.routes.draw do
 
   put 'api/labels/order'
   put 'api/threads/order'
+  post 'api/emails/reply'
 
   namespace :api do
     resources :labels, except: [:new, :edit, :destroy]

@@ -23,7 +23,23 @@ class Api::EmailsController < ApplicationController
 	end
 
 	def reply
+		email = Email.find(params[:id])
+		
+		body_data = params[:body]
 
+		gmail = current_user.get_gmail_connection
+
+		gemail = User.get_all_mail_mailbox(gmail).emails(msg_id: email.gmsg_id).first
+
+		reply = gemail.reply
+
+		reply.body = body_data
+		reply.delivery_method.settings[:user_name] = current_user.email
+		reply.delivery_method.settings[:password] = current_user.auth_token
+
+		reply.deliver!
+
+		head :ok
 	end
 
 	def update
