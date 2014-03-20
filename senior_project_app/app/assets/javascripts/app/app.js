@@ -96,12 +96,6 @@ angular.module('checkmail', [
 		$scope.state.selected_thread = null;
 	};
 
-	$scope.newLabel = function() {
-		var new_label = new Labels();
-		new_label.title = "Wussussup";
-		new_label.$save();
-	};
-
 	$scope.getSelectedThread = function() {
 		return $scope.state.selected_thread;
 	};
