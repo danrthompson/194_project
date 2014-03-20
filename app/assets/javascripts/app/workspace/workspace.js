@@ -59,6 +59,11 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 		alert("Not implemented yet.");
 	};
 
+	$scope.editLabel = function(label) {
+		if (typeof label.editing === 'undefined') label.editing = false;
+		label.editing = !label.editing;
+	}
+
 	$scope.labelSortableOptions = {
 		tolerance: "pointer",
 		stop: function(e, ui) {
@@ -93,8 +98,6 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 	function calculateOrder(label, position) {
 		var before = label.threads[position - 1],
 			after = label.threads[position+1];
-
-		console.log(before, after);
 
 		if (!before && !after) {
 			return -1;

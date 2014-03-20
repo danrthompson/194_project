@@ -41,10 +41,6 @@ angular.module('checkmail', [
 		});
 	};
 
-	window.setInterval(function() {
-		$scope.refreshLabels();
-	}, 60000);
-
 	$scope.state = {
 		selected_thread: null,
 		composing_email: false
@@ -77,10 +73,12 @@ angular.module('checkmail', [
 	};
 
 	$scope.markRead = function(thread) {
-		Restangular.one('threads', thread.id).customPUT({id: thread.id, read: true}).then(function() {
-			// once the server comes back to us, let's really call the email read.
-			thread.read = true;
-		});
+		if (!thread.read) {
+			Restangular.one('threads', thread.id).customPUT({id: thread.id, read: true}).then(function() {
+				// once the server comes back to us, let's really call the email read.
+				thread.read = true;
+			});
+		};
 	};
 
 	$scope.deselectThread = function() {

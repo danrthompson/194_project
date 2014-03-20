@@ -21,7 +21,7 @@ angular.module('navbar', ['modals'])
 	};
 }])
 
-.controller('NavbarCtrl', ['$scope', '$modal', function($scope, $modal) {
+.controller('NavbarCtrl', ['$scope', '$modal', 'Restangular', function($scope, $modal, Restangular) {
 	$scope.scrollToLabel = function(label) { alert("Not implemented yet."); };
 
 	$scope.addLabel = function() {
@@ -31,7 +31,12 @@ angular.module('navbar', ['modals'])
 		})
 
 		modalInstance.result.then(function(title) {
-			console.log(title);
+			Restangular.all('labels/').post({
+				title: title,
+				order: null
+			}).then(function() {
+				$scope.refreshLabels();
+			})
 		})
 	};
 

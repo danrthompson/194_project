@@ -1,16 +1,16 @@
 <!-- Header Content -->
 <div class="modal-header">
     <button class="close" ng-click="dismiss();"><span class="ion-close"></span></button>
-    <h4 class="modal-title">Add label</h4>
+    <h4 class="modal-title">Enter a title</h4>
 </div>
 
 <!-- Body Content -->
 <div class="modal-body">
-	<input type="text" class="form-control" ng-model="new_title">
+	<input type="text" class="form-control" ng-model="new_title" placeholder="Title">
 </div>
 
 <!-- Footer Content -->
 <div class="modal-footer">
     <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-    <button class="btn btn-success" ng-click="close();">Add label</button>
+    <button class="btn btn-success" ng-click="close(new_title);">Add label</button>
 </div>

@@ -13,9 +13,9 @@ angular.module('modals', [])
 		$modalInstance.dismiss(reason);
 	};
 
-	$scope.close = function() {
-		if ($scope.new_title.length == 0) return;
-		$modalInstance.close($scope.new_title);
+	$scope.close = function(title) {
+		if (title.length == 0) return;
+		$modalInstance.close(title);
 	};
 }])
 

@@ -25,7 +25,7 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 	};
 }])
 
-.controller('SidebarCtrl', ['$scope', '$location', '$element', function($scope, $location, $element) {
+.controller('SidebarCtrl', ['$scope', '$location', '$element', 'Restangular', function($scope, $location, $element, Restangular) {
 	// $scope.$watch('state.selected_thread', function(thread) {
 	// 	$scope.selected_thread = thread;
 	// });
@@ -46,7 +46,18 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 	};
 
 	$scope.sendReply = function(thread) {
-		console.log(thread, $scope.reply);
+
+		var reply_to = thread.emails[thread.emails.length - 1];
+		var email = {
+			id: reply_to.id,
+			body: $scope.reply.message
+		}
+
+		console.log(Restangular)
+
+		Restangular.all('emails/reply').customPOST(email).then(function() {
+			console.log("dunzo")
+		})
 
 		$scope.eraseReply();
 	};
