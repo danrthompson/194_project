@@ -8902,7 +8902,6 @@ fieldset[disabled] .btn-inverted-info.active {
 }
 .welcome-first-page .left-image {
   height: 100%;
-  background-image: image-url("computer.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
