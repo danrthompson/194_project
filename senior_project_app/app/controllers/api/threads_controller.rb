@@ -2,7 +2,32 @@ class Api::ThreadsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def create
+		if params[:to].blank? or params[:subject].blank? then
+			head :bad_request and return
+		end
+		gmail = current_user.get_gmail_connection
 
+		to_data = params[:to]
+		subject_data = params[:subject]
+		body_data = params[:body]
+		cc_data = (!params[:cc].blank?) ? params[:cc] : nil
+		bcc_data = (!params[:bcc].blank?) ? params[:bcc] : nil
+
+		gmail.deliver! do
+			to to_data
+			subject subject_data
+			text_part do
+				body body_data
+			end
+			if cc_data then
+				cc cc_data
+			end
+			if bcc_data then
+				bcc bcc_data
+			end
+		end
+
+		head :ok
 	end
 
 	def show
