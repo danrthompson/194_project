@@ -48,7 +48,7 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 
 .controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', function($scope, $location, Restangular) {
 	$scope.archiveThread = function(thread) {
-		Restangular.one('threads', thread.id).remove({}).then(function() {
+		Restangular.one('threads', thread.id).remove(null, {'Content-Type': 'application/json'}).then(function() {
 			$scope.refreshLabels();
 		});
 	};
