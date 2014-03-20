@@ -1,18 +1,19 @@
 GIT
+  remote: https://github.com/drowningcat/gmail.git
+  revision: 6b74a2016562203ac9de9b6a6fb651fbb3265141
+  specs:
+    gmail (0.4.5)
+      gmail_xoauth (>= 0.3.0)
+      mail (>= 2.2.1)
+      mime (>= 0.1)
+
+GIT
   remote: https://github.com/zquestz/omniauth-google-oauth2.git
   revision: b62461a8bc239d29c6994ea9bf1648f617860d88
   specs:
     omniauth-google-oauth2 (0.2.2)
       omniauth (~> 1.0)
       omniauth-oauth2
-
-PATH
-  remote: ../../gmail
-  specs:
-    gmail (0.4.5)
-      gmail_xoauth (>= 0.3.0)
-      mail (>= 2.2.1)
-      mime (>= 0.1)
 
 GEM
   remote: https://rubygems.org/
