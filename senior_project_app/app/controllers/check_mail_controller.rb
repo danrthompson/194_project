@@ -3,7 +3,11 @@ class CheckMailController < ApplicationController
     if not current_user then
       redirect_to action: :home and return
     end
-    current_user.delay.pull_email_if_necessary
+    if not current_user.last_pull_scheduled or current_user.last_pull_scheduled < 1.hour.ago then
+      current_user.delay.pull_email_if_necessary
+      current_user.last_pull_scheduled = Time.now
+      current_user.save
+    end
   	render :layout => false
   end
 
