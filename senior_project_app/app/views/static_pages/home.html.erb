@@ -1,10 +1,14 @@
 <html>
 	<head>
 		<title>CheckMail</title>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	  	    
+		<%= javascript_include_tag "bootstrap" %>
 		<%= stylesheet_link_tag "checkmail", :media => "all" %>
 	</head>
 	<body>
+		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 		<div id="home-wrapper">
 			<!-- <h1>Hello World</h1> -->
 			<header>
@@ -12,9 +16,9 @@
 					<!-- Navbar label navigation -->
 					<div class="navbar-left-side">
 						<ul class="nav navbar-nav quick-nav-labels">
-							<li><a href="/about.html">About Us</a></li>
-							<li><a href="/tour.html" >Tour</a></li>
-							<li><a href="/press.html" >Press</a></li>
+							<li><a href="about.html">About Us</a></li>
+							<li><a href="tour.html" >Tour</a></li>
+							<li><a href="press.html" >Press</a></li>
 					    </ul>
 					</div>
 				    <div class="navbar-right-side home-navbar-right">
@@ -46,9 +50,10 @@
 
 				<img src="<%= image_path("screen.png") %>" alt="" id="screen-shot">
 				<div class="second-page-text">
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Sed posuere consectetur est at lobortis. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis. Donec ullamcorper nulla non metus auctor fringilla.</p>
+					<p>CheckMail is a tool to simplify your life, starting with email. Built upon Google’s GMail platform, it provides a quick and efficient method for organizing your email into categorical lists. Share a list and you can quickly collaborate with others, or trade emails between lists to sort out what you need to do. We live busy lives, and our inboxes show for it. CheckMail brings order to this chaos.</p>
 				</div>
 			</div>
+
 
 	
 

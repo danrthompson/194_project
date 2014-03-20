@@ -2,8 +2,12 @@
 	<head>
 		<title>CheckMail</title>
 
-		<link rel="stylesheet" href="css/checkmail.css">
-		<!-- <link href="css/bootstrap-switch.css" rel="stylesheet"> -->
+		<title>CheckMail</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	  	    
+		<%= javascript_include_tag "bootstrap" %>
+		<%= stylesheet_link_tag "checkmail", :media => "all" %>
+	
 
 	</head>
 	<body ng-controller="AppCtrl">
@@ -14,16 +18,16 @@
 					<!-- Navbar label navigation -->
 					<div class="navbar-left-side">
 						<ul class="nav navbar-nav quick-nav-labels">
-							<li><a href="/home.html">Home</a></li>
-							<li><a href="/tour.html">Tour</a></li>
-							<li><a href="/about.html">About Us</a></li>
+							<li><a href="home.html">Home</a></li>
+							<li><a href="tour.html">Tour</a></li>
+							<li><a href="about.html">About Us</a></li>
 					    </ul>
 					</div>
 				    <div class="navbar-right-side home-navbar-right">
 				    	<ul class="nav navbar-nav pull-right">
 			    			<li><button class="btn navbar-btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#sign-up-modal">Sign Up</button></li>
 			    			<li><button class="btn navbar-btn btn-sm btn-default" type="button" data-toggle="modal" data-target="#login-modal">Login</button></li>
-				    		<li><a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a></li>
+				    		<li><a href="#" class="navbar-brand"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
 				    	</ul>
 				    </div>
 
@@ -32,13 +36,12 @@
 
 
 			<div class="ending-text press-page">
+				<h2 class="center-text">Get In Touch With Us</h2>
 				<div class="content-wrapper">
 					
 					<br>
-					<h2 class="">Get In Touch With Us</h2>
-					<p class=""><br>
-Email shouldn&#39;t be a worry. It should be simple. You should get the same satisfaction using email as finishing a great project. That&#39;s where CheckMail comes in. Where here to make email nice again. Sign up, make some lists, and we&#39;ll help you take control of your life.<br><br>
-It should be simple. You should get the same satisfaction using email as finishing a great project. That&#39;s where CheckMail comes in. Sign up, make some lists, and we&#39;ll help you take control of your life.  </p> 
+					
+					<p class="eighty-width auto-margin"><br> We have big plans for the future. If you're curious about the app, the team, or our plans for the future, feel free to reach out. <br><br> Since we're all about email, the best way to reach us is to <a href="" type="button" data-toggle="modal" data-target="#send-email-modal">shoot us a message</a>. </p> 
 					<!-- <img src="http://www.thecoolhunter.net/images/loca.jpg" alt=""> -->
 
 
