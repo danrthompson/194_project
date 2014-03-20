@@ -2,15 +2,13 @@ class Api::LabelsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		render text: Label.label_array_to_json(current_user.get_primary_labels)
-		# render text: Label.label_array_to_json(current_user.labels.order(:order_value))
+		hidden = if params['hidden'].nil? then false else params['hidden'] end
+		render text: Label.label_array_to_json(current_user.labels.where(hidden: hidden).order(:order_value))
 	end
 
 	def create
-		label = Label.new
+		label = Label.new(hidden: false, name: params['title'], order_value: params['order'])
 		label.user = current_user
-		label.name = params['title']
-		label.order_value = params['order']
 
 		label.save!
 
@@ -31,6 +29,10 @@ class Api::LabelsController < ApplicationController
 			label.order_value = params['order']
 		end
 
+		if not params['hidden'].nil? then
+			label.hidden = params['hidden']
+		end
+
 		label.save!
 
 		head :ok
@@ -42,17 +44,6 @@ class Api::LabelsController < ApplicationController
 			head :unauthorized and return
 		end
 		render text: (label.to_hash).to_json
-	end
-	
-	def destroy
-		label = Label.find(params[:id])
-		if label.user_id != current_user.id then
-			head :unauthorized and return
-		end
-
-		label.destroy
-
-		head :ok
 	end
 
 	def order

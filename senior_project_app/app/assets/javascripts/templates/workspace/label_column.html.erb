@@ -1,20 +1,23 @@
 
 	<!-- Email panel -->
-	<div class="panel panel-label">
+	<div class="panel panel-label" ng-class="{true: 'editing'}[label.editing]">
 
 		<!-- Panel heading -->
 		<div class="panel-heading label-heading">
-			<h4 class="label-title"
-				 ng-click="label.editing = true"
-				 ng-hide="label.editing">
-				 {{ label.title }}
-			</h4>
+			<div class="label-title">
+				<h4 class="label-title"
+					 ng-click="label.editing != label.editing">
+					 {{ label.title }}
+				</h4>
+			</div>
 
-			<div class="input-group" ng-show="label.editing">
-				<input type="text" class="form-control form-inverted" placeholder="{{label.title}}" ng-model="label.new_title">
-				<span class="input-group-btn">
-					<button class="btn btn-inverted-success" ng-click="editLabel(label);"><span class="ion-checkmark"></span></button>
-				</span>
+			<div class="label-edit-view" ng-show="label.editing">
+				<!-- <div class="input-group">
+					<input type="text" class="form-control form-inverted" placeholder="{{label.title}}" ng-model="label.new_title">
+					<span class="input-group-btn">
+						<button class="btn btn-inverted-success" ng-click="editLabel(label);"><span class="ion-checkmark"></span></button>
+					</span>
+				</div> -->
 			</div>
 		</div>
 	
