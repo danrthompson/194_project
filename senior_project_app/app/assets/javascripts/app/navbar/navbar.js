@@ -24,6 +24,18 @@ angular.module('navbar', ['modals'])
 .controller('NavbarCtrl', ['$scope', '$modal', function($scope, $modal) {
 	$scope.scrollToLabel = function(label) { alert("Not implemented yet."); };
 
+	$scope.addLabel = function() {
+		var modalInstance = $modal.open({
+			templateUrl: 'modals/add_label.html',
+			controller: 'AddLabelModalCtrl',
+		})
+
+		modalInstance.result.then(function(title) {
+			console.log(title);
+		})
+	};
+
+
 	$scope.openHelp      = function() {
 		$modal.open({
 			templateUrl: 'modals/help.html',

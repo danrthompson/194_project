@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class CheckMailController < ApplicationController
   def index
     if not current_user then
       redirect_to action: :home and return
