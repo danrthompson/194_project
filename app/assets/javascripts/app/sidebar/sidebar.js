@@ -27,8 +27,6 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 
 .controller('SidebarCtrl', ['$scope', '$location', '$element', 'Restangular', function($scope, $location, $element, Restangular) {
 	$scope.sendEmail = function(draft) {
-		alert('hi');
-		
 		var email = {
 			to: draft.to,
 			subject: draft.subject,
