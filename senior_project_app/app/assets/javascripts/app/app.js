@@ -41,6 +41,10 @@ angular.module('checkmail', [
 		});
 	};
 
+	window.setInterval(function() {
+		$scope.refreshLabels();
+	}, 60000);
+
 	$scope.state = {
 		selected_thread: null,
 		composing_email: false
