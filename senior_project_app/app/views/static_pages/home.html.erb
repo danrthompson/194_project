@@ -24,7 +24,7 @@
 				    <div class="navbar-right-side home-navbar-right">
 				    	<ul class="nav navbar-nav pull-right">
 			    			<li><button class="btn navbar-btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#sign-up-modal">Sign Up</button></li>
-			    			<li><button class="btn navbar-btn btn-sm btn-default" type="button" data-toggle="modal" data-target="#login-modal">Login</button></li>
+			    			<li><a href="<%= url_for user_omniauth_authorize_path(:google_oauth2) %>" class="btn navbar-btn btn-sm btn-default">Login</a></li>
 				    		<li><a href="#" class="navbar-brand"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
 				    	</ul>
 				    </div>

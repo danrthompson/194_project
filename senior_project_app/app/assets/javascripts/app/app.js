@@ -66,8 +66,17 @@ angular.module('checkmail', [
 			thread.emails = emails;
 		});
 
+		$scope.markRead(thread);
+
 		$scope.state.selected_thread = thread;
 		$scope.state.composing_email = false;
+	};
+
+	$scope.markRead = function(thread) {
+		Restangular.one('threads', thread.id).customPUT({id: thread.id, read: true}).then(function() {
+			// once the server comes back to us, let's really call the email read.
+			thread.read = true;
+		});
 	};
 
 	$scope.deselectThread = function() {
@@ -75,7 +84,11 @@ angular.module('checkmail', [
 	};
 
 	$scope.isSelectedThread = function(thread) {
-		return thread === $scope.state.selected_thread;
+		if ($scope.state.selected_thread) {
+			return thread.id === $scope.state.selected_thread.id;
+		}
+
+		return false;
 	};
 
 	$scope.openCompose = function() {
