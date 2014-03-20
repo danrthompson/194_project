@@ -91,12 +91,12 @@ class Email < ActiveRecord::Base
   end
 
   def update_read_gmail(read_status, gmail)
-    gmail_email = User.get_all_mail_mailbox(gmail).emails(msg_id: self.gmsg_id).first
-    if read_status then
-      gmail_email.read!
-    else
-      gmail_email.unread!
-    end
+    # gmail_email = User.get_all_mail_mailbox(gmail).emails(msg_id: self.gmsg_id).first
+    # if read_status then
+    #   gmail_email.read!
+    # else
+    #   gmail_email.unread!
+    # end
   end
 
 end
