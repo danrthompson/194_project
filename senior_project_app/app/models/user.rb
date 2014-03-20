@@ -56,10 +56,6 @@ class User < ActiveRecord::Base
 		Gmail.connect!(:xoauth2, self.email, oauth2_token: self.auth_token)
 	end
 
-	def get_primary_labels
-		Label.joins(:conversations).where('conversations.user_id' => self.id).uniq.order(:order_value)
-	end
-
 	def refresh_token_if_necessary
 		if self.auth_token_expiration - 100 < Time.now then
 			data = {
@@ -85,9 +81,9 @@ class User < ActiveRecord::Base
 		end
 		gmail.peek = true
 		if self.time_last_pull then
-			# if Time.now - self.time_last_pull < 7200 then
-			# 	return
-			# end
+			if Time.now - self.time_last_pull < 7200 then
+				return
+			end
 			# pull email since last pull
 			recent_emails = self.class.get_all_mail_mailbox(gmail).emails(after: self.time_last_pull - 1.day)
 		else
@@ -134,7 +130,7 @@ class User < ActiveRecord::Base
 					label_name = Label.legible_name label_name
 					label = Label.where(user_id: self.id, name: label_name).first
 					if not label then
-						label = Label.create(user_id: self.id, name: label_name)
+						label = Label.create(user_id: self.id, name: label_name, hidden: false)
 					end
 					label.emails << new_email
 				end

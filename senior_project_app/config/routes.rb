@@ -86,7 +86,7 @@ SeniorProjectApp::Application.routes.draw do
   put 'api/threads/order'
 
   namespace :api do
-    resources :labels, except: [:new, :edit]
+    resources :labels, except: [:new, :edit, :destroy]
     resources :threads, except: [:new, :edit, :index]
     resources :emails, except: [:new, :edit, :index] do
       member do
