@@ -89,6 +89,8 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 			body: draft.content
 		};
 
-		Restangular.all('threads/').post(email);
+		Restangular.all('threads/').post(email).then(function() {
+			$scope.draft = {};
+		});
 	};
 }]);

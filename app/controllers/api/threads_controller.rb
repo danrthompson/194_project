@@ -16,7 +16,7 @@ class Api::ThreadsController < ApplicationController
 		gmail.deliver! do
 			to to_data
 			subject subject_data
-			text_part do
+			html_part do
 				body body_data
 			end
 			if cc_data then
