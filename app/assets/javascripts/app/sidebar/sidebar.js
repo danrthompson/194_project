@@ -26,11 +26,15 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 }])
 
 .controller('SidebarCtrl', ['$scope', '$location', '$element', 'Restangular', function($scope, $location, $element, Restangular) {
-	// $scope.$watch('state.selected_thread', function(thread) {
-	// 	$scope.selected_thread = thread;
-	// });
+	$scope.sendEmail = function(draft) {
+		var email = {
+			to: draft.to,
+			subject: draft.subject,
+			body: draft.content
+		};
 
-	// $scope.eraseReply();
+		Restangular.all('threads/').post(email);
+	};
 
 	$scope.expandReply = function() {
 		$scope.reply.address = getFrom(getLastEmail($scope.getSelectedThread())).address;
