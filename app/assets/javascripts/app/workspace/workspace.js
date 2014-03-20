@@ -1,24 +1,10 @@
 angular.module('workspace', ['resources.labels', 'resources.threads'])
 
-// .config(['$routeSegmentProvider',function($routeSegmentProvider) {
-	
-// }])
-
 .directive('workspace', [function(){
-	// Runs during compile
 	return {
-		// name: '',
-		// priority: 1,
-		// terminal: true,
-		// scope: {}, // {} = isolate, true = child, false/undefined = no change
 		controller: 'WorkspaceCtrl',
-		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-		// template: 'wutsup',
 		templateUrl: 'workspace/workspace.html',
-		// replace: true,
-		// transclude: true,
-		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 		link: function($scope, iElm, iAttrs, controller) {
 			
 		}
@@ -26,29 +12,16 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 }])
 
 .directive('labelColumn', [function(){
-	// Runs during compile
 	return {
-		// name: '',
-		// priority: 1,
-		// terminal: true,
-		// scope: {}, // {} = isolate, true = child, false/undefined = no change
 		controller: 'WorkspaceCtrl',
-		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-		// template: 'wutsup',
 		templateUrl: 'workspace/label_column.html',
-		// replace: true,
-		// transclude: true,
-		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-		link: function($scope, iElm, iAttrs, controller) {
-			
-		}
 	};
 }])
 
 .controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', '$http', function($scope, $location, Restangular, $http) {
 	$scope.archiveThread = function(thread) {
-		$http({method: 'DELETE', url: '/api/threads/' + thread.id}).success(function(data, status) {
+		$http.delete('/api/threads/' + thread.id).success(function(data, status) {
 			console.log(status);
 		});
 	};
