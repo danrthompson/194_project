@@ -66,6 +66,7 @@
 				padding: 70px 0px;
 				margin: auto;
 				color: white;
+				letter-spacing: 1px;
 			}
 		}
 
@@ -88,13 +89,14 @@
 			h2{
 				// margin-left: 0;
 				// padding-left: 0;
-				text-align: left;
+				text-align: center;
 				margin-bottom: 0;
 				padding-bottom: 0;
+
 			}
 			p{
 				margin: 0;
-				padding-left: 0;
+				// padding-left: 0;
 			}
 		}
 		.content-wrapper{
@@ -209,7 +211,7 @@
 
 	.left-image{
 		height: 100%;
-		background-image: image-url("computer.png");
+		// background-image: image-url(<%= asset_path 'computer.png' %>);
 		background-repeat:no-repeat;
 		background-size:cover;
 		// background-size: contain;
@@ -227,4 +229,16 @@
 .message-us-footer{
 	min-height: 130px;
 	padding-top: 10px;
+}
+
+.half-width{
+	width: 50%;
+}
+
+.eighty-width{
+	width: 80%;
+}
+
+.auto-margin{
+	margin: auto !important;
 }

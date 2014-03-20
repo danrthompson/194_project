@@ -2,8 +2,14 @@
 	<head>
 		<title>CheckMail</title>
 
-		<link rel="stylesheet" href="css/checkmail.css">
+		<!-- <link rel="stylesheet" href="css/checkmail.css"> -->
 		<!-- <link href="css/bootstrap-switch.css" rel="stylesheet"> -->
+		<title>CheckMail</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	  	    
+		<%= javascript_include_tag "bootstrap" %>
+		<%= stylesheet_link_tag "checkmail", :media => "all" %>
+	
 
 	</head>
 	<body ng-controller="AppCtrl">
@@ -14,16 +20,16 @@
 					<!-- Navbar label navigation -->
 					<div class="navbar-left-side">
 						<ul class="nav navbar-nav quick-nav-labels">
-							<li><a href="/home.html">Home</a></li>
-							<li><a href="/tour.html">Tour</a></li>
-							<li><a href="/press.html">Press</a></li>
+							<li><a href="welcome.html">Home</a></li>
+							<li><a href="tour.html">Tour</a></li>
+							<li><a href="press.html">Press</a></li>
 					    </ul>
 					</div>
 				    <div class="navbar-right-side home-navbar-right">
 				    	<ul class="nav navbar-nav pull-right">
 			    			<li><button class="btn navbar-btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#sign-up-modal">Sign Up</button></li>
 			    			<li><button class="btn navbar-btn btn-sm btn-default" type="button" data-toggle="modal" data-target="#login-modal">Login</button></li>
-				    		<li><a href="#" class="navbar-brand"><img src="img/logo.svg" height="19" alt=""></a></li>
+				    		<li><a href="#" class="navbar-brand"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
 				    	</ul>
 				    </div>
 
@@ -32,13 +38,14 @@
 
 
 			<div class="ending-text about-us-page">
+				<h2 class="center-text">WHAT WE'RE ABOUT</h2><br>
 				<div class="content-wrapper">
-					<h2 class="center-text">WHAT WE'RE ABOUT</h2>
+					
 					<br>
 					<p class="half-width pull-right">Email shouldn&#39;t be a worry. It should be simple. You should get the same satisfaction using email as finishing a great project.<br><br>
 
 That&#39;s where CheckMail comes in. Where here to make email nice again. Sign up, make some lists, and we&#39;ll help you take control of your life.  </p> 
-					<div class="half-width pull-left logo-img"><a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#sign-up-modal"><img src="img/check-mail-logo.png" alt=""></a></div>
+					<div class="half-width pull-left logo-img"><a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#sign-up-modal"><img src="<%= image_path("logo.svg") %>" alt=""></a></div>
 				</div>
 			</div>
 

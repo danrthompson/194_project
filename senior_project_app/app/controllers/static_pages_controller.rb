@@ -14,6 +14,10 @@ class StaticPagesController < ApplicationController
 
   end
 
+  def welcome
+    render :layout => false
+  end
+
   def about
   	render :layout => false
   end
