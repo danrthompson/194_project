@@ -17,7 +17,7 @@ logo.svg: logo-03eb2fcc4eda86b0975f195bf16a7e6d.svg
 logo/index.svg: logo-03eb2fcc4eda86b0975f195bf16a7e6d.svg
 screen.png: screen-8857e2467339b45bdb257755bf14364c.png
 screen/index.png: screen-8857e2467339b45bdb257755bf14364c.png
-application.js: application-a0b6580fbfcac57ebd84fd502f547846.js
-application/index.js: application-a0b6580fbfcac57ebd84fd502f547846.js
+application.js: application-83541e56e64617e7635ac424a2d194f2.js
+application/index.js: application-83541e56e64617e7635ac424a2d194f2.js
 jquery.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
 jquery/index.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
