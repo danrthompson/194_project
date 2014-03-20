@@ -1,6 +1,0 @@
-%p test
-%p= "User ID: #{current_user.uid}"
-%p= link_to "Log Out", destroy_user_session_path, method: :delete
-%p= link_to "Write email", '/compose_email'
-- @labels.each do |label|
-	%h3= link_to "Label: #{label.name}", "/label/#{label.id}"

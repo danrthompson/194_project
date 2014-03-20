@@ -9,6 +9,19 @@ SeniorProjectApp::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  put 'api/labels/order'
+  put 'api/threads/order'
+  post 'api/emails/reply'
+
+  namespace :api do
+    resources :labels, except: [:new, :edit, :destroy]
+    resources :threads, except: [:new, :edit, :index]
+    resources :emails, except: [:new, :edit, :index] do
+      member do
+        get :html
+      end
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -66,29 +79,9 @@ SeniorProjectApp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  # match '/auth/:provider/callback' => "google#authenticate"
-  # get 'test' => 'google#test'
 
 
-  # get 'api/get_labels/:user_id' => 'api#get_labels'
-  # get 'api/get_threads/:label_id' => 'api#get_threads'
-  # get 'api/get_emails/:conversation_id' => 'api#get_emails'
-  # get 'api/send_email' => 'api#send_email'
 
-
-  put 'api/labels/order'
-  put 'api/threads/order'
-  post 'api/emails/reply'
-
-  namespace :api do
-    resources :labels, except: [:new, :edit, :destroy]
-    resources :threads, except: [:new, :edit, :index]
-    resources :emails, except: [:new, :edit, :index] do
-      member do
-        get :html
-      end
-    end
-  end
 
 
 end
