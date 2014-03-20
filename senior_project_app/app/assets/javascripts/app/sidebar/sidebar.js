@@ -51,6 +51,11 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 		$scope.eraseReply();
 	};
 
+	$scope.toggleCollapse = function(email) {
+		if (typeof email.collapsed === 'undefined') email.collapsed = true;
+		email.collapsed = !email.collapsed;
+	};
+
 	$scope.$watch($scope.getSelectedThread, function(oldValue, newValue) {
 		if (oldValue != newValue) {
 			$scope.eraseReply();

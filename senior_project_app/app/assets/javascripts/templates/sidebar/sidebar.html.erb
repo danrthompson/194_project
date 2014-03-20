@@ -11,8 +11,8 @@
 			<li class="list-group-item email-display-item" 
 				ng-repeat="email in getSelectedThread().emails" 
 				ng-class="{true: 'collapsed'}[email.collapsed]"
-				ng-click="email.collapsed = false">
-				<div class="list-group-item-heading row">
+				ng-click="toggleCollapse(email)">
+				<div class="list-group-item-heading row email-metadata">
 					<div class="col-md-8">
 						<h5>{{ email | displayFrom }}</h5>
 					</div>
