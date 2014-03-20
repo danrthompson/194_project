@@ -77,6 +77,7 @@ SeniorProjectApp::Application.routes.draw do
 
   put 'api/labels/order'
   put 'api/threads/order'
+  post 'api/emails/reply'
 
   namespace :api do
     resources :labels, except: [:new, :edit, :destroy]
