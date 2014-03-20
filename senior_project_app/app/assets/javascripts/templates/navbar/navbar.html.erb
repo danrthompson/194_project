@@ -1,19 +1,18 @@
-<div class="navbar navbar-default navbar-static-top">
+<div class="navbar navbar-default navbar-static-top" ng-class="{true: 'sidebar-visible'}[sidebarIsVisible()]">
 	<!-- Navbar label navigation -->
 	<div class="navbar-left-side">
-		<div class="pull-right">
+		<button class="btn btn-sm navbar-btn btn-success"><span class="ion-refresh"></span></button>
+		<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="openCompose()">Compose</button>
 			<button class="btn btn-sm navbar-btn btn-inverted-primary">Add label</button>
-			<button class="btn btn-sm navbar-btn btn-inverted-default" 
-				    ng-click="closeSidebar();"
-				    ng-show="sidebarIsVisible();">
-				    Collapse sidebar
-			</button>
-		</div>
 	</div>
 
 	<!-- Help and settings -->
     <div class="navbar-right-side">
-    	<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="openCompose()">Compose</button>
+    <button class="btn btn-sm navbar-btn btn-inverted-default" 
+				    ng-click="closeSidebar();"
+				    ng-show="sidebarIsVisible();">
+				    Collapse sidebar
+			</button>
     	<!-- <button type="button" data-toggle="modal" data-target="#myModal">Test Modal</button> -->
     	<ul class="nav navbar-nav pull-right">
 		 	<!-- <li><a href="#" ><i class="ion-ios7-help"></i></a></li> -->

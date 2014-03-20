@@ -14,8 +14,11 @@
 .navbar-right-side {
 	width: @sidebar-width;
 	float: left;
-	border-left: 1px solid @gray-light;
 	padding-left: @padding-base-horizontal;
+}
+
+.navbar.sidebar-visible .navbar-right-side {
+	border-left: 1px solid @gray-light;
 }
 
 // position: relative;
