@@ -1,10 +1,17 @@
 class StaticPagesController < ApplicationController
   def index
+    if not current_user then
+      redirect_to action: :home and return
+    end
   	render :layout => false
   end
 
   def home
-  	render :layout => false
+    if current_user then
+      redirect_to action: :index and return
+    end
+    render :layout => false
+
   end
 
   def about

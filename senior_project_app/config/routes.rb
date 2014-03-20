@@ -1,6 +1,7 @@
 SeniorProjectApp::Application.routes.draw do
-  get "static_pages/index"
-  get "static_pages/home"
+  root to: 'static_pages#home'
+  get "app" => 'static_pages#index'
+  get "home" => 'static_pages#home'
   get "static_pages/about"
   get "static_pages/press"
   get "static_pages/tour"
@@ -66,15 +67,7 @@ SeniorProjectApp::Application.routes.draw do
 
   # match '/auth/:provider/callback' => "google#authenticate"
   # get 'test' => 'google#test'
-  root to: 'homepage#homepage'
-  get 'index' => 'mail#index'
-  get 'compose_email' => 'mail#compose_email'
-  post 'compose_email' => 'mail#compose_email_post'
-  match '/label/:label_id' => 'mail#label'
-  match '/email/:email_id' => 'mail#email'
-  match '/manage_email_labels/:email_id' => 'mail#manage_email_labels'
-  match '/manage_email_labels_post/:email_id' => 'mail#manage_email_labels_post'
-  get 'homepage/testing_angular'
+
 
   # get 'api/get_labels/:user_id' => 'api#get_labels'
   # get 'api/get_threads/:label_id' => 'api#get_threads'
