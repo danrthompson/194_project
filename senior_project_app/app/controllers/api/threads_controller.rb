@@ -42,6 +42,10 @@ class Api::ThreadsController < ApplicationController
 			thread.order_value = params['order']
 		end
 
+		if not params['read'].nil? then
+			thread.update_read_status(!!params['read'])
+		end
+
 		thread.save!
 
 		head :ok

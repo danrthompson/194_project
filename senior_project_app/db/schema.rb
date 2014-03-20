@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140320043042) do
+ActiveRecord::Schema.define(:version => 20140320062522) do
 
   create_table "conversations", :force => true do |t|
     t.string   "thread_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20140320043042) do
     t.integer  "label_id"
     t.integer  "order_value",      :limit => 8
     t.boolean  "archived"
+    t.boolean  "read"
   end
 
   create_table "email_addresses", :force => true do |t|
@@ -41,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20140320043042) do
     t.string   "subject"
     t.text     "html_body"
     t.text     "text_body"
-    t.boolean  "read"
     t.boolean  "sent"
     t.integer  "uid"
     t.datetime "created_at",      :null => false

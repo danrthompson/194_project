@@ -1,13 +1,13 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :thread_id, :most_recent_date, :user_id, :archived
+  attr_accessible :thread_id, :most_recent_date, :user_id, :archived, :read
   has_many :emails
   belongs_to :user
   belongs_to :label
 
-	def self.add_email_to_conversation(email)
+	def self.add_email_to_conversation(email, email_read=false)
 		conversation = self.where(user_id: email.user_id, thread_id: email.thread_id).first
 		if not conversation then
-			conversation = self.create(user_id: email.user_id, thread_id: email.thread_id, most_recent_date: email.date, archived: false)
+			conversation = self.create(user_id: email.user_id, thread_id: email.thread_id, most_recent_date: email.date, archived: false, read: email_read)
 		end
 		conversation.emails << email
 		if not conversation.most_recent_date or email.date > conversation.most_recent_date then
@@ -15,6 +15,9 @@ class Conversation < ActiveRecord::Base
 		end
 		if not conversation.label then
 			conversation.label = email.get_primary_label
+		end
+		if not conversation.read and email_read then
+			conversation.read = email_read
 		end
 		conversation.save
 	end
@@ -52,7 +55,8 @@ class Conversation < ActiveRecord::Base
 			email_ids:       email_ids,
 			latest_date:     self.most_recent_date.to_i*1000,
 			email_addresses: from_addrs,
-			archived:        self.archived
+			archived:        self.archived,
+			read:            self.read
 		}
 	end
 
@@ -70,7 +74,8 @@ class Conversation < ActiveRecord::Base
 			label_id: self.label_id,
 			order:    self.get_order(),
 			emails:   Email.email_array_to_json(self.emails.order(:date)),
-			archived: self.archived
+			archived: self.archived,
+			read:     self.read
 		}
 	end
 
@@ -100,6 +105,15 @@ class Conversation < ActiveRecord::Base
 			end
 		end
 		self.label = new_label
+		self.save!
+	end
+
+	def update_read_status(read_status)
+		gmail = self.user.get_gmail_connection
+		self.emails.each do |email|
+			email.update_read_gmail read_status, gmail
+		end
+		self.read = read_status
 		self.save!
 	end
 

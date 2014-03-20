@@ -1,5 +1,5 @@
 class Email < ActiveRecord::Base
-  attr_accessible :date, :html_body, :read, :sent, :subject, :text_body, :thread_id, :uid, :user_id, :gmsg_id
+  attr_accessible :date, :html_body, :sent, :subject, :text_body, :thread_id, :uid, :user_id, :gmsg_id
 
   has_many :email_addresses
   belongs_to :user
@@ -66,7 +66,6 @@ class Email < ActiveRecord::Base
       subject:         self.subject,
       has_html:        !self.html_body.nil?,
       text_body:       self.text_body,
-      read:            false,
       email_addresses: Email.email_addresses_to_hash(self.email_addresses)
     }
   end
@@ -88,6 +87,15 @@ class Email < ActiveRecord::Base
         label.emails_labels.where(email_id: self.id).destroy_all
         gmail_email.gmail_unflag(Label.gem_name(label.name))
       end
+    end
+  end
+
+  def update_read_gmail(read_status, gmail)
+    gmail_email = User.get_all_mail_mailbox(gmail).emails(msg_id: self.gmsg_id).first
+    if read_status then
+      gmail_email.read!
+    else
+      gmail_email.unread!
     end
   end
 
