@@ -1,8 +1,9 @@
-class StaticPagesController < ApplicationController
+class CheckMailController < ApplicationController
   def index
     if not current_user then
       redirect_to action: :home and return
     end
+    current_user.delay.pull_email_if_necessary
   	render :layout => false
   end
 
