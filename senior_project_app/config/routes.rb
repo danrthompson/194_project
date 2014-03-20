@@ -1,11 +1,11 @@
 SeniorProjectApp::Application.routes.draw do
-  root to: 'static_pages#home'
-  get "app" => 'static_pages#index'
-  get "home" => 'static_pages#home'
-  get "static_pages/about"
-  get "static_pages/press"
-  get "static_pages/tour"
-  get "static_pages/welcome"
+  root to: 'check_mail#home'
+  get "app" => 'check_mail#index'
+  get "home" => 'check_mail#home'
+  get "about" => 'check_mail#about'
+  get "press" => 'check_mail#press'
+  get "tour" => 'check_mail#tour'
+  get "welcome" => 'check_mail#welcome'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 

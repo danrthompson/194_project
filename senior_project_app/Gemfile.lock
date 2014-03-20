@@ -67,6 +67,11 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
     devise (2.2.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -214,6 +219,7 @@ DEPENDENCIES
   angularjs-rails
   awesome_print
   coffee-rails (~> 3.2.1)
+  delayed_job_active_record
   devise
   gmail!
   gmail_xoauth
