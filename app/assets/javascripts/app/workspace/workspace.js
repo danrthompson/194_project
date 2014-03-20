@@ -46,10 +46,10 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 	};
 }])
 
-.controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', function($scope, $location, Restangular) {
+.controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', '$http', function($scope, $location, Restangular, $http) {
 	$scope.archiveThread = function(thread) {
-		Restangular.one('threads', thread.id).remove(null, {'Content-Type': 'application/json'}).then(function() {
-			$scope.refreshLabels();
+		$http({method: 'DELETE', url: '/api/threads/' + thread.id}).success(function(data, status) {
+			console.log(status);
 		});
 	};
 
