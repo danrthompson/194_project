@@ -27,6 +27,8 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 
 .controller('SidebarCtrl', ['$scope', '$location', '$element', 'Restangular', function($scope, $location, $element, Restangular) {
 	$scope.sendEmail = function(draft) {
+		alert('hi');
+		
 		var email = {
 			to: draft.to,
 			subject: draft.subject,
@@ -55,13 +57,9 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 		var email = {
 			id: reply_to.id,
 			body: $scope.reply.message
-		}
+		};
 
-		console.log(Restangular)
-
-		Restangular.all('emails/reply').customPOST(email).then(function() {
-			console.log("dunzo")
-		})
+		Restangular.all('emails/reply').customPOST(email);
 
 		$scope.eraseReply();
 	};
