@@ -1,9 +1,11 @@
 <div class="navbar navbar-default navbar-static-top" ng-class="{true: 'sidebar-visible'}[sidebarIsVisible()]">
 	<!-- Navbar label navigation -->
 	<div class="navbar-left-side">
-		<button class="btn btn-sm navbar-btn btn-success"><span class="ion-refresh"></span></button>
+		<button class="btn btn-sm navbar-btn btn-inverted-success" ng-click="refreshLabels()">
+			<span ng-class="{true: 'ion-refreshing', false: 'ion-refresh'}[labels_refreshing]"></span>
+		</button>
 		<button class="btn navbar-btn btn-sm btn-inverted-success" ng-click="openCompose()">Compose</button>
-			<button class="btn btn-sm navbar-btn btn-inverted-primary">Add label</button>
+		<button class="btn btn-sm navbar-btn btn-inverted-primary">Add label</button>
 	</div>
 
 	<!-- Help and settings -->
@@ -17,7 +19,7 @@
     	<ul class="nav navbar-nav pull-right">
 		 	<!-- <li><a href="#" ><i class="ion-ios7-help"></i></a></li> -->
 		 	<li><a href="#" ng-click="openHelp()"><i class="ion-help"></i></a></li>
-    		<li><a href="#" ng-click="openSettings()"><i class="ion-settings"></i></a></li>
+    		<!-- <li><a href="#" ng-click="openSettings()"><i class="ion-settings"></i></a></li> -->
     		<li><a href="#" ng-click="openAbout()"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
     	</ul>
     </div>

@@ -47,38 +47,14 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 }])
 
 .controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', function($scope, $location, Restangular) {
+	$scope.locked_label = null;
 
-	$scope.completeThread = function(thread) {
+	$scope.lockLabel = function(label) {
+		$scope.locked_label = label;
+	};
+
+	$scope.addCollaborator = function(label) {
 		alert("Not implemented yet.");
-	};
-
-	$scope.reorderLabels = function(labels) {
-		alert("Not implemented yet.");
-	};
-
-	$scope.addLabel = function(label) {
-	};
-
-	$scope.editLabel = function(label) {
-		alert("Not implemented yet.");
-	};
-
-	$scope.addContributor = function(label) {
-		alert("Not implemented yet.");
-	};
-
-	$scope.addFilter = function(label) {
-		alert("Not implemented yet.");
-	};
-
-	$scope.editLabel = function(label) {
-		if (label.new_title != null && label.new_title.length > 0) {
-			label.title = label.new_title;
-			label.customPUT({id: label.id, title: label.title});
-		}
-
-		label.new_title = null;
-		label.editing = false;
 	};
 
 	$scope.labelSortableOptions = {
@@ -108,13 +84,15 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 
 			var new_order = calculateOrder(label, position);
 
-			Restangular.one('threads', thread.id).customPUT({id: thread.id, order: new_order, label_id: label.id});
+			Restangular.one('threads', thread.id).customPUT({id: thread.id, order: new_order, label_id: label.id}).then($scope.refreshLabels);
 		}
 	};
 
 	function calculateOrder(label, position) {
 		var before = label.threads[position - 1],
 			after = label.threads[position+1];
+
+		console.log(before, after);
 
 		if (!before && !after) {
 			return -1;

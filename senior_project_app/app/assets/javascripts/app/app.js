@@ -28,6 +28,7 @@ angular.module('checkmail', [
 	$scope.labels = [];
 
 	$scope.refreshLabels = function() {
+		$scope.labels_refreshing = true;
 		Restangular.all('labels').getList().then(function(labels) {
 			labels.forEach(function(e) {
 				e.threads = _.sortBy(e.threads, 'order').reverse();
@@ -36,6 +37,7 @@ angular.module('checkmail', [
 			labels = _.sortBy(labels, 'order');
 
 			$scope.labels = labels;
+			$scope.labels_refreshing = false;
 		});
 	};
 

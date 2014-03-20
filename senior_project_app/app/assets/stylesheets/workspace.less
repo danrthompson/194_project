@@ -24,12 +24,20 @@
 
 .panel-label {
 	&.editing {
-		.label-heading {
-			height: 50px + @line-height-computed;
-		}
 
 		.thread-list {
-			top: 50px + @line-height-computed;
+			top: 50px + 32px;
+		}
+	}
+
+	&.locked {
+		h4:hover {
+			&:after {
+				.ion;
+				content: "\f200";
+				font-size: 12px;
+				color: rgba(255,255,255,0.5);
+			}
 		}
 	}
 }
@@ -59,6 +67,17 @@
 
 	&:last-child {
 		margin-right: @padding-base-horizontal;
+	}
+}
+
+.label-edit-menu {
+	position: absolute;
+	width: @label-column-width;
+	top: 50px;
+
+	.btn {
+		border-radius: 0;
+		border: 0;
 	}
 }
 
@@ -100,7 +119,7 @@
 			.ion;
 			content: "\f13d";
 			font-size: 12px;
-			color: @gray-light;
+			color: rgba(255,255,255,0.5);
 		}
 	}
 }
