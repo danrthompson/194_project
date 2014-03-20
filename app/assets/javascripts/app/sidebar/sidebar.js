@@ -26,15 +26,6 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 }])
 
 .controller('SidebarCtrl', ['$scope', '$location', '$element', 'Restangular', function($scope, $location, $element, Restangular) {
-	$scope.sendEmail = function(draft) {
-		var email = {
-			to: draft.to,
-			subject: draft.subject,
-			body: draft.content
-		};
-
-		Restangular.all('threads/').post(email);
-	};
 
 	$scope.expandReply = function() {
 		$scope.reply.address = getFrom(getLastEmail($scope.getSelectedThread())).address;
@@ -88,12 +79,16 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 	}
 }])
 
-.controller('ComposeCtrl', ['$scope', 'Threads', function($scope, Threads) {
+.controller('ComposeCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
 	$scope.draft = {};
 	
-	$scope.sendEmail = function() {
-		console.log($scope.draft);
-		$scope.draft = {};
-		$scope.closeCompose();
+	$scope.sendEmail = function(draft) {
+		var email = {
+			to: draft.to,
+			subject: draft.subject,
+			body: draft.content
+		};
+
+		Restangular.all('threads/').post(email);
 	};
 }]);
