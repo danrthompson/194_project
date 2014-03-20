@@ -47,9 +47,11 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 }])
 
 .controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', function($scope, $location, Restangular) {
-	// $scope.lockLabel = function(label) {
-	// 	$scope.locked_label = label;
-	// };
+	$scope.archiveThread = function(thread) {
+		thread.remove().then(function() {
+			$scope.refreshLabels();
+		});
+	};
 
 	$scope.hideLabel = function(label) {
 		Restangular.one('labels/', label.id).customPUT({id: label.id, hidden: true}).then($scope.refreshLabels);
@@ -62,7 +64,7 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 	$scope.editLabel = function(label) {
 		if (typeof label.editing === 'undefined') label.editing = false;
 		label.editing = !label.editing;
-	}
+	};
 
 	$scope.labelSortableOptions = {
 		tolerance: "pointer",

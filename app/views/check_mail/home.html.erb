@@ -16,16 +16,16 @@
 					<!-- Navbar label navigation -->
 					<div class="navbar-left-side">
 						<ul class="nav navbar-nav quick-nav-labels">
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="tour.html" >Tour</a></li>
-							<li><a href="press.html" >Press</a></li>
+							<li><a href="/about">About Us</a></li>
+							<li><a href="/tour" >Tour</a></li>
+							<li><a href="/press" >Press</a></li>
 					    </ul>
 					</div>
 				    <div class="navbar-right-side home-navbar-right">
 				    	<ul class="nav navbar-nav pull-right">
-			    			<li><button class="btn navbar-btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#sign-up-modal">Sign Up</button></li>
+			    			<li><a href="<%= url_for user_omniauth_authorize_path(:google_oauth2) %>" class="btn navbar-btn btn-sm btn-success">Sign Up</a></li>
 			    			<li><a href="<%= url_for user_omniauth_authorize_path(:google_oauth2) %>" class="btn navbar-btn btn-sm btn-default">Login</a></li>
-				    		<li><a href="#" class="navbar-brand"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
+				    		<li><a href="/" class="navbar-brand"><img src="<%= image_path("logo.svg") %>" height="19" alt=""></a></li>
 				    	</ul>
 				    </div>
 
@@ -62,7 +62,7 @@
 					<p class="half-width pull-right">Email shouldn&#39;t be a worry. It should be simple. You should get the same satisfaction using email as finishing a great project.<br><br>
 
 					That&#39;s where CheckMail comes in. We&#39;re here to make email nice again. Sign up, make some lists, and we&#39;ll help you take control of your life.  </p> 
-					<div class="half-width pull-left logo-img"><a href="" class="sign-up-button" type="button" data-toggle="modal" data-target="#sign-up-modal"><img src="<%= image_path("check-mail-logo.png") %>" alt=""></a></div>
+					<div class="half-width pull-left logo-img"><a href="<%= url_for user_omniauth_authorize_path(:google_oauth2) %>" class="sign-up-button"><img src="<%= image_path("check-mail-logo.png") %>" alt=""></a></div>
 				</div>
 			</div>
 
@@ -70,121 +70,5 @@
     			<a href="" class="btn btn-lg btn-success" type="button" data-toggle="modal" data-target="#login-modal">Sign Up With Gmail</a>
 			</div>
 		</div>
-
-	
-
-
-
-		  	<!-- Add Filter Modal -->
-		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      
-			  <!-- Header Content -->
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h3 class="modal-title">Login</h3>
-		      </div>
-		      
-			  <!-- Body Content -->
-		      <div class="modal-body">
-		       <!--  
-		        <div class="account-settings email-account-wrapper">
-		  
-					<ul class="active-acctounts-list">
-						<li>Pull all emails from:    <b>sampleacct@gmail.com</b><a href="" class="pull-right">Delete Filter</a></li>
-						<li>Pull emails with subject:    <b>BASES</b><a href="" class="pull-right">Delete Filter</a></li>
-					</ul>
-					<a href="" class="show-me pull-right" id="add-account-button">+ Add Filter</a>
-		        </div> -->
-				<div class="account-settings email-account-wrapper">
-		  
-					<ul class="active-acctounts-list">
-						<li>
-							<div class="input-group">
-							  <span class="input-group-addon">Email</span>
-							  <input type="text" class="form-control" placeholder="zeus@olympus.com">
-							</div>
-						</li>
-						<li>
-							<div class="input-group">
-							  <span class="input-group-addon">Password</span>
-							  <input type="password" class="form-control" placeholder="Top Secret">
-							</div>
-						</li>
-					</ul>
-		        </div>
-		    
-
-		      </div>
-
-		      <!-- Footer Content -->
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-		        <button type="button" class="btn btn-success" data-dismiss="modal">Login</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
-		  	<!-- Add Filter Modal -->
-		<div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      
-			  <!-- Header Content -->
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h3 class="modal-title">Sign Up</h3>
-		      </div>
-		      
-			  <!-- Body Content -->
-		      <div class="modal-body">
-		       <!--  
-		        <div class="account-settings email-account-wrapper">
-		  
-					<ul class="active-acctounts-list">
-						<li>Pull all emails from:    <b>sampleacct@gmail.com</b><a href="" class="pull-right">Delete Filter</a></li>
-						<li>Pull emails with subject:    <b>BASES</b><a href="" class="pull-right">Delete Filter</a></li>
-					</ul>
-					<a href="" class="show-me pull-right" id="add-account-button">+ Add Filter</a>
-		        </div> -->
-				<div class="account-settings email-account-wrapper">
-		  
-					<ul class="active-acctounts-list">
-						<li>
-							<div class="input-group">
-							  <span class="input-group-addon">Email</span>
-							  <input type="text" class="form-control" placeholder="zeus@olympus.com">
-							</div>
-						</li>
-						<li>
-							<div class="input-group">
-							  <span class="input-group-addon">Password</span>
-							  <input type="password" class="form-control" placeholder="Top Secret">
-							</div>
-						</li>
-						<li>
-							<div class="input-group">
-							  <span class="input-group-addon">Confirm Password</span>
-							  <input type="password" class="form-control" placeholder="Top Secret">
-							</div>
-						</li>
-					</ul>
-		        </div>
-		    
-
-		      </div>
-
-		      <!-- Footer Content -->
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-		        <button type="button" class="btn btn-success" data-dismiss="modal">Sign Up</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
-
 	</body>
 </html>

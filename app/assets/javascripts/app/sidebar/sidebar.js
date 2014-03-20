@@ -89,8 +89,12 @@ angular.module('sidebar', ['resources.threads', 'contenteditable', 'ngTagsInput'
 			body: draft.content
 		};
 
+		$scope.labels_refreshing = true;
+
 		Restangular.all('threads/').post(email).then(function() {
 			$scope.draft = {};
+			$scope.closeCompose();
+			$scope.labels_refreshing = false;
 		});
 	};
 }]);
