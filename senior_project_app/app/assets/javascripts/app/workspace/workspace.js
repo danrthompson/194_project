@@ -47,10 +47,12 @@ angular.module('workspace', ['resources.labels', 'resources.threads'])
 }])
 
 .controller('WorkspaceCtrl', ['$scope', '$location', 'Restangular', function($scope, $location, Restangular) {
-	$scope.locked_label = null;
+	// $scope.lockLabel = function(label) {
+	// 	$scope.locked_label = label;
+	// };
 
-	$scope.lockLabel = function(label) {
-		$scope.locked_label = label;
+	$scope.hideLabel = function(label) {
+		Restangular.one('labels/', label.id).customPUT({id: label.id, hidden: true}).then($scope.refreshLabels);
 	};
 
 	$scope.addCollaborator = function(label) {
