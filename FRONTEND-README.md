@@ -1,11 +1,3 @@
-We will be asking each team to include in your repo, a README file that covers your code base. This should be a thorough document covering the repo, detailing what code does what, what packages you used, what you wrote yourself, etc. This document should be sufficient to bring someone who has not seen your code up to speed on your code base without having to read every line of code in your repo. Alex and I will be going through all of the repo's and using the README as our "guide". If we can not understand how your code works, we can evaluate the difficulty of the development of it.
-
-For most items, if you are questioning if you should include it into the README or not, the answer is probably yes.
-
-We will be looking for things in your code base such as, clean formatting, proper commenting, and all other things that would be deemed as solid programming practices.
-
-
-
 # Frontend
 
 The frontend is built using Angular JS and a hodgepodge of Angular modules peppered in. We use our own modified version of Bootstrap for the base stylesheets. All assets (Angular modules, Angular templates, and Less-based stylesheets) are crunched through the Rails asset pipeline before making it to the user. The interface is broken into three elements: the navbar, the workspace, and the sidebar. Functionality for the app is divided as much as possible into code relevant to those three components.
